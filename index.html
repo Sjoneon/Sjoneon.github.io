@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>송재원 - 신입 풀스택(백엔드 중심) 개발자 포트폴리오</title>
+    <title>송재원 - 신입 백엔드 개발자 포트폴리오</title>
     <style>
         * {
             margin: 0;
@@ -282,18 +282,25 @@
             position: relative;
             aspect-ratio: 16/9;
             background: white;
-            border: 2px dashed #9DB2BF;
+            border: 2px solid #E8EEF2;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 55, 77, 0.15);
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .gallery-item .placeholder {
@@ -309,6 +316,60 @@
             text-align: center;
             margin-top: 8px;
             font-style: italic;
+        }
+
+        /* 이미지 모달 */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 1001;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
         }
 
         /* Easy/Deep 섹션 */
@@ -506,7 +567,7 @@
                         <strong>Email:</strong> spdjdps1649@gmail.com
                     </div>
                     <div class="contact-item">
-                        <strong>주소:</strong> 충북 청주시 청원구 율봉로 8
+                        <strong>주소:</strong> 충북 청주시 청원구 율봉로
                     </div>
                 </div>
             </div>
@@ -540,7 +601,7 @@
                     <div class="period">2020.03 ~ 2026.02 (졸업예정)</div>
                     <ul>
                         <li>학점: 3.66 / 4.5</li>
-                        <li>주요 이수: 자료구조, 알고리즘, 데이터베이스, 소프트웨어공학, 운영체제, 컴퓨터네트워크, 자바프로그래밍Ⅰ, 자바프로그래밍Ⅱ 등</li>
+                        <li>주요 이수: 자료구조, 알고리즘, 데이터베이스, 소프트웨어공학, 운영체제, 컴퓨터네트워크, 자바프로그래밍Ⅰ, 자바프로그래밍Ⅱ</li>
                     </ul>
                 </div>
             </div>
@@ -1024,7 +1085,7 @@
                 <div class="deep-content">
                     <strong>• 알고리즘:</strong> Dijkstra 알고리즘 구현, 시간 복잡도 O((V+E)logV)<br>
                     <strong>• 자료구조:</strong> 그래프를 인접 리스트로 구현, 우선순위 큐 활용<br>
-                    <strong>• 팀 역할:</strong> TUI 인터페이스 단독 개발, 알고리즘 로직 30% 기여(검수 및 오류 수정)<br>
+                    <strong>• 팀 역할:</strong> TUI 인터페이스 단독 개발, 알고리즘 로직 30% 기여<br>
                     <strong>• 협업:</strong> Git을 통한 버전 관리, 팀원과 코드 리뷰 및 통합
                 </div>
             </div>
@@ -1043,6 +1104,48 @@
             <strong>Tech Stack:</strong> C, Dijkstra 알고리즘, 그래프 자료구조, 우선순위 큐, Git
         </div>
     </div>
+    <!-- 이미지 모달 -->
+    <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="확대 이미지">
+        </div>
+    </div>
+
+    <script>
+        // 모달 요소
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementsByClassName('modal-close')[0];
+
+        // 모든 갤러리 이미지에 클릭 이벤트 추가
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+            });
+        });
+
+        // 닫기 버튼 클릭
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        // 모달 배경 클릭
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // ESC 키로 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
