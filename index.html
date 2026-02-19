@@ -18,7 +18,6 @@
             line-height: 1.6;
         }
 
-        /* ========== 프로필 섹션 ========== */
         .profile-container {
             max-width: 1000px;
             margin: 40px auto;
@@ -202,7 +201,6 @@
             font-weight: 600;
         }
 
-        /* ========== 프로젝트 상세 섹션 ========== */
         .project-container {
             max-width: 1000px;
             margin: 40px auto;
@@ -255,7 +253,6 @@
             margin-bottom: 20px;
         }
 
-        /* 이미지 갤러리 */
         .image-gallery {
             margin: 30px 0;
             background: #DDE6ED;
@@ -318,7 +315,70 @@
             font-style: italic;
         }
 
-        /* 이미지 모달 */
+        /* 설계 산출물 섹션 */
+        .design-docs {
+            margin: 30px 0;
+            background: #DDE6ED;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .design-docs-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #27374D;
+            margin-bottom: 15px;
+        }
+
+        .design-docs-image {
+            width: 100%;
+            border-radius: 6px;
+            border: 2px solid #E8EEF2;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .design-docs-image:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(39, 55, 77, 0.15);
+        }
+
+        .design-docs-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .design-docs-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #E8EEF2;
+            text-decoration: none;
+            color: #27374D;
+            font-size: 14px;
+            font-weight: 500;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .design-docs-link:hover {
+            border-color: #526D82;
+            box-shadow: 0 2px 8px rgba(39, 55, 77, 0.1);
+        }
+
+        .design-docs-link span.doc-label {
+            flex: 1;
+        }
+
+        .design-docs-link span.doc-arrow {
+            color: #526D82;
+            font-size: 16px;
+        }
+
         .image-modal {
             display: none;
             position: fixed;
@@ -372,7 +432,6 @@
             color: #bbb;
         }
 
-        /* Easy/Deep 섹션 */
         .value-section {
             background: #DDE6ED;
             padding: 20px;
@@ -436,7 +495,6 @@
             font-weight: 600;
         }
 
-        /* Info Box */
         .info-box {
             background: #DDE6ED;
             padding: 25px;
@@ -459,7 +517,6 @@
             margin-bottom: 10px;
         }
 
-        /* Tech Stack */
         .tech-stack {
             font-size: 14px;
             color: #526D82;
@@ -475,7 +532,6 @@
             font-size: 15px;
         }
 
-        /* Post Analysis */
         .post-analysis {
             background: #DDE6ED;
             padding: 25px;
@@ -545,12 +601,14 @@
             .gallery-grid {
                 grid-template-columns: 1fr;
             }
+            .design-docs-links {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== 프로필 섹션 ========== -->
     <div class="profile-container">
         <div class="header">
             <div class="info-section">
@@ -649,7 +707,7 @@
         </div>
     </div>
 
-    <!-- ========== DaySync 프로젝트 ========== -->
+    <!-- DaySync 프로젝트 -->
     <div class="project-container">
         <div class="project-header">
             <h2>DaySync</h2>
@@ -727,6 +785,32 @@
             </div>
         </div>
 
+        <!-- 설계 산출물 섹션 -->
+        <div class="project-section">
+            <div class="project-section-title">설계 산출물</div>
+            <div class="project-section-divider"></div>
+
+            <div class="design-docs">
+                <div class="design-docs-title">시스템 아키텍처 개요</div>
+                <img
+                    src="https://raw.githubusercontent.com/Sjoneon/DaySync/main/docs/architecture/system_overview.png"
+                    alt="DaySync System Overview"
+                    class="design-docs-image"
+                    onclick="openModal(this.src, this.alt)"
+                >
+                <div class="design-docs-links">
+                    <a href="https://github.com/Sjoneon/DaySync/tree/main/docs/architecture" target="_blank" class="design-docs-link">
+                        <span class="doc-label">아키텍처 문서 (4종)</span>
+                        <span class="doc-arrow">→</span>
+                    </a>
+                    <a href="https://github.com/Sjoneon/DaySync/tree/main/docs/diagrams" target="_blank" class="design-docs-link">
+                        <span class="doc-label">시퀀스 다이어그램 (5종)</span>
+                        <span class="doc-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="tech-stack">
             <strong>Tech Stack:</strong> Python (FastAPI), Android (Java), AWS EC2, Gemini AI 2.5 Flash, Naver Maps API, 공공데이터포털, 기상청 API
         </div>
@@ -759,7 +843,7 @@
         </div>
     </div>
 
-    <!-- ========== SOS 프로젝트 ========== -->
+    <!-- SOS 프로젝트 -->
     <div class="project-container">
         <div class="project-header">
             <h2>SOS (Style of Simplicity)</h2>
@@ -894,7 +978,7 @@
         </div>
     </div>
 
-    <!-- ========== 렌터카 관리 시스템 ========== -->
+    <!-- 렌터카 관리 시스템 -->
     <div class="project-container">
         <div class="project-header">
             <h2>렌터카 관리 시스템</h2>
@@ -965,7 +1049,7 @@
         </div>
     </div>
 
-    <!-- ========== 대기줄 관리 시스템 ========== -->
+    <!-- 대기줄 관리 시스템 -->
     <div class="project-container">
         <div class="project-header">
             <h2>대기줄 관리 시스템</h2>
@@ -1036,7 +1120,7 @@
         </div>
     </div>
 
-    <!-- ========== 최적 경로 탐색 시스템 ========== -->
+    <!-- 최적 경로 탐색 시스템 -->
     <div class="project-container">
         <div class="project-header">
             <h2>최적 경로 탐색 시스템</h2>
@@ -1107,6 +1191,7 @@
             <strong>Tech Stack:</strong> C, Dijkstra 알고리즘, 그래프 자료구조, 우선순위 큐, Git
         </div>
     </div>
+
     <!-- 이미지 모달 -->
     <div id="imageModal" class="image-modal">
         <span class="modal-close">&times;</span>
@@ -1116,33 +1201,32 @@
     </div>
 
     <script>
-        // 모달 요소
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         const closeBtn = document.getElementsByClassName('modal-close')[0];
 
-        // 모든 갤러리 이미지에 클릭 이벤트 추가
+        function openModal(src, alt) {
+            modal.style.display = 'block';
+            modalImg.src = src;
+            modalImg.alt = alt || '';
+        }
+
         document.querySelectorAll('.gallery-item img').forEach(img => {
             img.addEventListener('click', function() {
-                modal.style.display = 'block';
-                modalImg.src = this.src;
-                modalImg.alt = this.alt;
+                openModal(this.src, this.alt);
             });
         });
 
-        // 닫기 버튼 클릭
         closeBtn.onclick = function() {
             modal.style.display = 'none';
         }
 
-        // 모달 배경 클릭
         modal.onclick = function(event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         }
 
-        // ESC 키로 닫기
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.style.display === 'block') {
                 modal.style.display = 'none';
