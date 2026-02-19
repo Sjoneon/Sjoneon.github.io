@@ -63,12 +63,12 @@
 
 **설계 산출물**
 
-![System Overview](docs/architecture/system_overview.png)
+![System Overview](https://raw.githubusercontent.com/Sjoneon/DaySync/main/docs/architecture/system_overview.png)
 
 | 문서 | 링크 |
 |------|------|
-| 아키텍처 (4종) | [보기]([docs/architecture/Design_Android_architecture.md](https://github.com/Sjoneon/DaySync/tree/main/docs/architecture)) |
-| 다이어그램 (5종) | [보기]([docs/architecture/Design_Android_architecture.md](https://github.com/Sjoneon/DaySync/tree/main/docs/diagrams)) |
+| 아키텍처 (4종) | [보기](https://github.com/Sjoneon/DaySync/tree/main/docs/architecture) |
+| 시퀀스 다이어그램 (5종) | [보기](https://github.com/Sjoneon/DaySync/tree/main/docs/diagrams) |
 
 **트러블 슈팅**
 - **문제:** 국토교통부 TAGO 버스 API에서 동일 개념(정류장 순서)을 나타내는 필드가 API 응답마다 달라 일관된 처리 불가능
