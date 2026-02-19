@@ -61,6 +61,15 @@
 - 공공데이터포털 API 장애 시 기상청 API로 자동 전환하여 서비스 안정성 확보
 - 네이버 지도 API 연동으로 실시간 버스 경로 안내 기능 구현
 
+**설계 산출물**
+
+![System Overview](docs/architecture/system_overview.png)
+
+| 문서 | 링크 |
+|------|------|
+| 아키텍처 (4종) | [보기]([docs/architecture/Design_Android_architecture.md](https://github.com/Sjoneon/DaySync/tree/main/docs/architecture)) |
+| 다이어그램 (5종) | [보기]([docs/architecture/Design_Android_architecture.md](https://github.com/Sjoneon/DaySync/tree/main/docs/diagrams)) |
+
 **트러블 슈팅**
 - **문제:** 국토교통부 TAGO 버스 API에서 동일 개념(정류장 순서)을 나타내는 필드가 API 응답마다 달라 일관된 처리 불가능
 - **해결:** `TagoBusRouteStationResponse` 클래스에 모든 가능한 필드 선언, `getValidOrder()` 우선순위 메서드로 유효한 값 추출
