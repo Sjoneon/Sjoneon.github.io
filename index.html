@@ -120,7 +120,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
 .links .sep { margin: 0 6.7pt; }
 .links a + a { margin-left: 14.2pt; }
 
-/* ── 칩(기술 태그) ── */
+/* ── 칩(핵심 특징 태그) ── */
 /* 칩 폭은 PDF 도형 크기와 같게 style="min-width:…"로 지정하고, 글자는 가운데 정렬합니다. */
 .chips { display: flex; gap: var(--chip-gap, 4.5pt); }
 .chips li {
@@ -133,6 +133,13 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     font-size: 8.25pt; line-height: 10.6pt; letter-spacing: -.013em;
 }
 .chips.xs li { padding-bottom: 1pt; font-size: 6.75pt; line-height: 8.7pt; letter-spacing: .027em; }
+
+/* ── 기술 스택 배지 ── */
+/* image/badges/의 SVG는 shields.io에서 받아 저장한 파일이라 외부 서비스 상태와 무관하게 표시·인쇄됩니다.
+   새 배지: https://img.shields.io/badge/이름-색상?style=flat-square&logo=로고&logoColor=white 를 받아 저장합니다.
+   줄 높이는 칩과 같은 18.75pt이고, 한 줄은 본문 폭 510pt(표 안에서는 칸 폭)를 넘지 않아야 합니다. */
+.badges { display: flex; align-items: center; gap: 2.25pt; height: 18.75pt; }
+.badges img { width: auto; height: 14pt; }
 
 /* ── 표 ── */
 .tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
@@ -318,10 +325,33 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <table class="tbl t13" style="margin-top:5.65pt">
         <colgroup><col style="width:127.1pt"><col></colgroup>
         <tbody>
-            <tr><th scope="row">Backend / Data</th><td>Java 21 · Spring Boot · Spring Data JPA · Python · FastAPI · MySQL</td></tr>
-            <tr><th scope="row">AI integration</th><td>Spring AI · FastMCP · OpenAI API · Gemini Function Calling</td></tr>
-            <tr><th scope="row">Client / Operations</th><td>React · Vite · MUI · Android(Java) · AWS EC2/RDS/S3 · CloudFront/WAF</td></tr>
-            <tr><th scope="row">Collaboration / Tools</th><td>Git/GitHub · Docker · GitHub Actions</td></tr>
+            <tr><th scope="row">Backend / Data</th><td><ul class="badges">
+                <li><img src="image/badges/java-21.svg" width="71" height="20" alt="Java 21"></li>
+                <li><img src="image/badges/spring-boot.svg" width="93" height="20" alt="Spring Boot"></li>
+                <li><img src="image/badges/spring-data-jpa.svg" width="117" height="20" alt="Spring Data JPA"></li>
+                <li><img src="image/badges/python.svg" width="67" height="20" alt="Python"></li>
+                <li><img src="image/badges/fastapi.svg" width="69" height="20" alt="FastAPI"></li>
+                <li><img src="image/badges/mysql.svg" width="67" height="20" alt="MySQL"></li>
+            </ul></td></tr>
+            <tr><th scope="row">AI integration</th><td><ul class="badges">
+                <li><img src="image/badges/spring-ai.svg" width="79" height="20" alt="Spring AI"></li>
+                <li><img src="image/badges/fastmcp.svg" width="75" height="20" alt="FastMCP"></li>
+                <li><img src="image/badges/openai-api.svg" width="73" height="20" alt="OpenAI API"></li>
+                <li><img src="image/badges/gemini-function-calling.svg" width="159" height="20" alt="Gemini Function Calling"></li>
+            </ul></td></tr>
+            <tr><th scope="row">Client / Operations</th><td><ul class="badges">
+                <li><img src="image/badges/react.svg" width="59" height="20" alt="React"></li>
+                <li><img src="image/badges/vite.svg" width="49" height="20" alt="Vite"></li>
+                <li><img src="image/badges/mui.svg" width="49" height="20" alt="MUI"></li>
+                <li><img src="image/badges/android-java.svg" width="105" height="20" alt="Android(Java)"></li>
+                <li><img src="image/badges/aws-ec2-rds-s3.svg" width="109" height="20" alt="AWS EC2/RDS/S3"></li>
+                <li><img src="image/badges/cloudfront-waf.svg" width="99" height="20" alt="CloudFront/WAF"></li>
+            </ul></td></tr>
+            <tr><th scope="row">Collaboration / Tools</th><td><ul class="badges">
+                <li><img src="image/badges/git-github.svg" width="87" height="20" alt="Git/GitHub"></li>
+                <li><img src="image/badges/docker.svg" width="67" height="20" alt="Docker"></li>
+                <li><img src="image/badges/github-actions.svg" width="109" height="20" alt="GitHub Actions"></li>
+            </ul></td></tr>
         </tbody>
     </table>
 
@@ -369,10 +399,20 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <li style="min-width:48.8pt">가전 4품목</li>
         <li style="min-width:91.5pt">읽기 전용 MCP 도구 9개</li>
         <li style="min-width:102pt">제조사 자료 1542건 구조화</li>
-        <li style="min-width:84pt">Spring AI + FastMCP</li>
     </ul>
 
-    <h3 class="sh" style="margin-top:7.65pt">담당 범위</h3>
+    <ul class="badges" style="margin-top:3.2pt">
+        <li><img src="image/badges/java-21.svg" width="71" height="20" alt="Java 21"></li>
+        <li><img src="image/badges/spring-boot.svg" width="93" height="20" alt="Spring Boot"></li>
+        <li><img src="image/badges/spring-ai.svg" width="79" height="20" alt="Spring AI"></li>
+        <li><img src="image/badges/fastmcp.svg" width="75" height="20" alt="FastMCP"></li>
+        <li><img src="image/badges/react.svg" width="59" height="20" alt="React"></li>
+        <li><img src="image/badges/mysql.svg" width="67" height="20" alt="MySQL"></li>
+        <li><img src="image/badges/docker.svg" width="67" height="20" alt="Docker"></li>
+        <li><img src="image/badges/github-actions.svg" width="109" height="20" alt="GitHub Actions"></li>
+    </ul>
+
+    <h3 class="sh" style="margin-top:9.05pt">담당 범위</h3>
     <p class="team-label" style="margin-top:5.05pt">팀 구성: 5명</p>
     <div class="lead-role" style="margin-top:7.2pt">
         <div class="who"><strong>송재원 팀장</strong><span>기획 총괄 · MCP 상담 개발</span></div>
@@ -393,7 +433,6 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <img src="image/HomeCare/homecare_architecture.png" width="1800" height="700" alt="HomeCare AI 시스템 아키텍처: 사용자 → React SPA(Vercel 호스팅) → EC2의 Nginx → Spring Boot(서비스 API · 내부 도구 API · Spring AI Agent · MCP Client) ↔ Python FastMCP MCP Server(읽기 전용 도구 9개), MySQL 저장, OpenAI API 연동">
     </figure>
     <p class="links" style="margin-top:14.8pt"><a href="https://github.com/Sjoneon/AX_core_project" target="_blank" rel="noopener noreferrer">GitHub · Sjoneon/AX_core_project</a><a href="https://homecare-omega-eight.vercel.app/" target="_blank" rel="noopener noreferrer">HomeCare AI 서비스 바로가기</a></p>
-    <p class="note" style="margin-top:3.2pt">Java 21 · Spring Boot · Spring AI · FastMCP · React · MySQL · Docker · GitHub Actions</p>
 
     <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>02 / 09</span></footer>
 </article>
@@ -586,12 +625,15 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="pmeta">2025.03 - 11 · 캡스톤 프로젝트 · 1인 개발</p>
     <p class="lead" style="margin-top:12.35pt">여러 앱에 흩어진 일정과 교통 및 날씨 정보를 한곳에 모아 하루의 준비를 돕는 Android 앱입니다.<br>이동 경로와 날씨를 확인하고 자연어로 일정과 알람을 등록할 수 있습니다.</p>
 
-    <ul class="chips" style="margin-top:10.05pt;--chip-gap:4.7pt">
-        <li style="min-width:66.8pt">Android · Java</li>
-        <li style="min-width:73.5pt">FastAPI · Python</li>
-        <li style="min-width:72pt">Gemini 2.5 Flash</li>
-        <li style="min-width:45pt">AWS EC2</li>
-        <li style="min-width:122.2pt">네이버지도 · 공공 데이터 API</li>
+    <ul class="badges" style="margin-top:10.05pt">
+        <li><img src="image/badges/android.svg" width="71" height="20" alt="Android"></li>
+        <li><img src="image/badges/java.svg" width="53" height="20" alt="Java"></li>
+        <li><img src="image/badges/fastapi.svg" width="69" height="20" alt="FastAPI"></li>
+        <li><img src="image/badges/python.svg" width="67" height="20" alt="Python"></li>
+        <li><img src="image/badges/gemini-2.5-flash.svg" width="121" height="20" alt="Gemini 2.5 Flash"></li>
+        <li><img src="image/badges/aws-ec2.svg" width="61" height="20" alt="AWS EC2"></li>
+        <li><img src="image/badges/naver-map.svg" width="81" height="20" alt="네이버지도"></li>
+        <li><img src="image/badges/public-data-api.svg" width="91" height="20" alt="공공 데이터 API"></li>
     </ul>
 
     <h3 class="sh" style="margin-top:9.05pt">실제 앱 화면</h3>
@@ -694,11 +736,16 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="pmeta">2026.05 1차 마감 · 1인 개발 · 설계 / 구현 / 배포 / 운영 점검</p>
     <p class="lead s9" style="margin-top:12.55pt">React와 Spring Boot REST API로 검색·장바구니·주문을 연결하고 Thymeleaf 쇼핑몰의 화면과 서버를 분리했습니다.<br>기존 서비스와 세션 인증을 재사용해 로그인 흐름을 유지하고 공개 응답에서 재고 수량과 판매자 식별자를 제외했습니다.</p>
 
-    <ul class="chips" style="margin-top:10.25pt;--chip-gap:7.5pt">
-        <li style="min-width:100.5pt">React 19 · Vite 7 · MUI 7</li>
-        <li style="min-width:129pt">Java 21 · Spring Boot 3.3.5 · JPA</li>
-        <li style="min-width:45pt">MySQL 8</li>
-        <li style="min-width:136.5pt">EC2 · RDS · S3 · CloudFront · WAF</li>
+    <ul class="badges" style="margin-top:10.25pt">
+        <li><img src="image/badges/react-19.svg" width="77" height="20" alt="React 19"></li>
+        <li><img src="image/badges/vite-7.svg" width="61" height="20" alt="Vite 7"></li>
+        <li><img src="image/badges/mui-7.svg" width="61" height="20" alt="MUI 7"></li>
+        <li><img src="image/badges/java-21.svg" width="71" height="20" alt="Java 21"></li>
+        <li><img src="image/badges/spring-boot-3.3.5.svg" width="125" height="20" alt="Spring Boot 3.3.5"></li>
+        <li><img src="image/badges/jpa.svg" width="47" height="20" alt="JPA"></li>
+        <li><img src="image/badges/mysql-8.svg" width="77" height="20" alt="MySQL 8"></li>
+        <li><img src="image/badges/ec2-rds-s3.svg" width="79" height="20" alt="EC2/RDS/S3"></li>
+        <li><img src="image/badges/cloudfront-waf.svg" width="99" height="20" alt="CloudFront/WAF"></li>
     </ul>
 
     <div class="shots sm" style="margin-top:8.25pt">
@@ -747,10 +794,14 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="pmeta">2024.03 - 06 / 09 - 11 · 개인 프로젝트 · Style of Simplicity</p>
     <p class="lead s9" style="margin-top:12.55pt">Spring Boot와 Thymeleaf 및 JPA로 체형과 상황 스타일 키워드에 맞는 상품 탐색과 주문 흐름을 구현했습니다.<br>패션에 익숙하지 않은 사용자가 상품을 고르고 장바구니와 주문 내역 조회까지 이어가도록 구성했습니다.</p>
 
-    <ul class="chips" style="margin-top:10.25pt">
-        <li style="min-width:80.2pt">Java · Spring Boot</li>
-        <li style="min-width:102pt">Spring Data JPA · MySQL</li>
-        <li style="min-width:120pt">Thymeleaf · Maven · HikariCP</li>
+    <ul class="badges" style="margin-top:10.25pt">
+        <li><img src="image/badges/java.svg" width="53" height="20" alt="Java"></li>
+        <li><img src="image/badges/spring-boot.svg" width="93" height="20" alt="Spring Boot"></li>
+        <li><img src="image/badges/spring-data-jpa.svg" width="117" height="20" alt="Spring Data JPA"></li>
+        <li><img src="image/badges/mysql.svg" width="67" height="20" alt="MySQL"></li>
+        <li><img src="image/badges/thymeleaf.svg" width="85" height="20" alt="Thymeleaf"></li>
+        <li><img src="image/badges/maven.svg" width="63" height="20" alt="Maven"></li>
+        <li><img src="image/badges/hikaricp.svg" width="57" height="20" alt="HikariCP"></li>
     </ul>
 
     <div class="shots sm" style="margin-top:8.25pt">
