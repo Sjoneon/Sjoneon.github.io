@@ -1,0 +1,69 @@
+<!-- ═══════════════════════════ 06 / 11 · HomeCare AI · VALIDATION ═══════════════════════════ -->
+<article class="page" id="homecare-validation" aria-label="6페이지 · HomeCare AI 개선과 검증">
+    <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / VALIDATION</span></header>
+
+    <p class="kicker">TEAM PROJECT · IMPROVEMENT</p>
+    <h2 class="ptitle">HomeCare AI</h2>
+    <p class="psub">답변의 근거를 고정하고 불필요한 요청을 축소</p>
+    <p class="pmeta">2026.10.14 - 10.15 개발 평가 / 2026.10.30 최적화 검수 기록 기준</p>
+
+    <h3 id="hc-metrics" class="sh" style="margin-top:12.8pt">주요 개선 및 검증</h3>
+    <div class="stats" style="margin-top:5.85pt">
+        <div class="stat">
+            <h4>문서 임베딩 인덱스 재사용</h4>
+            <p class="num">25 → 0 <small>회 요청</small></p>
+            <p>자료·모델 설정의 SHA-256 지문을 비교<br>재시작 시 유효한 캐시로 인덱스를 복원<br>자료 1542건의 문서 재임베딩을 생략</p>
+        </div>
+        <div class="stat">
+            <h4>검증된 자료로 답변 작성</h4>
+            <p class="num">4<span class="of">/14</span> → 14<span class="of">/14</span> <small>개 통과</small></p>
+            <p>동일 14문항의 답변 구성 평가<br>AI는 근거 ID 선택 서버는 원문 복원<br>고정 대체 응답은 성공에서 제외</p>
+        </div>
+        <div class="stat">
+            <h4>자가점검 단계 제출</h4>
+            <p class="num">80% <small>감소</small></p>
+            <p>5단계 진행 예의 결과 제출 요청<br>5회 → 1회 중간 단계는 화면에서 처리<br>소유권·단계·버전 검증 유지</p>
+        </div>
+    </div>
+    <p class="stat-notes" style="margin-top:4.8pt">캐시는 자료 1542건과 모델 설정이 같고 유효한 재시작 기준입니다. 문서 재임베딩 요청만 비교하며 질문 임베딩은 별도입니다.<br>자가점검 수치는 최초 카드 수신과 최종 결과 처리 이후의 별도 상담을 제외한 단계 제출 흐름 기준입니다.</p>
+
+    <h3 id="hc-trouble" class="sh sm" style="margin-top:7.55pt">개선 1. 근거 ID 선택과 서버 검증으로 원문 보존</h3>
+    <div class="boxed imp" style="margin-top:4.55pt">
+        <p><b>문제</b> : 금액과 조치 내용이 바뀌면 사용자의 수리 판단에 영향을 줄 수 있어 근거 원문을 정확히 전달해야 했습니다.</p>
+        <div class="cmp">
+            <div><em>BEFORE</em><span>AI가 근거 본문을 직접 작성·인용</span></div>
+            <div class="arr" aria-hidden="true">→</div>
+            <div><em>AFTER</em><span><b>근거 ID 선택 → 검증 → 본문 복원</b></span></div>
+        </div>
+        <p><b>판단·구현</b> : AI는 근거 ID만 선택하게 하고 서버에서 ID와 필수 근거의 누락 및 중복을 검증하도록 했습니다.<br>검증을 통과한 원문만 복원하고 실패하면 고정 안내를 제공해 새 금액이나 조치가 나가지 않도록 구성했습니다.</p>
+        <p style="margin-top:2.9pt"><b>검증·결과</b> : 동일 14문항의 답변 구성 평가에서 통과 문항이 4개에서 14개로 늘었습니다. 고정 대체 응답은 제외했습니다.</p>
+    </div>
+
+    <h3 class="sh sm" style="margin-top:6pt">개선 2. React 화면 처리와 서버 검증으로 단계 제출 통합</h3>
+    <div class="boxed imp" style="margin-top:4.85pt">
+        <p><b>문제</b> : 단계마다 채팅과 이력 조회가 반복돼 빠른 진행 시 요청 제한에 걸릴 수 있었으며 최종 상태는 유지해야 했습니다.</p>
+        <div class="cmp">
+            <div style="height:33.75pt;padding-top:4.8pt"><em>BEFORE · 같은 5단계 진행</em><span>단계별 결과 제출 5회</span></div>
+            <div class="arr" aria-hidden="true">→</div>
+            <div style="height:33.75pt;padding-top:4.8pt"><em>AFTER</em><span><b>최종 결과 제출 1회</b></span></div>
+        </div>
+        <p><b>판단·구현</b> : 중간 단계는 React에서 처리하고 결과만 제출했습니다. 서버의 소유권과 단계 및 버전 검증은 유지했습니다.</p>
+        <p><b>검증·결과</b> : 5단계 제출 요청을 5회에서 1회로 줄이고 동일한 최종 상태와 오래된 카드·중복 제출의 409 거부를 확인했습니다.</p>
+        <p><b>범위·한계</b> : 최초 카드 수신과 이후 별도 상담은 제외했습니다. 새로고침 시 중간 단계 복원은 추가 개선이 필요합니다.</p>
+    </div>
+
+    <h3 id="hc-limits" class="sh sm" style="margin-top:6.4pt">평가 범위와 남은 과제</h3>
+    <table class="tbl eval" style="margin-top:4.05pt">
+        <colgroup><col style="width:113.9pt"><col style="width:123pt"><col></colgroup>
+        <thead><tr><th scope="col">평가</th><th scope="col">이전 → 개선 후</th><th scope="col">범위</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">자연어 해석</th><td>36/38 → 38/38</td><td>동일 38개 입력의 의도·증상·후속 응답</td></tr>
+            <tr><th scope="row">실제 모델 상담</th><td>22/24 → 24/24</td><td>H2·HTTP·JWT·FastMCP 연동 / 46턴</td></tr>
+            <tr><th scope="row">추가 표현 검사</th><td>4/6 → 5/6</td><td>수정 후 재검사 / 미통과 1건 개선 과제</td></tr>
+        </tbody>
+    </table>
+    <p class="note xs" style="margin-top:4.5pt">gpt-4o-mini를 사용한 개발 세트 재검사입니다. 독립 정확도나 실제 수리 성공률을 의미하지 않으며 이후 변경된 최신 코드 전체의 재평가 결과도 아닙니다.</p>
+    <p class="note xs" style="margin-top:21.5pt"><b>다음 과제:</b> 독립 질문의 답변 적합성 실제 수리 사례의 비용 범위 운영 지연·실패율과 사용자 과업 평가</p>
+
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>06 / 11</span></footer>
+</article>

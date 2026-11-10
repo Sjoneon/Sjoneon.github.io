@@ -1,0 +1,123 @@
+/*
+  여러 페이지에서 같이 쓰는 블록
+  칩, 배지, 표, 단계 카드, 흐름도, 화면 캡처 등
+*/
+
+/* 칩 */
+/* 폭은 PDF 도형 크기에 맞춰서 HTML 쪽 min-width로 지정 */
+.chips { display: flex; gap: var(--chip-gap, 4.5pt); }
+.chips li {
+    height: 18.75pt;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 5pt 2.7pt;
+    background: #F7F9FB;
+    border: .6pt solid #D3DFE7;
+    border-radius: 2.5pt;
+    font-size: 8.25pt; line-height: 10.6pt; letter-spacing: -.013em;
+}
+.chips.xs li { padding-bottom: 1pt; font-size: 6.75pt; line-height: 8.7pt; letter-spacing: .027em; }
+
+/* 기술 스택 배지 */
+/* image/badges/의 SVG는 shields.io에서 받아 저장한 파일. 외부 서비스 상태랑 상관없이 나오게 하려고 로컬에 둠 */
+.badges { display: flex; align-items: center; gap: 2.25pt; height: 18.75pt; }
+.badges img { width: auto; height: 14pt; }
+
+/* 표 */
+.tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.tbl th, .tbl td {
+    height: 25.2pt;
+    padding: 0 0 0 5.9pt;
+    border-bottom: .5pt solid var(--rule);
+    text-align: left; vertical-align: middle;
+    font-size: 8.25pt; line-height: 10.6pt; font-weight: 400; letter-spacing: .02em;
+}
+.tbl tbody th { font-weight: 700; }
+.tbl thead th { height: 24.1pt; background: #F2F5F8; color: var(--th); font-weight: 700; letter-spacing: -.01em; }
+.tbl.t13 th, .tbl.t13 td { letter-spacing: .013em; }
+.tbl .r { text-align: right; padding: 0 5.2pt 0 0; }
+
+/* 단계 카드 (사용자 흐름, 검색 단계) */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7pt; }
+.steps li {
+    height: 66.8pt;
+    padding: 6.9pt 6pt 0 8.3pt;
+    background: #EEF3F6;
+    border-top: 1.5pt solid #4B7286;
+}
+.steps .n { display: block; font-size: 7.5pt; line-height: 9.7pt; font-weight: 700; color: var(--label); letter-spacing: .02em; }
+.steps strong { display: block; margin-top: 2.9pt; font-size: 9pt; line-height: 11.5pt; letter-spacing: -.016em; }
+.steps p { margin-top: 3.3pt; font-size: 7.5pt; line-height: 11.7pt; color: var(--desc); letter-spacing: .025em; }
+.steps.lg li { height: 74.25pt; padding-top: 8.2pt; }
+.steps.lg .n { letter-spacing: 0; }
+.steps.lg strong { margin-top: 4pt; letter-spacing: -.018em; }
+.steps.lg p { margin-top: 3.95pt; font-size: 8.25pt; line-height: 12.3pt; letter-spacing: -.017em; }
+
+/* MCP 흐름도. 화면에서는 신호가 선을 따라 움직이고 인쇄에서는 선과 번호만 남김 */
+.mcp-flow { display: block; width: 510pt; height: auto; margin-top: 12pt; }
+.mcp-flow .mono { font-family: Consolas, "Cascadia Mono", Menlo, monospace; }
+.mcp-flow .mf-head, .mcp-flow .mf-glow { filter: drop-shadow(0 0 3px currentColor); }
+.mcp-flow .mf-p, .mcp-flow .mf-rt { pointer-events: none; }
+.mcp-flow.mf-paused .mf-p, .mcp-flow.mf-focus .mf-p { display: none; }
+
+/* 번호 박스에 마우스를 올리면 이어지는 선 색이 바뀜. 재생 중이면 선도 같이 흐름 (js/mcp-flow.js) */
+.mcp-flow .mf-step { cursor: pointer; outline: none; }
+.mcp-flow .mf-rt { display: none; }
+.mcp-flow .mf-rt.mf-on { display: inline; }
+@media (prefers-reduced-motion: no-preference) {
+    .mcp-flow:not(.mf-paused) .mf-rt.mf-on { stroke-dasharray: 7 5; animation: mf-run .6s linear infinite; }
+}
+@keyframes mf-run { to { stroke-dashoffset: -12; } }
+
+/* 재생, 멈춤 버튼 */
+.mf-toggle { display: inline-flex; align-items: center; justify-content: center; width: 11pt; height: 11pt; margin-left: 5pt; padding: 0; vertical-align: 1pt; background: #F4F7F9; border: .6pt solid #BFCED9; border-radius: 2.5pt; color: var(--navy); cursor: pointer; }
+.mf-toggle:hover { background: #E6EEF4; }
+.mf-toggle:focus-visible { outline: 1.2pt solid #0FB2EA; outline-offset: 1pt; }
+.mf-toggle svg { width: 6.5pt; height: 6.5pt; fill: currentColor; }
+.mf-toggle .mf-i-play, .mf-toggle.is-paused .mf-i-pause { display: none; }
+.mf-toggle.is-paused .mf-i-play { display: inline; }
+
+@media (prefers-reduced-motion: reduce) {
+    .mcp-flow .mf-p, .mf-toggle { display: none; }
+}
+
+/* DaySync 버스 판정 그림 */
+.bus-fig { display: block; width: 510pt; height: auto; margin-top: 6pt; }
+
+/* 3단 흐름 박스 */
+.flow3 { display: grid; grid-template-columns: 141pt 1fr 175.5pt 1fr 141pt; align-items: center; }
+.flow3 .node {
+    height: var(--node-h, 44.25pt);
+    padding-top: var(--node-pt, 8.6pt);
+    text-align: center;
+    background: #F4F7F9;
+    border: .6pt solid #BFCED9;
+    border-radius: 2.5pt;
+}
+.flow3 .node.dark { background: var(--navy); border-color: var(--navy); color: #FFFFFF; }
+.flow3 .node strong { display: block; font-size: 9pt; line-height: 11.5pt; }
+.flow3 .node span { display: block; margin-top: 2.5pt; font-size: 7.5pt; line-height: 9.6pt; color: #5A7284; }
+.flow3 .node.dark span { color: #DBE7EF; }
+.flow3 .arr { text-align: center; font-size: 9pt; line-height: 11.6pt; }
+.flow3 .arr.sm { font-size: 7pt; }
+
+/* 2단 설명 박스 */
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 13.5pt; }
+.duo > div { padding: 8.6pt 6pt 0 8.3pt; background: #F0F4F7; }
+.duo > div + div { padding-left: 9.3pt; }
+.duo h4 { font-size: 9.75pt; line-height: 12.6pt; letter-spacing: -.008em; }
+.duo p { font-size: 9pt; line-height: 14.3pt; letter-spacing: .024em; }
+
+/* 화면 캡처. shots는 가로 화면, phones는 앱 세로 화면 4장 */
+.shots { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12pt; row-gap: 14.9pt; }
+.shots .frame { height: 130.5pt; background: #F7F9FC; border: .75pt solid #CCD9E3; }
+.shots img, .phones img { width: 100%; height: 100%; object-fit: contain; }
+.shots figcaption strong { display: block; margin-top: 5.9pt; font-size: 9pt; line-height: 11.6pt; color: var(--navy); letter-spacing: .017em; }
+.shots figcaption span { display: block; margin-top: 5.5pt; font-size: 8.25pt; line-height: 10.6pt; color: var(--cap); }
+.shots.sm .frame { height: 108pt; background: #F7F9FA; border-color: var(--rule); }
+.shots.sm figcaption { margin-top: 5.5pt; text-align: center; font-size: 7.5pt; line-height: 9.7pt; color: var(--cap); }
+.phones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11.75pt; }
+.phones .frame { height: 201.8pt; border: .6pt solid #D6E0E7; }
+.phones figcaption { margin-top: 5.2pt; text-align: center; font-size: 7.5pt; line-height: 9.7pt; color: var(--cap); }
+
+/* 테두리 박스 */
+.boxed { border: .6pt solid #D5E0E7; border-radius: 3.5pt; }

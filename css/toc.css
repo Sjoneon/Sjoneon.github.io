@@ -1,0 +1,62 @@
+/*
+  왼쪽 목차
+  1100px 이상은 고정 목차(☰로 접기), 그 아래는 ☰로 여는 서랍 + 상단 바
+  동작은 js/toc.js
+*/
+
+.toc-toggle {
+    position: fixed; top: 12px; left: 12px; z-index: 40;
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    background: #FFFFFF; border: 1px solid #BFCED9; border-radius: 6px;
+    color: var(--navy); cursor: pointer;
+}
+.toc-toggle:hover { background: #EEF3F6; }
+.toc-toggle:focus-visible, .toc-pdf:focus-visible, .toc a:focus-visible { outline: 2px solid #2F6B86; outline-offset: 1px; }
+.toc-toggle svg { width: 16px; height: 16px; }
+.toc {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 30;
+    width: 212px; padding: 60px 12px 16px;
+    overflow-y: auto;
+    background: #FFFFFF; border-right: 1px solid #CFDBE4;
+    font-size: 13px; line-height: 1.4;
+}
+.toc-title { position: sticky; top: -60px; z-index: 1; margin: -60px -12px 6px; padding: 20px 12px 12px 58px; background: #FFFFFF; font-size: 13px; font-weight: 700; color: var(--navy); }
+.toc a { display: block; padding: 3px 8px; border-left: 2px solid transparent; border-radius: 0 4px 4px 0; color: #566C7E; }
+.toc a:hover { background: #EEF3F6; color: var(--navy); }
+.toc .toc-main { margin-top: 7px; padding-top: 4px; padding-bottom: 4px; font-weight: 700; color: var(--navy); }
+.toc .toc-sub { padding-left: 18px; font-size: 12.5px; }
+.toc a.is-current { background: #E6EEF4; border-left-color: #2F6B86; color: var(--navy); font-weight: 700; }
+.toc-pdf {
+    width: 100%; margin-top: 14px; padding: 7px 0;
+    background: #F4F7F9; border: 1px solid #BFCED9; border-radius: 4px;
+    font: inherit; font-size: 12.5px; color: var(--navy); cursor: pointer;
+}
+.toc-pdf:hover { background: #E6EEF4; }
+.toc-bar, .toc-scrim { display: none; }
+/* 목차로 이동했을 때 위쪽 여백. 페이지에 zoom이 걸려 있어서 --zoom으로 나눠야 실제 px이 맞음 */
+.page, .page h3[id] { scroll-margin-top: calc(16px / var(--zoom, 1)); }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+/* 넓은 화면 */
+@media screen and (min-width: 1100px) {
+    .doc { margin-left: 212px; }
+    .toc-collapsed .doc { margin-left: 0; }
+    .toc-collapsed .toc { display: none; }
+}
+/* 좁은 화면: 서랍, 상단 바 */
+@media screen and (max-width: 1099.98px) {
+    .toc-toggle { top: 7px; left: 8px; }
+    .toc { visibility: hidden; transform: translateX(-100%); box-shadow: 0 0 18px rgba(39, 55, 77, 0.25); transition: transform .18s ease, visibility .18s; }
+    .toc-drawer .toc { visibility: visible; transform: none; }
+    .toc-drawer .toc-scrim { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(39, 55, 77, 0.35); }
+    .toc-bar {
+        display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+        height: 48px; padding-left: 54px;
+        background: #FFFFFF; border-bottom: 1px solid #CFDBE4;
+        font-size: 13px; font-weight: 700; line-height: 48px; color: var(--navy);
+        overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .doc { padding-top: 64px; }
+    .page, .page h3[id] { scroll-margin-top: calc(60px / var(--zoom, 1)); }
+}

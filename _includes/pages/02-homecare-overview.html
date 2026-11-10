@@ -1,0 +1,51 @@
+<!-- ═══════════════════════════ 02 / 11 · HomeCare AI · OVERVIEW ═══════════════════════════ -->
+<article class="page" id="homecare-ai" aria-label="2페이지 · HomeCare AI 개요">
+    <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / OVERVIEW</span></header>
+
+    <p class="kicker">TEAM PROJECT</p>
+    <h2 class="ptitle">HomeCare AI</h2>
+    <p class="psub">수리 전에 필요한 정보를 하나의 상담 흐름으로</p>
+    <p class="pmeta">2026.10.01 - 10.18 · LG전자 AX School · 5인 팀 / 팀장</p>
+    <p class="lead" style="margin-top:12.35pt;letter-spacing:.009em">가전 A/S에서 수리비와 보증 조건을 미리 알기 어렵다는 문제가 반복되어 수리 전 판단을 돕고자 만들었습니다.<br>세탁기와 건조기 그리고 냉장고와 식기세척기의 증상과 오류코드를 입력하면 제조사 자료를 바탕으로 자가점검과<br>보증기간 및 참고 수리비를 안내하는 AI 상담 웹 서비스입니다. 상담 결과와 함께 공식 A/S 접수 경로를 제공합니다.</p>
+
+    <ul class="chips xs" style="margin-top:10.05pt">
+        <li style="min-width:48.8pt">가전 4품목</li>
+        <li style="min-width:91.5pt">읽기 전용 MCP 도구 9개</li>
+        <li style="min-width:102pt">제조사 자료 1542건 구조화</li>
+    </ul>
+
+    <ul class="badges" style="margin-top:3.2pt">
+        <li><img src="image/badges/java-21.svg" width="71" height="20" alt="Java 21"></li>
+        <li><img src="image/badges/spring-boot.svg" width="93" height="20" alt="Spring Boot"></li>
+        <li><img src="image/badges/spring-ai.svg" width="79" height="20" alt="Spring AI"></li>
+        <li><img src="image/badges/fastmcp.svg" width="75" height="20" alt="FastMCP"></li>
+        <li><img src="image/badges/react.svg" width="59" height="20" alt="React"></li>
+        <li><img src="image/badges/mysql.svg" width="67" height="20" alt="MySQL"></li>
+        <li><img src="image/badges/docker.svg" width="67" height="20" alt="Docker"></li>
+        <li><img src="image/badges/github-actions.svg" width="109" height="20" alt="GitHub Actions"></li>
+    </ul>
+
+    <h3 id="hc-role" class="sh" style="margin-top:9.05pt">담당 범위</h3>
+    <p class="team-label" style="margin-top:5.05pt">팀 구성: 5명</p>
+    <div class="lead-role" style="margin-top:7.2pt">
+        <div class="who"><strong>송재원 팀장</strong><span>기획 총괄 · MCP 상담 개발</span></div>
+        <p>기능명세 · 시퀀스 · ERD 작성<br>상담 흐름 · 동작 규칙 결정</p>
+        <p>MCP 도구 · 검색 · 보증 개발<br>코드 리뷰 · 출력 검수 · 평가 기준</p>
+    </div>
+
+    <h3 class="sh" style="margin-top:14.4pt">사용자 흐름</h3>
+    <ol class="steps" style="margin-top:5.35pt">
+        <li><span class="n">01</span><strong>제품·증상</strong><p>등록 제품 연결<br>증상·오류코드 입력</p></li>
+        <li><span class="n">02</span><strong>위험·조건</strong><p>위험 신호 확인<br>필요한 후속 질문</p></li>
+        <li><span class="n">03</span><strong>근거 안내</strong><p>자가점검·보증<br>참고 수리비 확인</p></li>
+        <li><span class="n">04</span><strong>다음 행동</strong><p>공식 접수 경로<br>상담 요약 제공</p></li>
+    </ol>
+
+    <h3 id="hc-arch" class="sh" style="margin-top:20.1pt">시스템 아키텍처</h3>
+    <figure class="figure-wide" style="margin-top:5.65pt">
+        <img src="image/HomeCare/homecare_architecture.png" width="1800" height="700" alt="HomeCare AI 시스템 아키텍처: 사용자 → React SPA(Vercel 호스팅) → EC2의 Nginx → Spring Boot(서비스 API · 내부 도구 API · Spring AI Agent · MCP Client) ↔ Python FastMCP MCP Server(읽기 전용 도구 9개), MySQL 저장, OpenAI API 연동">
+    </figure>
+    <p class="links" style="margin-top:14.8pt"><a href="https://github.com/Sjoneon/AX_core_project" target="_blank" rel="noopener noreferrer">GitHub · Sjoneon/AX_core_project</a><a href="https://homecare-omega-eight.vercel.app/" target="_blank" rel="noopener noreferrer">HomeCare AI 서비스 바로가기</a></p>
+
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>02 / 11</span></footer>
+</article>

@@ -1,0 +1,53 @@
+<svg class="bus-fig" viewBox="0 0 680 158" role="img" aria-label="현재 위치를 중심으로 다섯 지점을 검색해 1km 범위의 정류장을 찾고 중복 제거, 거리 확인, 가까운 20곳 선택을 거치는 과정"><defs><marker id="bf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="bf-good" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker><marker id="bf-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<circle cx="104" cy="80" r="68" fill="#F4F7F9" stroke="#27374D" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="104" cy="80" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="104" cy="45.932" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="104" cy="114.068" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="131.336" cy="80" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="76.664" cy="80" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="86" cy="34" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="118" cy="28" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="142" cy="50" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="64" cy="58" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="92" cy="53" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="140" cy="74" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="52" cy="88" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="78" cy="94" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="148" cy="92" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="116" cy="106" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="70" cy="118" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="122" cy="130" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="96" cy="128" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="104" cy="80" r="5" fill="#C8342B" stroke="#FFFFFF" stroke-width="1.4"/>
+<text paint-order="stroke" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" x="104" y="71" font-size="9" fill="#27374D" font-weight="700" text-anchor="middle">현재 위치</text>
+<text x="170" y="22" font-size="9" fill="#27374D" font-weight="700">1km</text>
+<rect x="224" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="237" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="237" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+<text x="274" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">5곳 검색</text>
+<text x="274" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">중심과 동서남북</text>
+<text x="274" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">약 400~500m 간격</text>
+<path d="M325 63L339 63" fill="none" stroke="#5B6C7C" stroke-width="1.15" marker-end="url(#bf-line)"/>
+<rect x="340" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="353" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="353" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+<text x="390" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">중복 제거</text>
+<text x="390" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">겹친 구역의 정류장을</text>
+<text x="390" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">정류장 ID로 하나만</text>
+<path d="M441 63L455 63" fill="none" stroke="#5B6C7C" stroke-width="1.15" marker-end="url(#bf-line)"/>
+<rect x="456" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="469" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="469" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+<text x="506" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">1km 이내</text>
+<text x="506" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">실제 위치에서의</text>
+<text x="506" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">직선거리로 재확인</text>
+<path d="M557 63L571 63" fill="none" stroke="#5B6C7C" stroke-width="1.15" marker-end="url(#bf-line)"/>
+<rect x="572" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="585" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="585" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
+<text x="622" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">가까운 20곳</text>
+<text x="622" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">거리순 정렬 후</text>
+<text x="622" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">상위 20곳만 분석</text>
+<text x="224" y="134" font-size="10.5" fill="#27374D">한 번 조회할 수 있는 범위(약 500m) 밖의 정류장까지 찾아 후보가 빠지지 않게 했습니다.</text>
+<text x="224" y="149" font-size="10" fill="#566C7E">같은 좌표를 다시 검색하면 저장해 둔 결과를 재사용합니다.</text>
+</svg>

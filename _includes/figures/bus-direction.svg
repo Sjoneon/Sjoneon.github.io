@@ -1,0 +1,49 @@
+<svg class="bus-fig" viewBox="0 0 680 208" role="img" aria-label="가는 방향과 오는 방향에 같은 이름의 정류장이 있을 때 회차점을 넘지 않는 순번 18 정류장을 선택하고 순번 41 정류장은 제외하는 그림"><defs><marker id="bf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="bf-good" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker><marker id="bf-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<path d="M62 58L540 58A40 40 0 0 1 540 138L62 138" fill="none" stroke="#D5DFE7" stroke-width="7" stroke-linecap="round"/>
+<circle cx="72" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="72" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="124" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="124" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="176" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="176" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="228" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="228" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="280" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="280" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="332" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="332" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="384" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="384" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="436" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="436" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="488" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="488" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="540" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="540" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<text x="0" y="62" font-size="10" fill="#27374D" font-weight="700">가는 방향</text>
+<text x="0" y="142" font-size="10" fill="#27374D" font-weight="700">오는 방향</text>
+<path d="M156 58L315 58" fill="none" stroke="#1F78A8" stroke-width="3.2" marker-end="url(#bf-good)"/>
+<path d="M330 67L540 67A31 31 0 0 1 540 129L331 129" fill="none" stroke="#C8342B" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#bf-bad)"/>
+<circle cx="150" cy="58" r="6" fill="#27374D" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="150" y="45" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">출발 정류장</text>
+<circle cx="322" cy="58" r="6" fill="#1F78A8" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="322" cy="138" r="6" fill="#C8342B" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="322" y="32" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">질구지 · 순번 18</text>
+<circle cx="272" cy="45" r="6.5" fill="#1F78A8" stroke="none" stroke-width="0.8"/><path d="M268.8 45L271.1 47.4L275.4 42.3" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="282" y="48.5" font-size="10" fill="#27374D" font-weight="700">탑승 가능 · 신뢰도 75%</text>
+<text x="322" y="157" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">질구지 · 순번 41</text>
+<circle cx="274" cy="171" r="6.5" fill="#C8342B" stroke="none" stroke-width="0.8"/><path d="M271.2 168.2L276.8 173.8M276.8 168.2L271.2 173.8" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="284" y="174.5" font-size="10" fill="#27374D" font-weight="700">회차점을 넘어 제외</text>
+<circle cx="580" cy="98" r="6.5" fill="#27374D" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="592" y="94" font-size="11" fill="#27374D" font-weight="700">회차점</text>
+<text x="592" y="108" font-size="9.5" fill="#566C7E">순번 30</text>
+<text x="0" y="196" font-size="10.5" fill="#27374D" font-weight="700">회차점 찾는 순서</text>
+<rect x="96" y="183" width="176" height="20" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="184" y="197" font-size="10" fill="#27374D" text-anchor="middle">상행·하행 코드가 바뀌는 곳</text>
+<text x="278" y="197.5" font-size="11" fill="#5B6C7C" text-anchor="middle">›</text>
+<rect x="284" y="183" width="176" height="20" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="372" y="197" font-size="10" fill="#27374D" text-anchor="middle">이름에 종점·터미널이 있는 곳</text>
+<text x="466" y="197.5" font-size="11" fill="#5B6C7C" text-anchor="middle">›</text>
+<rect x="472" y="183" width="176" height="20" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="560" y="197" font-size="10" fill="#27374D" text-anchor="middle">순환 노선은 중간 순번으로 추정</text>
+</svg>
