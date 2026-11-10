@@ -1,0 +1,28 @@
+<svg class="ds-fig" viewBox="0 0 680 126" role="img" aria-label="앱의 채팅 입력이 FastAPI를 거쳐 Gemini가 함수를 고르고, 서버가 함수를 실행해 MySQL에 저장한 뒤 결과를 모델에 넘겨 답변을 앱에 표시하는 흐름"><defs><marker id="dsf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="dsf-back" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker></defs>
+<rect x="1" y="8" width="110" height="70" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="56" y="32" font-size="13" fill="#27374D" font-weight="700" text-anchor="middle">Android 앱</text>
+<text x="56" y="51" font-size="10" fill="#566C7E" text-anchor="middle">채팅 입력</text>
+<text x="56" y="67" font-size="10" fill="#566C7E" text-anchor="middle">답변 표시</text>
+<rect x="143" y="8" width="110" height="70" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="198" y="32" font-size="13" fill="#27374D" font-weight="700" text-anchor="middle">FastAPI</text>
+<text x="198" y="51" font-size="9" fill="#27374D" text-anchor="middle" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">POST /api/ai/chat</text>
+<text x="198" y="67" font-size="10" fill="#566C7E" text-anchor="middle">최근 대화 10개 첨부</text>
+<rect x="285" y="8" width="110" height="70" rx="3.5" fill="#27374D" stroke="#27374D" stroke-width="0.8"/>
+<text x="340" y="32" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">Gemini</text>
+<text x="340" y="51" font-size="10" fill="#DBE7EF" text-anchor="middle">함수 9개 중 선택</text>
+<text x="340" y="67" font-size="9" fill="#DBE7EF" text-anchor="middle" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">function_call</text>
+<rect x="427" y="8" width="110" height="70" rx="3.5" fill="#EEF5FA" stroke="#1F78A8" stroke-width="1.2"/>
+<text x="482" y="32" font-size="13" fill="#27374D" font-weight="700" text-anchor="middle">서버 실행</text>
+<text x="482" y="51" font-size="8.5" fill="#27374D" text-anchor="middle" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">execute_function_call</text>
+<text x="482" y="67" font-size="10" fill="#566C7E" text-anchor="middle">필수 값, 사용자 범위</text>
+<rect x="569" y="8" width="110" height="70" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="624" y="32" font-size="13" fill="#27374D" font-weight="700" text-anchor="middle">MySQL</text>
+<text x="624" y="51" font-size="10" fill="#566C7E" text-anchor="middle">일정, 알람 저장</text>
+<text x="624" y="67" font-size="10" fill="#566C7E" text-anchor="middle">세션, 메시지 기록</text>
+<path d="M112 43H142" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsf-line)"/>
+<path d="M254 43H284" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsf-line)"/>
+<path d="M396 43H426" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsf-line)"/>
+<path d="M538 43H568" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsf-line)"/>
+<path d="M482 78V100H56V79" fill="none" stroke="#1F78A8" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#dsf-back)"/>
+<text x="269" y="118" font-size="10.5" fill="#27374D" text-anchor="middle">실행 결과를 모델에 넘겨 답변을 만든 뒤 앱에 표시</text>
+</svg>

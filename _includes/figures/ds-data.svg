@@ -1,0 +1,48 @@
+<svg class="ds-fig" viewBox="0 0 680 174" role="img" aria-label="users 테이블에서 sessions와 messages, calendars와 alarms로 이어지는 저장 구조와, 사용자 삭제 시 하위 데이터 삭제, 30일 미사용 세션 정리, 경로 검색 결과 재사용 규칙"><defs><marker id="dsd-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker></defs>
+<g font-family="Consolas, 'Cascadia Mono', Menlo, monospace" font-size="11.5" fill="#27374D" font-weight="700" text-anchor="middle">
+    <rect x="1" y="62" width="96" height="42" rx="3" fill="#27374D" stroke="#27374D" stroke-width="0.8"/>
+    <text x="49" y="81" fill="#FFFFFF">users</text>
+    <rect x="147" y="8" width="110" height="42" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+    <text x="202" y="27">sessions</text>
+    <rect x="307" y="8" width="110" height="42" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+    <text x="362" y="27">messages</text>
+    <rect x="147" y="112" width="110" height="42" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+    <text x="202" y="131">calendars</text>
+    <rect x="307" y="112" width="110" height="42" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+    <text x="362" y="131">alarms</text>
+</g>
+<g font-size="9.5" fill="#566C7E" text-anchor="middle">
+    <text x="49" y="96" fill="#DBE7EF">사용자</text>
+    <text x="202" y="42">대화 세션</text>
+    <text x="362" y="42">대화 메시지</text>
+    <text x="202" y="146">일정</text>
+    <text x="362" y="146">알람</text>
+</g>
+<path d="M97 76H122V29H146" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsd-line)"/>
+<path d="M97 90H122V133H146" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsd-line)"/>
+<path d="M258 29H306" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsd-line)"/>
+<path d="M258 133H306" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsd-line)"/>
+<g font-size="9" fill="#5B6C7C" text-anchor="middle">
+    <text x="282" y="23">1:N</text>
+    <text x="282" y="127">1:N</text>
+</g>
+<text x="362" y="66" font-size="9.5" fill="#1F78A8" font-weight="700" text-anchor="middle">최근 10개만 모델에 전달</text>
+<text x="362" y="169" font-size="9.5" fill="#566C7E" text-anchor="middle">일정 삭제 시 연결만 해제</text>
+<rect x="447" y="8" width="232" height="152" rx="3.5" fill="#FFFFFF" stroke="#D5E0E7" stroke-width="0.8"/>
+<text x="461" y="29" font-size="11" fill="#27374D" font-weight="700">데이터 관리 규칙</text>
+<g fill="#1F78A8">
+    <circle cx="465" cy="52" r="2.5"/>
+    <circle cx="465" cy="94" r="2.5"/>
+    <circle cx="465" cy="136" r="2.5"/>
+</g>
+<g font-size="10" fill="#27374D">
+    <text x="474" y="55.5">사용자 삭제 시 하위 데이터 함께 삭제</text>
+    <text x="474" y="97.5">30일 미사용 대화 세션 정리</text>
+    <text x="474" y="139.5">같은 경로 검색 결과 재사용</text>
+</g>
+<g font-size="9" fill="#566C7E">
+    <text x="474" y="71" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">ON DELETE CASCADE</text>
+    <text x="474" y="113">채팅 요청 때 함께 실행</text>
+    <text x="474" y="155">24시간, 좌표 약 100m 이내</text>
+</g>
+</svg>

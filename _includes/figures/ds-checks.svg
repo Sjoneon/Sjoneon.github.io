@@ -1,0 +1,25 @@
+<svg class="ds-fig" viewBox="0 0 680 118" role="img" aria-label="Gemini가 만든 인자는 필수 값 확인, 요청한 user_uuid로 범위 제한, 대상 확인을 거쳐 DB에 반영되고, 값이 없거나 대상이 없으면 오류를 모델에 돌려줘 답변으로 안내하는 과정"><defs><marker id="dsc-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="dsc-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<rect x="1" y="6" width="104" height="56" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="53" y="30" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">Gemini 인자</text>
+<text x="53" y="49" font-size="9.5" fill="#566C7E" text-anchor="middle" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">args</text>
+<rect x="133" y="6" width="118" height="56" rx="3.5" fill="#FFFFFF" stroke="#1F78A8" stroke-width="1.1"/>
+<text x="192" y="30" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">필수 값 확인</text>
+<text x="192" y="49" font-size="9.5" fill="#566C7E" text-anchor="middle">제목, 시간, 이름</text>
+<rect x="279" y="6" width="132" height="56" rx="3.5" fill="#FFFFFF" stroke="#1F78A8" stroke-width="1.1"/>
+<text x="345" y="30" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">사용자 범위 제한</text>
+<text x="345" y="49" font-size="9.5" fill="#566C7E" text-anchor="middle" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">요청의 user_uuid 조건</text>
+<rect x="439" y="6" width="112" height="56" rx="3.5" fill="#FFFFFF" stroke="#1F78A8" stroke-width="1.1"/>
+<text x="495" y="30" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">대상 확인</text>
+<text x="495" y="49" font-size="9.5" fill="#566C7E" text-anchor="middle">제목, 이름으로 찾기</text>
+<rect x="579" y="6" width="100" height="56" rx="3.5" fill="#27374D" stroke="#27374D" stroke-width="0.8"/>
+<text x="629" y="30" font-size="12" fill="#FFFFFF" font-weight="700" text-anchor="middle">DB 반영</text>
+<text x="629" y="49" font-size="9.5" fill="#DBE7EF" text-anchor="middle" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">commit</text>
+<path d="M106 34H132" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsc-line)"/>
+<path d="M252 34H278" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsc-line)"/>
+<path d="M412 34H438" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsc-line)"/>
+<path d="M552 34H578" fill="none" stroke="#5B6C7C" stroke-width="1.1" marker-end="url(#dsc-line)"/>
+<path d="M192 62V89" fill="none" stroke="#C8342B" stroke-width="1.1" stroke-dasharray="3 2.5" marker-end="url(#dsc-bad)"/>
+<path d="M495 62V89" fill="none" stroke="#C8342B" stroke-width="1.1" stroke-dasharray="3 2.5" marker-end="url(#dsc-bad)"/>
+<rect x="133" y="90" width="418" height="25" rx="3" fill="#FBEFEE" stroke="#E3B4AF" stroke-width="0.8"/>
+<text x="342" y="107" font-size="10.5" fill="#27374D" text-anchor="middle">값이 없거나 대상이 없으면 <tspan fill="#C8342B" font-weight="700">status: error</tspan>를 모델에 돌려줘 답변으로 안내</text>
+</svg>

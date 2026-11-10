@@ -44,8 +44,8 @@
     <table class="tbl" style="margin-top:5.05pt">
         <colgroup><col style="width:141.7pt"><col></colgroup>
         <tbody>
-            <tr><th scope="row">인증/데이터 분리</th><td>JWT 기반 인증 도입과 사용자별 데이터 관리 강화</td></tr>
-            <tr><th scope="row">경로 응답 속도</th><td>현재 40~50초가 소요되는 버스 경로 탐색 최적화</td></tr>
+            <tr><th scope="row">인증/데이터 분리</th><td>앱이 보낸 user_uuid를 그대로 쓰는 구조를 JWT 인증으로 교체</td></tr>
+            <tr><th scope="row">경로 응답 속도</th><td>40~50초 걸리는 탐색: 정류장 검색 10회 순차 호출을 서버 병렬 처리와 공유 캐시로 개선</td></tr>
             <tr><th scope="row">교통 기능 확장</th><td>환승 경로 지원으로 대중교통 이용 흐름 개선</td></tr>
         </tbody>
     </table>

@@ -80,8 +80,8 @@
     .mcp-flow .mf-p, .mf-toggle { display: none; }
 }
 
-/* DaySync 버스 판정 그림 */
-.bus-fig { display: block; width: 510pt; height: auto; margin-top: 6pt; }
+/* DaySync 그림 */
+.ds-fig { display: block; width: 510pt; height: auto; margin-top: 6pt; }
 
 /* 3단 흐름 박스 */
 .flow3 { display: grid; grid-template-columns: 141pt 1fr 175.5pt 1fr 141pt; align-items: center; }

@@ -1,0 +1,31 @@
+<svg class="ds-fig" viewBox="0 0 680 140" role="img" aria-label="Gemini에 선언한 함수 9개: 서버가 DB에 반영하는 쓰기 함수 6개, 요청한 사용자의 일정만 조회하는 함수 1개, 앱이 실행하도록 넘기는 함수 2개">
+<rect x="1" y="1" width="310" height="138" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="15" y="22" font-size="10.5" fill="#1F78A8" font-weight="700">쓰기 함수</text>
+<text x="15" y="52" font-size="22" fill="#27374D" font-weight="700">6개</text>
+<text x="61" y="50" font-size="10.5" fill="#566C7E">서버가 바로 DB에 반영</text>
+<path d="M15 64H297" fill="none" stroke="#D5E0E7" stroke-width="0.8"/>
+<g font-size="10.5" fill="#27374D" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">
+    <text x="15" y="84">create_schedule</text>
+    <text x="15" y="103">update_schedule</text>
+    <text x="15" y="122">delete_schedule</text>
+    <text x="170" y="84">create_alarm</text>
+    <text x="170" y="103">update_alarm</text>
+    <text x="170" y="122">delete_alarm</text>
+</g>
+<rect x="319" y="1" width="160" height="138" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="333" y="22" font-size="10.5" fill="#1F78A8" font-weight="700">조회 함수</text>
+<text x="333" y="52" font-size="22" fill="#27374D" font-weight="700">1개</text>
+<text x="379" y="50" font-size="10.5" fill="#566C7E">사용자 일정만</text>
+<path d="M333 64H465" fill="none" stroke="#D5E0E7" stroke-width="0.8"/>
+<text x="333" y="84" font-size="10.5" fill="#27374D" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">get_schedule_info</text>
+<rect x="487" y="1" width="192" height="138" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="501" y="22" font-size="10.5" fill="#1F78A8" font-weight="700">앱에 넘기는 함수</text>
+<text x="501" y="52" font-size="22" fill="#27374D" font-weight="700">2개</text>
+<text x="547" y="50" font-size="10.5" fill="#566C7E">앱이 실행</text>
+<path d="M501 64H665" fill="none" stroke="#D5E0E7" stroke-width="0.8"/>
+<g font-size="10.5" fill="#27374D" font-family="Consolas, 'Cascadia Mono', Menlo, monospace">
+    <text x="501" y="84">search_route</text>
+    <text x="501" y="103">get_weather_info</text>
+</g>
+<text x="501" y="124" font-size="9.5" fill="#566C7E">출발지가 없으면 현재 위치 사용을 확인</text>
+</svg>
