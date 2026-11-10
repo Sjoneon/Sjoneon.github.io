@@ -171,6 +171,40 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
 .steps.lg strong { margin-top: 4pt; letter-spacing: -.018em; }
 .steps.lg p { margin-top: 3.95pt; font-size: 8.25pt; line-height: 12.3pt; letter-spacing: -.017em; }
 
+/* MCP 흐름도: 화면에서는 신호가 선을 따라 이동하고, 인쇄와 PDF에서는 정지된 선과 번호만 표시합니다. */
+.mcp-flow { display: block; width: 510pt; height: auto; margin-top: 12pt; }
+.mcp-flow .mono { font-family: Consolas, "Cascadia Mono", Menlo, monospace; }
+.mcp-flow .mf-head, .mcp-flow .mf-glow { filter: drop-shadow(0 0 3px currentColor); }
+.mcp-flow .mf-p, .mcp-flow .mf-rt { pointer-events: none; }
+.mcp-flow.mf-paused .mf-p, .mcp-flow.mf-focus .mf-p { display: none; }
+
+/* 번호 박스에 마우스를 올리면 그 단계에서 이어지는 선의 색이 바뀌고, 재생 중에는 선이 흐르듯 움직입니다. */
+.mcp-flow .mf-step { cursor: pointer; outline: none; }
+.mcp-flow .mf-rt { display: none; }
+.mcp-flow .mf-rt.mf-on { display: inline; }
+@media (prefers-reduced-motion: no-preference) {
+    .mcp-flow:not(.mf-paused) .mf-rt.mf-on { stroke-dasharray: 7 5; animation: mf-run .6s linear infinite; }
+}
+@keyframes mf-run { to { stroke-dashoffset: -12; } }
+
+/* 흐름도 재생·멈춤 버튼 */
+.mf-toggle { display: inline-flex; align-items: center; justify-content: center; width: 11pt; height: 11pt; margin-left: 5pt; padding: 0; vertical-align: 1pt; background: #F4F7F9; border: .6pt solid #BFCED9; border-radius: 2.5pt; color: var(--navy); cursor: pointer; }
+.mf-toggle:hover { background: #E6EEF4; }
+.mf-toggle:focus-visible { outline: 1.2pt solid #0FB2EA; outline-offset: 1pt; }
+.mf-toggle svg { width: 6.5pt; height: 6.5pt; fill: currentColor; }
+.mf-toggle .mf-i-play, .mf-toggle.is-paused .mf-i-pause { display: none; }
+.mf-toggle.is-paused .mf-i-play { display: inline; }
+
+@media (prefers-reduced-motion: reduce) {
+    .mcp-flow .mf-p, .mf-toggle { display: none; }
+}
+@media print {
+    .mcp-flow .mf-p, .mcp-flow .mf-rt, .mf-toggle { display: none !important; }
+}
+
+/* DaySync 버스 판정 그림 */
+.bus-fig { display: block; width: 510pt; height: auto; margin-top: 6pt; }
+
 /* ── 3단 흐름 박스 ── */
 .flow3 { display: grid; grid-template-columns: 141pt 1fr 175.5pt 1fr 141pt; align-items: center; }
 .flow3 .node {
@@ -250,6 +284,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
 .stat h4 { font-size: 8.25pt; line-height: 10.7pt; letter-spacing: .042em; }
 .stat .num { margin-top: 6.1pt; font-size: 19.5pt; line-height: 25.2pt; font-weight: 700; letter-spacing: -.022em; }
 .stat .num small { font-size: 8.25pt; line-height: 1; color: #526D82; letter-spacing: .02em; }
+.stat .num .of { font-size: 13pt; line-height: 1; letter-spacing: -.01em; }
 .stat p { margin-top: 7.65pt; font-size: 6.75pt; line-height: 11.4pt; letter-spacing: .047em; }
 .stat-notes { font-size: 6.75pt; line-height: 11.4pt; color: #526D82; letter-spacing: .046em; }
 
@@ -263,6 +298,23 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
 .cmp > .arr { display: flex; align-items: center; justify-content: center; padding: 0; background: none; font-size: 8.25pt; }
 .eval th, .eval td { height: 23.2pt; }
 .eval thead th { height: 22pt; }
+
+/* 수정 전후 화면 비교: 왼쪽이 수정 전, 가운데가 화살표, 오른쪽이 수정 후이며 프레임 높이는 --ba-h로 지정합니다. */
+.ba-lead { margin-top: 4.5pt; font-size: 9pt; line-height: 14.3pt; letter-spacing: .024em; }
+.ba-grid { display: grid; grid-template-columns: 1fr 25.5pt 1fr; margin-top: 7.5pt; }
+.ba-tag { font-size: 7.5pt; line-height: 9.7pt; font-weight: 700; letter-spacing: .02em; color: var(--meta); }
+.ba-tag.after { color: #2F6B86; }
+.ba-frame { height: var(--ba-h); margin-top: 3.5pt; padding: 4pt; background: #FFFFFF; border: .75pt solid #CCD9E3; }
+.ba-frame.before { border-color: #DDB4B0; }
+.ba-frame.after { border-color: #46758B; }
+.ba-frame img { width: 100%; height: 100%; object-fit: contain; object-position: center top; }
+/* 한 프레임 안에 먼저 일어난 일(①)과 그 뒤의 제출 결과(②)를 순서대로 보여 줍니다. */
+.ba-frame.steps { display: flex; flex-direction: column; gap: 3pt; }
+.ba-frame.steps img { width: 96%; height: auto; }
+.ba-step { font-size: 7.2pt; line-height: 9.6pt; font-weight: 700; letter-spacing: -.008em; color: var(--meta); white-space: nowrap; }
+.ba-res { margin-top: 5pt; font-size: 8.25pt; line-height: 12.3pt; font-weight: 700; letter-spacing: -.012em; color: #C8342B; white-space: nowrap; }
+.ba-res.after { color: #2F6B86; }
+.ba-arr { align-self: center; margin-top: -4pt; text-align: center; font-size: 12pt; line-height: 15pt; color: #46758B; }
 
 /* ════════ DaySync ════════ */
 .retry { padding: 4.55pt 11pt 2pt; }
@@ -296,12 +348,107 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     .page { zoom: 1; margin: 0; box-shadow: none; break-after: page; }
     .page:last-child { break-after: auto; }
 }
+
+/* ── 왼쪽 목차: 넓은 화면은 고정 목차(☰로 접기), 좁은 화면은 ☰로 여는 서랍입니다. 인쇄에는 나오지 않습니다. ── */
+.toc-toggle {
+    position: fixed; top: 12px; left: 12px; z-index: 40;
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px;
+    background: #FFFFFF; border: 1px solid #BFCED9; border-radius: 6px;
+    color: var(--navy); cursor: pointer;
+}
+.toc-toggle:hover { background: #EEF3F6; }
+.toc-toggle:focus-visible, .toc-pdf:focus-visible, .toc a:focus-visible { outline: 2px solid #2F6B86; outline-offset: 1px; }
+.toc-toggle svg { width: 16px; height: 16px; }
+.toc {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 30;
+    width: 212px; padding: 60px 12px 16px;
+    overflow-y: auto;
+    background: #FFFFFF; border-right: 1px solid #CFDBE4;
+    font-size: 13px; line-height: 1.4;
+}
+.toc-title { position: sticky; top: -60px; z-index: 1; margin: -60px -12px 6px; padding: 20px 12px 12px 58px; background: #FFFFFF; font-size: 13px; font-weight: 700; color: var(--navy); }
+.toc a { display: block; padding: 3px 8px; border-left: 2px solid transparent; border-radius: 0 4px 4px 0; color: #566C7E; }
+.toc a:hover { background: #EEF3F6; color: var(--navy); }
+.toc .toc-main { margin-top: 7px; padding-top: 4px; padding-bottom: 4px; font-weight: 700; color: var(--navy); }
+.toc .toc-sub { padding-left: 18px; font-size: 12.5px; }
+.toc a.is-current { background: #E6EEF4; border-left-color: #2F6B86; color: var(--navy); font-weight: 700; }
+.toc-pdf {
+    width: 100%; margin-top: 14px; padding: 7px 0;
+    background: #F4F7F9; border: 1px solid #BFCED9; border-radius: 4px;
+    font: inherit; font-size: 12.5px; color: var(--navy); cursor: pointer;
+}
+.toc-pdf:hover { background: #E6EEF4; }
+.toc-bar, .toc-scrim { display: none; }
+.page, .page h3[id] { scroll-margin-top: calc(16px / var(--zoom, 1)); }
+
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media screen and (min-width: 1100px) {
+    .doc { margin-left: 212px; }
+    .toc-collapsed .doc { margin-left: 0; }
+    .toc-collapsed .toc { display: none; }
+}
+@media screen and (max-width: 1099.98px) {
+    .toc-toggle { top: 7px; left: 8px; }
+    .toc { visibility: hidden; transform: translateX(-100%); box-shadow: 0 0 18px rgba(39, 55, 77, 0.25); transition: transform .18s ease, visibility .18s; }
+    .toc-drawer .toc { visibility: visible; transform: none; }
+    .toc-drawer .toc-scrim { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(39, 55, 77, 0.35); }
+    .toc-bar {
+        display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+        height: 48px; padding-left: 54px;
+        background: #FFFFFF; border-bottom: 1px solid #CFDBE4;
+        font-size: 13px; font-weight: 700; line-height: 48px; color: var(--navy);
+        overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .doc { padding-top: 64px; }
+    .page, .page h3[id] { scroll-margin-top: calc(60px / var(--zoom, 1)); }
+}
+@media print {
+    html { scroll-behavior: auto; }
+    .toc, .toc-toggle, .toc-bar, .toc-scrim { display: none !important; }
+}
 </style>
 </head>
 <body>
+<button class="toc-toggle" type="button" aria-label="목차 접기" title="목차 접기" aria-expanded="true" aria-controls="toc"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12"/></svg></button>
+<div class="toc-bar" aria-hidden="true"></div>
+<div class="toc-scrim"></div>
+<nav class="toc" id="toc" aria-label="포트폴리오 목차">
+    <p class="toc-title">목차</p>
+    <a class="toc-main" href="#profile" data-page data-label="프로필">프로필</a>
+    <a class="toc-main" href="#homecare-ai" data-page data-label="HomeCare AI">HomeCare AI</a>
+    <a class="toc-sub" href="#hc-role" data-page data-label="HomeCare AI · 담당 범위">담당 범위</a>
+    <a class="toc-sub" href="#hc-arch" data-page data-label="HomeCare AI · 시스템 아키텍처">시스템 아키텍처</a>
+    <a class="toc-sub" href="#homecare-demo" data-page data-label="HomeCare AI · 서비스 시연">서비스 시연</a>
+    <a class="toc-sub" href="#homecare-implementation" data-page data-label="HomeCare AI · 핵심 구현">핵심 구현</a>
+    <a class="toc-sub" href="#hc-mcp" data-page data-label="HomeCare AI · MCP 도구 흐름">MCP 도구 흐름</a>
+    <a class="toc-sub" href="#homecare-server-validation" data-page data-label="HomeCare AI · 서버 검증 전후">서버 검증 전후</a>
+    <a class="toc-sub" href="#hc-metrics" data-page data-label="HomeCare AI · 성과 지표">성과 지표</a>
+    <a class="toc-sub" href="#hc-trouble" data-page data-label="HomeCare AI · 트러블슈팅">트러블슈팅</a>
+    <a class="toc-sub" href="#hc-limits" data-page data-label="HomeCare AI · 남은 과제">남은 과제</a>
+    <a class="toc-main" href="#daysync" data-page data-label="DaySync">DaySync</a>
+    <a class="toc-sub" href="#ds-features" data-page data-label="DaySync · 주요 기능">주요 기능</a>
+    <a class="toc-sub" href="#ds-role" data-page data-label="DaySync · 담당 범위">담당 범위</a>
+    <a class="toc-sub" href="#ds-stops" data-page data-label="DaySync · 근처 정류장">근처 정류장</a>
+    <a class="toc-sub" href="#ds-direction" data-page data-label="DaySync · 버스 방향 판정">버스 방향 판정</a>
+    <a class="toc-sub" href="#ds-time" data-page data-label="DaySync · 위치·시간 계산">위치·시간 계산</a>
+    <a class="toc-sub" href="#daysync-architecture" data-page data-label="DaySync · 시스템 아키텍처">시스템 아키텍처</a>
+    <a class="toc-sub" href="#ds-trouble" data-page data-label="DaySync · 트러블슈팅">트러블슈팅</a>
+    <a class="toc-sub" href="#ds-lessons" data-page data-label="DaySync · 배운 점">배운 점</a>
+    <a class="toc-sub" href="#ds-limits" data-page data-label="DaySync · 남은 과제">남은 과제</a>
+    <a class="toc-main" href="#sos-renewal" data-page data-label="SOS Renewal">SOS Renewal</a>
+    <a class="toc-sub" href="#sr-migration" data-page data-label="SOS Renewal · 구조 전환">구조 전환</a>
+    <a class="toc-sub" href="#sr-trouble" data-page data-label="SOS Renewal · 트러블슈팅">트러블슈팅</a>
+    <a class="toc-sub" href="#sr-limits" data-page data-label="SOS Renewal · 한계·개선">한계·개선</a>
+    <a class="toc-main" href="#sos" data-page data-label="SOS">SOS</a>
+    <a class="toc-sub" href="#sos-design" data-page data-label="SOS · 데이터 설계">데이터 설계</a>
+    <a class="toc-sub" href="#sos-trouble" data-page data-label="SOS · 트러블슈팅">트러블슈팅</a>
+    <a class="toc-sub" href="#sos-scope" data-page data-label="SOS · 확장한 개발 범위">확장한 개발 범위</a>
+    <button class="toc-pdf" type="button">PDF로 저장</button>
+</nav>
 <main class="doc">
 
-<!-- ═══════════════════════════ 01 / 09 · PROFILE ═══════════════════════════ -->
+<!-- ═══════════════════════════ 01 / 11 · PROFILE ═══════════════════════════ -->
 <article class="page" id="profile" aria-label="1페이지 · 프로필">
     <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>PROFILE</span></header>
 
@@ -375,17 +522,17 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <table class="tbl" style="margin-top:5.35pt">
         <colgroup><col style="width:158.3pt"><col style="width:285.8pt"><col></colgroup>
         <tbody>
-            <tr><th scope="row"><a href="#homecare-ai">HomeCare AI</a></th><td>5인 팀 · 서비스 설계 / AI 상담 개발 / 평가 개선</td><td class="r">02 - 05</td></tr>
-            <tr><th scope="row"><a href="#daysync">DaySync</a></th><td>1인 개발 · AI 일정 관리 / 외부 API 통합</td><td class="r">06 - 07</td></tr>
-            <tr><th scope="row"><a href="#sos-renewal">SOS Renewal</a></th><td>1인 개발 · SPA + REST API 전환 / AWS 운영</td><td class="r">08</td></tr>
-            <tr><th scope="row"><a href="#sos">SOS</a></th><td>개인 프로젝트 · Spring Boot 쇼핑몰 / JPA 설계</td><td class="r">09</td></tr>
+            <tr><th scope="row"><a href="#homecare-ai">HomeCare AI</a></th><td>5인 팀 · 서비스 설계 / AI 상담 개발 / 평가 개선</td><td class="r">02 - 06</td></tr>
+            <tr><th scope="row"><a href="#daysync">DaySync</a></th><td>1인 개발 · AI 일정 관리 / 외부 API 통합</td><td class="r">07 - 09</td></tr>
+            <tr><th scope="row"><a href="#sos-renewal">SOS Renewal</a></th><td>1인 개발 · SPA + REST API 전환 / AWS 운영</td><td class="r">10</td></tr>
+            <tr><th scope="row"><a href="#sos">SOS</a></th><td>개인 프로젝트 · Spring Boot 쇼핑몰 / JPA 설계</td><td class="r">11</td></tr>
         </tbody>
     </table>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>01 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>01 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 02 / 09 · HomeCare AI · OVERVIEW ═══════════════════════════ -->
+<!-- ═══════════════════════════ 02 / 11 · HomeCare AI · OVERVIEW ═══════════════════════════ -->
 <article class="page" id="homecare-ai" aria-label="2페이지 · HomeCare AI 개요">
     <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / OVERVIEW</span></header>
 
@@ -393,7 +540,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <h2 class="ptitle">HomeCare AI</h2>
     <p class="psub">수리 전에 필요한 정보를 하나의 상담 흐름으로</p>
     <p class="pmeta">2026.10.01 - 10.18 · LG전자 AX School · 5인 팀 / 팀장</p>
-    <p class="lead" style="margin-top:12.35pt">세탁기와 건조기 그리고 냉장고와 식기세척기의 증상과 오류코드를 입력하면 제조사 자료를 바탕으로 자가점검과<br>보증기간 및 참고 수리비를 안내하는 AI 상담 웹 서비스입니다. 상담 결과와 함께 공식 A/S 접수 경로를 제공합니다.</p>
+    <p class="lead" style="margin-top:12.35pt;letter-spacing:.009em">가전 A/S에서 수리비와 보증 조건을 미리 알기 어렵다는 문제가 반복되어 수리 전 판단을 돕고자 만들었습니다.<br>세탁기와 건조기 그리고 냉장고와 식기세척기의 증상과 오류코드를 입력하면 제조사 자료를 바탕으로 자가점검과<br>보증기간 및 참고 수리비를 안내하는 AI 상담 웹 서비스입니다. 상담 결과와 함께 공식 A/S 접수 경로를 제공합니다.</p>
 
     <ul class="chips xs" style="margin-top:10.05pt">
         <li style="min-width:48.8pt">가전 4품목</li>
@@ -412,7 +559,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <li><img src="image/badges/github-actions.svg" width="109" height="20" alt="GitHub Actions"></li>
     </ul>
 
-    <h3 class="sh" style="margin-top:9.05pt">담당 범위</h3>
+    <h3 id="hc-role" class="sh" style="margin-top:9.05pt">담당 범위</h3>
     <p class="team-label" style="margin-top:5.05pt">팀 구성: 5명</p>
     <div class="lead-role" style="margin-top:7.2pt">
         <div class="who"><strong>송재원 팀장</strong><span>기획 총괄 · MCP 상담 개발</span></div>
@@ -428,16 +575,16 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <li><span class="n">04</span><strong>다음 행동</strong><p>공식 접수 경로<br>상담 요약 제공</p></li>
     </ol>
 
-    <h3 class="sh" style="margin-top:20.1pt">시스템 아키텍처</h3>
+    <h3 id="hc-arch" class="sh" style="margin-top:20.1pt">시스템 아키텍처</h3>
     <figure class="figure-wide" style="margin-top:5.65pt">
         <img src="image/HomeCare/homecare_architecture.png" width="1800" height="700" alt="HomeCare AI 시스템 아키텍처: 사용자 → React SPA(Vercel 호스팅) → EC2의 Nginx → Spring Boot(서비스 API · 내부 도구 API · Spring AI Agent · MCP Client) ↔ Python FastMCP MCP Server(읽기 전용 도구 9개), MySQL 저장, OpenAI API 연동">
     </figure>
     <p class="links" style="margin-top:14.8pt"><a href="https://github.com/Sjoneon/AX_core_project" target="_blank" rel="noopener noreferrer">GitHub · Sjoneon/AX_core_project</a><a href="https://homecare-omega-eight.vercel.app/" target="_blank" rel="noopener noreferrer">HomeCare AI 서비스 바로가기</a></p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>02 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>02 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 03 / 09 · HomeCare AI · SERVICE DEMO ═══════════════════════════ -->
+<!-- ═══════════════════════════ 03 / 11 · HomeCare AI · SERVICE DEMO ═══════════════════════════ -->
 <article class="page" id="homecare-demo" aria-label="3페이지 · HomeCare AI 서비스 시연">
     <header class="run-head" aria-hidden="true" style="--head-mr:7.9pt"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / SERVICE DEMO</span></header>
 
@@ -445,7 +592,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <h2 class="ptitle">HomeCare AI</h2>
     <p class="psub">실제 화면으로 보는 상담 흐름</p>
     <p class="pmeta">시연 영상에서 발췌한 6개 화면 · 제품 등록부터 공식 A/S 안내까지</p>
-    <p class="lead s9" style="margin-top:13.9pt;line-height:11.6pt">냉장고의 증상을 입력한 뒤 자가점검과 추가 질문을 거쳐 보증과 참고 수리비 및 공식 A/S 접수 경로를 확인하는 과정입니다.</p>
+    <p class="lead s9" style="margin-top:13.9pt;line-height:11.6pt;letter-spacing:.011em">냉장고의 증상을 입력한 뒤 자가점검과 추가 질문을 거쳐 보증과 참고 수리비 및 공식 A/S 접수 경로를 확인하는 과정입니다.</p>
 
     <div class="shots" style="margin-top:13.9pt">
         <figure>
@@ -476,10 +623,10 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
 
     <p class="note" style="margin-top:13.8pt;letter-spacing:.03em">실제 서비스 시연 화면입니다. 예상 수리비는 확정 견적이 아닌 참고 범위로 안내하며 무상 적용 여부는 별도 조건 확인이 필요합니다.</p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>03 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>03 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 04 / 09 · HomeCare AI · IMPLEMENTATION ═══════════════════════════ -->
+<!-- ═══════════════════════════ 04 / 11 · HomeCare AI · IMPLEMENTATION ═══════════════════════════ -->
 <article class="page" id="homecare-implementation" aria-label="4페이지 · HomeCare AI 핵심 구현">
     <header class="run-head" aria-hidden="true" style="--head-mr:9.2pt"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / IMPLEMENTATION</span></header>
 
@@ -488,65 +635,320 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="psub">근거 검색과 서버 검증을 연결한 상담 구조</p>
     <p class="pmeta">핵심 구현 · 제조사 자료 검색 / MCP 연결 / 상담 상태 관리</p>
 
-    <h3 class="sh" style="margin-top:13.1pt">01. Spring AI로 제품별 제조사 근거 검색</h3>
-    <p class="lead" style="margin-top:4.15pt;line-height:17pt">다른 모델의 조치를 안내하면 잘못된 점검으로 이어질 수 있어 검색 전 제품의 적용 조건을 확인해야 했습니다.<br>Spring AI 검색에 품목·모델 조건을 적용하고 검색용 텍스트와 표시 원문을 분리해 제품별 근거를 반환했습니다.</p>
+    <h3 class="sh" style="margin-top:24pt">01. Spring AI로 제품별 제조사 근거 검색</h3>
+    <p class="lead" style="margin-top:8pt;line-height:17pt">다른 모델의 조치를 안내하면 잘못된 점검으로 이어질 수 있어 검색 전 제품의 적용 조건을 확인해야 했습니다.<br>Spring AI 검색에 품목·모델 조건을 적용하고 검색용 텍스트와 표시 원문을 분리해 제품별 근거를 반환하여<br>사용자에게 보다 정확한 정보를 제공했습니다.</p>
 
-    <ol class="steps lg" style="margin-top:13.2pt">
+    <ol class="steps lg" style="margin-top:20pt">
         <li><span class="n">FILTER</span><strong>적용 조건 확인</strong><p>품목·모델<br>제외 조건 검증</p></li>
         <li><span class="n">RETRIEVE</span><strong>후보 검색</strong><p>오류코드·증상 어휘<br>임베딩 유사도 결합</p></li>
         <li><span class="n">FALLBACK</span><strong>장애 대응</strong><p>의미 검색 장애 시<br>어휘 검색으로 전환</p></li>
         <li><span class="n">RESPOND</span><strong>근거 부족 처리</strong><p>추가 확인 또는<br>자료 부족 안내</p></li>
     </ol>
 
-    <h3 class="sh" style="margin-top:8.7pt">02. Spring AI와 FastMCP로 조회 도구 9개 연결</h3>
-    <div class="flow3" style="margin-top:8.85pt;--node-h:43.5pt;--node-pt:8.4pt">
-        <div class="node"><strong>Spring AI</strong><span>Java MCP 클라이언트</span></div>
-        <div class="arr sm" aria-hidden="true">↔</div>
-        <div class="node dark"><strong>Python FastMCP</strong><span>HTTP · 요청별 JWT 전달</span></div>
-        <div class="arr sm" aria-hidden="true">↔</div>
-        <div class="node"><strong>Spring 도구 API</strong><span>소유권·상태 버전 검증</span></div>
-    </div>
+    <h3 id="hc-mcp" class="sh" style="margin-top:24pt">02. Spring AI와 FastMCP로 조회 도구 9개 연결<button class="mf-toggle" type="button" aria-label="흐름 애니메이션 멈추기" title="흐름 애니메이션 멈추기"><svg viewBox="0 0 8 8" aria-hidden="true"><path class="mf-i-pause" d="M1.4 1h1.9v6H1.4zM4.7 1h1.9v6H4.7z"/><path class="mf-i-play" d="M2 .9l4.8 3.1L2 7.1z"/></svg></button></h3>
+    <!-- MCP-FLOW:START -->
+<svg class="mcp-flow" viewBox="0 0 680 442" role="group" aria-label="HomeCare AI의 MCP 도구 호출 흐름. 채팅 질문이 상담 Agent와 도구 선택, Java MCP 클라이언트, Python FastMCP를 거쳐 Spring 도구 API에서 인증과 소유권, 상태 버전, 입력을 검증한 뒤 도구 9개를 실행하고, 결과를 확인해 답변을 작성합니다. 등록 제품 증상 상담과 위험 안내는 FastMCP 없이 서버 내부에서 같은 도구 API를 호출합니다.">
+<defs><marker id="mf-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5F8296"/></marker><marker id="mf-b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0.6L7.4 4L0 7.4z" fill="#9AAEBC"/></marker><marker id="mf-c" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#0FB2EA"/></marker><marker id="mf-d" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#E39A2D"/></marker></defs>
+<rect x="110" y="10" width="384" height="190" rx="6" fill="none" stroke="#C4D2DC" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="118" y="22" font-size="9" fill="#5B6C7C" font-weight="700">Spring Boot · 상담 처리</text>
+<rect x="562" y="110" width="118" height="90" rx="6" fill="none" stroke="#C4D2DC" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="122" font-size="9" fill="#5B6C7C" font-weight="700">FastMCP · 내부 전용</text>
+<rect x="110" y="226" width="570" height="212" rx="6" fill="none" stroke="#C4D2DC" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="186" y="238" font-size="9" fill="#5B6C7C" font-weight="700">Spring Boot · 도구 실행</text>
+<path d="M92 159L118 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M226 159L250 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M358 159L382 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M490 159L566 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M620 190L620 244" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M206 296L206 318" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M396 296L396 318" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M586 296L586 318" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M436 128L436 84" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M382 56L358 56" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M118 56L92 56" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M172 190L172 244" fill="none" stroke="#9AAEBC" stroke-width="1.15" stroke-dasharray="4 3" marker-end="url(#mf-b)" marker-start="url(#mf-b)"/>
+<path class="mf-p" d="M92 159L118 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="0.00s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M92 159L118 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="0.00s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M226 159L250 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.43s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M226 159L250 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.43s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M358 159L382 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.86s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M358 159L382 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.86s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M490 159L566 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="1.29s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M490 159L566 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="1.29s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M620 190L620 244" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="1.72s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M620 190L620 244" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="1.72s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M206 296L206 318" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M206 296L206 318" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M396 296L396 318" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M396 296L396 318" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M586 296L586 318" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M586 296L586 318" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M206 318L206 296" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M206 318L206 296" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M396 318L396 296" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M396 318L396 296" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M586 318L586 296" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M586 318L586 296" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M620 244L620 190" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="3.01s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M620 244L620 190" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="3.01s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M566 159L490 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="3.44s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M566 159L490 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="3.44s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M436 128L436 84" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-50;-50" keyTimes="0;0.0472;1" dur="7.63s" begin="3.87s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M436 128L436 84" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-50;-50" keyTimes="0;0.0472;1" dur="7.63s" begin="3.87s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M382 56L358 56" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="4.30s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M382 56L358 56" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="4.30s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M118 56L92 56" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="4.73s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M118 56L92 56" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="4.73s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M92 159L118 159" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="5.46s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M92 159L118 159" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="5.46s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M172 190L172 244" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="5.89s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M172 190L172 244" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="5.89s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M172 244L172 190" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="6.32s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M172 244L172 190" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="6.32s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M118 159L92 159" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="6.75s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M118 159L92 159" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="6.75s" repeatCount="indefinite"/></path>
+<path class="mf-rt" data-route="1" d="M92 159L118 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="2" d="M226 159L250 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="3" d="M358 159L382 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="4" d="M490 159L566 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="5" d="M620 190L620 244" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="6" d="M206 296L206 318" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="6" d="M396 296L396 318" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="6" d="M586 296L586 318" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M206 318L206 296" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M396 318L396 296" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M586 318L586 296" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M620 244L620 190" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M566 159L490 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M436 128L436 84" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="8" d="M382 56L358 56" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="9" d="M118 56L92 56" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="2" d="M172 190L172 244" fill="none" stroke="#E39A2D" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#mf-d)"/>
+<g class="mf-step" data-step="1" tabindex="0" aria-label="1단계: React 채팅 화면에서 상담 Agent로 질문 전송">
+<rect x="6" y="28" width="86" height="162" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="17" cy="39" r="6.5" fill="#27374D"/><text x="17" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+<text x="49" y="60" font-size="9.5" fill="#566C7E" text-anchor="middle">답변·카드 표시</text>
+<text x="49" y="104" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">React</text>
+<text x="49" y="119" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">채팅 화면</text>
+<text x="49" y="163" font-size="9.5" fill="#566C7E" text-anchor="middle">질문 전송</text>
+</g>
+<g class="mf-step" data-step="2" tabindex="0" aria-label="2단계: 상담 Agent에서 도구 선택 또는 서버 내부 호출로 이동">
+<rect x="118" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="139" r="6.5" fill="#27374D"/><text x="129" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+<rect x="201" y="133" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="211" y="142" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="172" y="157" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">상담 Agent</text>
+<text x="172" y="171" font-size="10" fill="#566C7E" text-anchor="middle">상태·위험 확인</text>
+<text x="172" y="183" font-size="10" fill="#566C7E" text-anchor="middle">증상 해석</text>
+</g>
+<g class="mf-step" data-step="3" tabindex="0" aria-label="3단계: 도구 선택에서 Java MCP Client로 이동">
+<rect x="250" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="261" cy="139" r="6.5" fill="#27374D"/><text x="261" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+<rect x="333" y="133" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="343" y="142" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="304" y="157" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">도구 선택</text>
+<text x="304" y="171" font-size="10" fill="#566C7E" text-anchor="middle">AI 선택 또는</text>
+<text x="304" y="183" font-size="10" fill="#566C7E" text-anchor="middle">서버 정책 보완</text>
+</g>
+<g class="mf-step" data-step="4" tabindex="0" aria-label="4단계: Java MCP Client에서 Python FastMCP로 호출">
+<rect x="382" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="393" cy="139" r="6.5" fill="#27374D"/><text x="393" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
+<text x="436" y="157" font-size="11.5" fill="#27374D" font-weight="700" text-anchor="middle">Java MCP Client</text>
+<text x="436" y="171" font-size="10" fill="#566C7E" text-anchor="middle">호출 5회·세션 20초</text>
+<text x="436" y="183" font-size="10" fill="#566C7E" text-anchor="middle">JWT·상태 버전 첨부</text>
+</g>
+<g class="mf-step" data-step="5" tabindex="0" aria-label="5단계: Python FastMCP에서 Spring 도구 API로 전달">
+<rect x="566" y="128" width="108" height="62" rx="3.5" fill="#27374D" stroke="#27374D" stroke-width="0.8"/>
+<circle cx="577" cy="139" r="6.5" fill="#FFFFFF"/><text x="577" y="142.2" font-size="9" fill="#27374D" font-weight="700" text-anchor="middle">5</text>
+<text x="620" y="157" font-size="11.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">Python FastMCP</text>
+<text x="620" y="171" font-size="10" fill="#DBE7EF" text-anchor="middle">도구 9개 노출</text>
+<text x="620" y="183" font-size="10" fill="#DBE7EF" text-anchor="middle">데이터·LLM 없음</text>
+</g>
+<g class="mf-step" data-step="8" tabindex="0" aria-label="8단계: 결과 확인에서 답변 작성으로 이동">
+<rect x="382" y="28" width="108" height="56" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="393" cy="39" r="6.5" fill="#27374D"/><text x="393" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">8</text>
+<text x="436" y="52" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">결과 확인</text>
+<text x="436" y="68" font-size="10" fill="#566C7E" text-anchor="middle">상담 버전 재확인</text>
+</g>
+<g class="mf-step" data-step="9" tabindex="0" aria-label="9단계: 답변 작성에서 채팅 화면으로 표시">
+<rect x="118" y="28" width="240" height="56" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="39" r="6.5" fill="#27374D"/><text x="129" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">9</text>
+<rect x="333" y="33" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="343" y="42" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="238" y="52" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">답변 작성</text>
+<text x="238" y="68" font-size="10" fill="#566C7E" text-anchor="middle">AI는 근거 ID 선택 · 서버가 검증 후 본문 복원</text>
+</g>
+<g class="mf-step" data-step="6" tabindex="0" aria-label="6단계: Spring 도구 API에서 검증 후 도구 실행">
+<rect x="118" y="244" width="556" height="52" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="255" r="6.5" fill="#27374D"/><text x="129" y="258.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">6</text>
+<text x="142" y="266" font-size="12" fill="#27374D" font-weight="700">Spring 도구 API</text>
+<text x="142" y="282" font-size="10" fill="#566C7E">POST /api/tools/{도구} · ToolBackend</text>
+<rect x="381" y="260" width="62" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="412" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">JWT 인증</text>
+<text x="450.5" y="274" font-size="11" fill="#5F8296" text-anchor="middle">›</text>
+<rect x="458" y="260" width="50" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="483" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">소유권</text>
+<text x="515.5" y="274" font-size="11" fill="#5F8296" text-anchor="middle">›</text>
+<rect x="523" y="260" width="62" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="554" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">상태 버전</text>
+<text x="592.5" y="274" font-size="11" fill="#5F8296" text-anchor="middle">›</text>
+<rect x="600" y="260" width="62" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="631" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">허용 입력</text>
+</g>
+<g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 제품·근거 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
+<rect x="118" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="329" r="6.5" fill="#27374D"/><text x="129" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
+<text x="142" y="333" font-size="11.5" fill="#27374D" font-weight="700">제품·근거</text>
+<text x="285" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 3개</text>
+<text x="127" y="350" font-size="9" fill="#27374D" class="mono">lookup_model</text>
+<text x="285" y="350" font-size="9" fill="#566C7E" text-anchor="end">모델 조회</text>
+<text x="127" y="362.5" font-size="9" fill="#27374D" class="mono">search_knowledge</text>
+<text x="285" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">제조사 자료</text>
+<text x="127" y="375" font-size="9" fill="#27374D" class="mono">get_product_context</text>
+<text x="285" y="375" font-size="9" fill="#566C7E" text-anchor="end">등록 제품</text>
+<line x1="127" y1="397" x2="285" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
+<text x="127" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
+<text x="150" y="410" font-size="9" fill="#566C7E">모델 · 제조사 문서 · 등록 제품</text>
+<text x="127" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
+<text x="150" y="423" font-size="9" fill="#566C7E">제품 소유권 · 모델 적용 조건</text>
+</g>
+<g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 진단·비용 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
+<rect x="308" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="319" cy="329" r="6.5" fill="#27374D"/><text x="319" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
+<text x="332" y="333" font-size="11.5" fill="#27374D" font-weight="700">진단·비용</text>
+<text x="475" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 4개</text>
+<text x="317" y="350" font-size="9" fill="#27374D" class="mono">get_diagnostic_plan</text>
+<text x="475" y="350" font-size="9" fill="#566C7E" text-anchor="end">자가점검</text>
+<text x="317" y="362.5" font-size="9" fill="#27374D" class="mono">check_warranty</text>
+<text x="475" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">보증</text>
+<text x="317" y="375" font-size="9" fill="#27374D" class="mono">get_repair_candidates</text>
+<text x="475" y="375" font-size="9" fill="#566C7E" text-anchor="end">수리 후보</text>
+<text x="317" y="387.5" font-size="9" fill="#27374D" class="mono">estimate_repair_cost</text>
+<text x="475" y="387.5" font-size="9" fill="#566C7E" text-anchor="end">참고 비용</text>
+<line x1="317" y1="397" x2="475" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
+<text x="317" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
+<text x="340" y="410" font-size="9" fill="#566C7E">승인 계획 · 보증 정책 · 부품 비용</text>
+<text x="317" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
+<text x="340" y="423" font-size="9" fill="#566C7E">현재 질문 · 단계 · 허용 코드</text>
+</g>
+<g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 후속 행동 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
+<rect x="498" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="509" cy="329" r="6.5" fill="#27374D"/><text x="509" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
+<text x="522" y="333" font-size="11.5" fill="#27374D" font-weight="700">후속 행동</text>
+<text x="665" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 2개</text>
+<text x="507" y="350" font-size="9" fill="#27374D" class="mono">find_service_centers</text>
+<text x="665" y="350" font-size="9" fill="#566C7E" text-anchor="end">서비스 경로</text>
+<text x="507" y="362.5" font-size="9" fill="#27374D" class="mono">prepare_service_handoff</text>
+<text x="665" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">상담 요약</text>
+<line x1="507" y1="397" x2="665" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
+<text x="507" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
+<text x="530" y="410" font-size="9" fill="#566C7E">공식 접수 경로 · 보증 정책</text>
+<text x="507" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
+<text x="530" y="423" font-size="9" fill="#566C7E">상담 상태와 연결된 결과</text>
+</g>
+<rect class="mf-p mf-glow" x="6" y="28" width="86" height="162" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="0.00s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="0.26s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="250" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="0.69s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="382" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="1.12s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="566" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="1.55s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="244" width="556" height="52" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="1.98s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="318" width="176" height="112" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.41s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="308" y="318" width="176" height="112" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.41s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="498" y="318" width="176" height="112" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.41s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="244" width="556" height="52" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.84s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="566" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="3.27s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="382" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="3.70s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="382" y="28" width="108" height="56" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="4.13s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="28" width="240" height="56" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="4.56s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="6" y="28" width="86" height="162" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="4.99s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="5.72s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="244" width="556" height="52" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="6.15s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="6.58s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="6" y="28" width="86" height="162" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="7.01s" repeatCount="indefinite"/></rect>
+<text x="528" y="140" font-size="9" fill="#5B6C7C" font-weight="700" text-anchor="middle">Streamable</text>
+<text x="528" y="151" font-size="9" fill="#5B6C7C" text-anchor="middle">HTTP · /mcp</text>
+<text x="444" y="110" font-size="9" fill="#5B6C7C">도구 결과</text>
+<text x="180" y="215" font-size="9" fill="#5B6C7C">서버 내부 호출 · 등록 제품 증상 상담, 위험 안내</text>
+<text x="612" y="215" font-size="9" fill="#5B6C7C" text-anchor="end">요청별 JWT + 상태 버전</text>
+<text x="6" y="238" font-size="9.5" fill="#27374D" font-weight="700">표시</text>
+<line x1="6" y1="252" x2="30" y2="252" stroke="#5F8296" stroke-width="1.15"/>
+<text x="36" y="255" font-size="9" fill="#566C7E">MCP 경로</text>
+<line x1="6" y1="268" x2="30" y2="268" stroke="#9AAEBC" stroke-width="1.15" stroke-dasharray="4 3"/>
+<text x="36" y="271" font-size="9" fill="#566C7E">서버 내부 호출</text>
+<rect x="8" y="278" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="18" y="287" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="36" y="287" font-size="9" fill="#566C7E">OpenAI 호출</text>
+<text x="6" y="314" font-size="9.5" fill="#27374D" font-weight="700">거부 응답</text>
+<text x="6" y="329" font-size="9" fill="#27374D" font-weight="700">401</text>
+<text x="28" y="329" font-size="9" fill="#566C7E">인증 실패</text>
+<text x="6" y="343" font-size="9" fill="#27374D" font-weight="700">404</text>
+<text x="28" y="343" font-size="9" fill="#566C7E">소유권·외부 접근</text>
+<text x="6" y="357" font-size="9" fill="#27374D" font-weight="700">409</text>
+<text x="28" y="357" font-size="9" fill="#566C7E">상태 변경</text>
+<text x="6" y="371" font-size="9" fill="#27374D" font-weight="700">400</text>
+<text x="28" y="371" font-size="9" fill="#566C7E">허용 외 입력</text>
+<text x="6" y="397" font-size="9.5" fill="#27374D" font-weight="700">FastMCP 장애</text>
+<text x="6" y="411" font-size="9" fill="#566C7E">MCP 경로는 일반</text>
+<text x="6" y="424" font-size="9" fill="#566C7E">안내로 전환</text>
+</svg>
+    <!-- MCP-FLOW:END -->
+</br>
+    <p class="note" style="margin-top:9pt">일반 문의는 AI가 도구를 고르고 비용·접수 문의와 등록 제품 증상 상담은 서버 정책이 호출합니다.<br>소유권·상태 검사와 보증 및 비용 판단은 Spring 도구 API가 맡도록 역할을 나눴습니다.</p>
 
-    <table class="tbl" style="margin-top:8.8pt">
-        <colgroup><col style="width:76.7pt"><col style="width:253.2pt"><col></colgroup>
-        <thead><tr><th scope="col">도구 범위</th><th scope="col">조회 기능</th><th scope="col">서버 검증</th></tr></thead>
-        <tbody>
-            <tr><th scope="row" style="height:25.3pt">제품·근거</th><td>모델 / 제조사 자료 / 등록 제품</td><td>제품 소유권·모델 적용 조건</td></tr>
-            <tr><th scope="row" style="height:25.3pt">진단·비용</th><td>자가점검 / 보증 / 수리 후보 / 참고 비용</td><td>현재 질문·단계·허용 코드</td></tr>
-            <tr><th scope="row" style="height:25.3pt">후속 행동</th><td>서비스 경로 / 상담 요약</td><td>상담 상태와 연결된 결과</td></tr>
-        </tbody>
-    </table>
-    <p class="note" style="margin-top:6.6pt">도구 선택은 AI가 맡고 소유권·상태 검사와 보증 및 비용 판단은 Spring 도구 API가 맡도록 역할을 나눴습니다.</p>
-
-    <h3 class="sh" style="margin-top:11.8pt">03. 서버 검증으로 상담 상태와 안내 조건 보호</h3>
-    <div class="duo" style="margin-top:5.15pt">
-        <div style="height:99.75pt;padding-top:9pt;padding-left:6.8pt">
-            <h4>상태 전환</h4>
-            <p style="margin-top:5.75pt"><span style="letter-spacing:0">이전 카드의 응답이 현재 상담을 바꾸지 않도록</span><br>제품 소유권과 단계 및 상태 버전을 검증했습니다.</p>
-            <p style="margin-top:5.7pt"><span style="letter-spacing:0">오래된 카드와 중복 제출은 409로 거부하고</span><br>정상 제출은 기존과 같은 최종 상태로 종료했습니다.</p>
-        </div>
-        <div style="height:99.75pt;padding-top:9pt">
-            <h4>보증·비용 안내</h4>
-            <p style="margin-top:5.75pt">보증기간만으로 무상 수리를 확정할 수 없어<br>기간과 실제 적용 조건을 구분해 안내했습니다.</p>
-            <p style="margin-top:5.7pt">참고 비용과 공식 접수 경로를 함께 제공해<br>사용자가 다음 행동을 판단하도록 구성했습니다.</p>
-        </div>
-    </div>
-
-    <h3 class="sh" style="margin-top:9.45pt">근거 검색의 문제와 선택 및 결과</h3>
-    <table class="tbl" style="margin-top:5.25pt">
-        <colgroup><col style="width:170.9pt"><col></colgroup>
-        <tbody>
-            <tr><th scope="row">문제와 제약</th><td>다른 모델의 조치나 검색용 데이터가 답변에 섞일 수 있음</td></tr>
-            <tr><th scope="row">선택과 구현</th><td>적용 조건으로 후보를 거르고 검색용 텍스트와 표시 원문을 분리</td></tr>
-            <tr><th scope="row">구현 결과</th><td>제품별 근거를 반환하고 장애·근거 부족의 별도 응답 경로를 구성</td></tr>
-        </tbody>
-    </table>
-
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>04 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>04 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 05 / 09 · HomeCare AI · VALIDATION ═══════════════════════════ -->
-<article class="page" id="homecare-validation" aria-label="5페이지 · HomeCare AI 개선과 검증">
+<!-- ═══════════════════════════ 05 / 11 · HomeCare AI · SERVER VALIDATION ═══════════════════════════ -->
+<article class="page" id="homecare-server-validation" aria-label="5페이지 · HomeCare AI 서버 검증 전후 화면">
+    <header class="run-head" aria-hidden="true" style="--head-mr:9.2pt"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / IMPLEMENTATION</span></header>
+
+    <p class="kicker">TEAM PROJECT · ENGINEERING</p>
+    <h2 class="ptitle">HomeCare AI</h2>
+    <p class="psub">03. 서버 검증으로 상담 상태와 안내 조건 보호</p>
+
+    <h3 class="sh sm" style="margin-top:13.1pt">상태 전환</h3>
+    <p class="ba-lead">상담 화면에 남아 있는 지난 카드를 뒤늦게 눌러도 현재 상담 내용이 바뀌지 않도록, 답변이 들어올 때마다<br>본인의 제품인지, 지금 단계의 카드가 맞는지, 그사이 상담 내용이 바뀌지 않았는지를 확인했습니다.<br>또한 오래된 카드와 중복 제출은 409로 거부하고 정상 제출은 기존과 같은 최종 상태로 종료했습니다.</p>
+    <div class="ba-grid" style="--ba-h:228pt">
+        <figure>
+            <figcaption class="ba-tag">수정 전 · 테스트 버전</figcaption>
+            <div class="ba-frame before steps">
+                <p class="ba-step">① 다른 화면에서 다음 단계로 진행 · 서버는 2/5단계</p>
+                <img src="image/HomeCare/homecare_verify_state_before_step1.png" alt="다른 화면의 현재 안내: 2/5단계 보관 온도 확인">
+                <p class="ba-step">② 이전 화면의 1/5단계 카드에서 ‘해결됐어요’ 제출</p>
+                <img src="image/HomeCare/homecare_verify_state_before_step2.png" alt="이전 화면의 1/5단계 응답을 서버가 받아 해결되었습니다라는 종료 안내가 표시됨">
+            </div>
+            <p class="ba-res">이전 1/5단계 응답으로 상담 종료 · 저장 메시지 6 → 8건</p>
+        </figure>
+        <div class="ba-arr" aria-hidden="true">→</div>
+        <figure>
+            <figcaption class="ba-tag after">수정 후 · 최종 버전</figcaption>
+            <div class="ba-frame after steps">
+                <p class="ba-step">① 다른 화면에서 결과를 먼저 제출 · 점검 필요로 저장</p>
+                <img src="image/HomeCare/homecare_verify_state_after_step1.png" alt="다른 화면의 제출 결과: 안내한 항목을 모두 확인했지만 해결되지 않아 점검이 필요함">
+                <p class="ba-step">② 이전 화면의 1/5단계 카드에서 ‘해결됐어요’ 제출</p>
+                <img src="image/HomeCare/homecare_verify_state_after_step2.png" alt="같은 제출에 자가점검 안내가 변경됐다는 오류가 표시되고 상담은 바뀌지 않음">
+            </div>
+            <p class="ba-res after">409로 거부, 상담 상태 유지 · 저장 메시지 6 → 6건</p>
+        </figure>
+    </div>
+
+    <h3 class="sh sm" style="margin-top:10pt">보증·비용 안내</h3>
+    <p class="ba-lead">입력 경로 없이 null인 구입 증빙·가정용 사용 값이 만료일 계산 조건이라 UNKNOWN(‘추가 확인 필요’)을 반환했습니다.<br>만료일은 구매일과 정책 기간으로 계산하도록 바꾸고, 두 값은 실제 무상 적용을 판정할 때만 사용하도록 분리했습니다.<br>무상 여부는 점검 때 확정한다고 안내하고, 금액이 없던 비용 항목 대신 참고 수리비와 공식 접수 경로를 반환했습니다.</p>
+    <div class="ba-grid" style="--ba-h:186pt">
+        <figure>
+            <figcaption class="ba-tag">수정 전 · 테스트 버전</figcaption>
+            <div class="ba-frame before"><img src="image/HomeCare/homecare_verify_warranty_before.png" alt="수정 전 화면: 구매일이 있어도 보증 상태와 부품비, 기술료, 출장비가 모두 추가 확인 필요로 표시되고 만료일이 없음"></div>
+            <p class="ba-res">구매일이 있어도 보증 상태와 비용 항목이 모두 ‘추가 확인 필요’</p>
+        </figure>
+        <div class="ba-arr" aria-hidden="true">→</div>
+        <figure>
+            <figcaption class="ba-tag after">수정 후 · 최종 버전</figcaption>
+            <div class="ba-frame after"><img src="image/HomeCare/homecare_verify_warranty_after.png" alt="수정 후 화면: 보증기간 안과 만료일 2027-05-05, 예상 수리비 약 48,000원에서 184,000원, 공식 접수 경로를 한 카드로 안내"></div>
+            <p class="ba-res after">보증기간·만료일, 예상 수리비, 공식 접수 경로를 한 카드로 안내</p>
+        </figure>
+    </div>
+
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>05 / 11</span></footer>
+</article>
+
+<!-- ═══════════════════════════ 06 / 11 · HomeCare AI · VALIDATION ═══════════════════════════ -->
+<article class="page" id="homecare-validation" aria-label="6페이지 · HomeCare AI 개선과 검증">
     <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>01 / VALIDATION</span></header>
 
     <p class="kicker">TEAM PROJECT · IMPROVEMENT</p>
@@ -554,7 +956,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="psub">답변의 근거를 고정하고 불필요한 요청을 축소</p>
     <p class="pmeta">2026.10.14 - 10.15 개발 평가 / 2026.10.30 최적화 검수 기록 기준</p>
 
-    <h3 class="sh" style="margin-top:12.8pt">주요 개선 및 검증</h3>
+    <h3 id="hc-metrics" class="sh" style="margin-top:12.8pt">주요 개선 및 검증</h3>
     <div class="stats" style="margin-top:5.85pt">
         <div class="stat">
             <h4>문서 임베딩 인덱스 재사용</h4>
@@ -562,8 +964,8 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
             <p>자료·모델 설정의 SHA-256 지문을 비교<br>재시작 시 유효한 캐시로 인덱스를 복원<br>자료 1542건의 문서 재임베딩을 생략</p>
         </div>
         <div class="stat">
-            <h4>근거 기반 답변 구성</h4>
-            <p class="num">4 → 14 <small>개 통과</small></p>
+            <h4>검증된 자료로 답변 작성</h4>
+            <p class="num">4<span class="of">/14</span> → 14<span class="of">/14</span> <small>개 통과</small></p>
             <p>동일 14문항의 답변 구성 평가<br>AI는 근거 ID 선택 서버는 원문 복원<br>고정 대체 응답은 성공에서 제외</p>
         </div>
         <div class="stat">
@@ -574,7 +976,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     </div>
     <p class="stat-notes" style="margin-top:4.8pt">캐시는 자료 1542건과 모델 설정이 같고 유효한 재시작 기준입니다. 문서 재임베딩 요청만 비교하며 질문 임베딩은 별도입니다.<br>자가점검 수치는 최초 카드 수신과 최종 결과 처리 이후의 별도 상담을 제외한 단계 제출 흐름 기준입니다.</p>
 
-    <h3 class="sh sm" style="margin-top:7.55pt">개선 1. 근거 ID 선택과 서버 검증으로 원문 보존</h3>
+    <h3 id="hc-trouble" class="sh sm" style="margin-top:7.55pt">개선 1. 근거 ID 선택과 서버 검증으로 원문 보존</h3>
     <div class="boxed imp" style="margin-top:4.55pt">
         <p><b>문제</b> : 금액과 조치 내용이 바뀌면 사용자의 수리 판단에 영향을 줄 수 있어 근거 원문을 정확히 전달해야 했습니다.</p>
         <div class="cmp">
@@ -599,7 +1001,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <p><b>범위·한계</b> : 최초 카드 수신과 이후 별도 상담은 제외했습니다. 새로고침 시 중간 단계 복원은 추가 개선이 필요합니다.</p>
     </div>
 
-    <h3 class="sh sm" style="margin-top:6.4pt">평가 범위와 남은 과제</h3>
+    <h3 id="hc-limits" class="sh sm" style="margin-top:6.4pt">평가 범위와 남은 과제</h3>
     <table class="tbl eval" style="margin-top:4.05pt">
         <colgroup><col style="width:113.9pt"><col style="width:123pt"><col></colgroup>
         <thead><tr><th scope="col">평가</th><th scope="col">이전 → 개선 후</th><th scope="col">범위</th></tr></thead>
@@ -612,11 +1014,11 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="note xs" style="margin-top:4.5pt">gpt-4o-mini를 사용한 개발 세트 재검사입니다. 독립 정확도나 실제 수리 성공률을 의미하지 않으며 이후 변경된 최신 코드 전체의 재평가 결과도 아닙니다.</p>
     <p class="note xs" style="margin-top:21.5pt"><b>다음 과제:</b> 독립 질문의 답변 적합성 실제 수리 사례의 비용 범위 운영 지연·실패율과 사용자 과업 평가</p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>05 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>06 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 06 / 09 · DaySync · OVERVIEW ═══════════════════════════ -->
-<article class="page" id="daysync" aria-label="6페이지 · DaySync 개요">
+<!-- ═══════════════════════════ 07 / 11 · DaySync · OVERVIEW ═══════════════════════════ -->
+<article class="page" id="daysync" aria-label="7페이지 · DaySync 개요">
     <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>02 / OVERVIEW</span></header>
 
     <p class="kicker">PERSONAL PROJECT · PRODUCT</p>
@@ -644,7 +1046,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <figure><div class="frame"><img src="image/DaySync/daysync_weather.jpg" width="1440" height="3045" alt="DaySync 날씨 정보 화면"></div><figcaption>날씨 정보</figcaption></figure>
     </div>
 
-    <h3 class="sh" style="margin-top:11pt">주요 기능과 문제 해결</h3>
+    <h3 id="ds-features" class="sh" style="margin-top:11pt">문제 해결을 위한 주요 기능</h3>
     <div class="duo" style="margin-top:5.55pt">
         <div style="height:79.5pt">
             <h4>Function Calling으로 일정·알람 등록</h4>
@@ -656,7 +1058,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         </div>
     </div>
 
-    <h3 class="sh" style="margin-top:9.3pt">담당 범위</h3>
+    <h3 id="ds-role" class="sh" style="margin-top:9.3pt">담당 범위</h3>
     <table class="tbl" style="margin-top:5.45pt">
         <colgroup><col style="width:70.9pt"><col></colgroup>
         <tbody>
@@ -668,11 +1070,215 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     <p class="note" style="margin-top:9.5pt;letter-spacing:.027em">핵심 경험: Android 앱과 FastAPI 서버를 1인 개발하고 AWS에 배포하며 자연어 입력과 외부 API의 오류 처리 경계를 구성했습니다.</p>
     <p class="links" style="margin-top:8.8pt"><a href="https://github.com/Sjoneon/DaySync" target="_blank" rel="noopener noreferrer">GitHub · Sjoneon/DaySync</a></p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>06 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>07 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 07 / 09 · DaySync · ARCHITECTURE ═══════════════════════════ -->
-<article class="page" id="daysync-architecture" aria-label="7페이지 · DaySync 아키텍처">
+<!-- ═══════════════════════════ 08 / 11 · DaySync · BUS LOGIC ═══════════════════════════ -->
+<article class="page" id="daysync-bus" aria-label="8페이지 · DaySync 버스 방향과 정류장 판정">
+    <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>02 / CORE LOGIC</span></header>
+
+    <p class="kicker">PERSONAL PROJECT · CORE LOGIC</p>
+    <h2 class="ptitle">DaySync</h2>
+    <p class="psub">반대 방향 버스를 걸러내는 정류장·방향 판정</p>
+    <p class="pmeta">핵심 구현 · 공공 버스 API(TAGO) · 수치는 실제 판정 코드를 가상의 회차 노선에 실행한 결과</p>
+
+    <h3 id="ds-stops" class="sh sm" style="margin-top:12pt">01. 근처 정류장 찾기</h3>
+    <svg class="bus-fig" viewBox="0 0 680 158" role="img" aria-label="현재 위치를 중심으로 다섯 지점을 검색해 1km 범위의 정류장을 찾고 중복 제거, 거리 확인, 가까운 20곳 선택을 거치는 과정"><defs><marker id="bf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="bf-good" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker><marker id="bf-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<circle cx="104" cy="80" r="68" fill="#F4F7F9" stroke="#27374D" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="104" cy="80" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="104" cy="45.932" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="104" cy="114.068" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="131.336" cy="80" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="76.664" cy="80" r="34" fill="#1F78A8" stroke="#1F78A8" stroke-width="0.9" fill-opacity="0.1"/>
+<circle cx="86" cy="34" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="118" cy="28" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="142" cy="50" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="64" cy="58" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="92" cy="53" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="140" cy="74" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="52" cy="88" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="78" cy="94" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="148" cy="92" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="116" cy="106" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="70" cy="118" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="122" cy="130" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="96" cy="128" r="2.6" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<circle cx="104" cy="80" r="5" fill="#C8342B" stroke="#FFFFFF" stroke-width="1.4"/>
+<text paint-order="stroke" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" x="104" y="71" font-size="9" fill="#27374D" font-weight="700" text-anchor="middle">현재 위치</text>
+<text x="170" y="22" font-size="9" fill="#27374D" font-weight="700">1km</text>
+<rect x="224" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="237" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="237" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+<text x="274" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">5곳 검색</text>
+<text x="274" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">중심과 동서남북</text>
+<text x="274" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">약 400~500m 간격</text>
+<path d="M325 63L339 63" fill="none" stroke="#5B6C7C" stroke-width="1.15" marker-end="url(#bf-line)"/>
+<rect x="340" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="353" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="353" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+<text x="390" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">중복 제거</text>
+<text x="390" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">겹친 구역의 정류장을</text>
+<text x="390" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">정류장 ID로 하나만</text>
+<path d="M441 63L455 63" fill="none" stroke="#5B6C7C" stroke-width="1.15" marker-end="url(#bf-line)"/>
+<rect x="456" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="469" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="469" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+<text x="506" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">1km 이내</text>
+<text x="506" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">실제 위치에서의</text>
+<text x="506" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">직선거리로 재확인</text>
+<path d="M557 63L571 63" fill="none" stroke="#5B6C7C" stroke-width="1.15" marker-end="url(#bf-line)"/>
+<rect x="572" y="18" width="100" height="90" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="585" cy="32" r="7" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="585" y="35.3" font-size="9.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
+<text x="622" y="60" font-size="13.5" fill="#27374D" font-weight="700" text-anchor="middle">가까운 20곳</text>
+<text x="622" y="79" font-size="9.5" fill="#566C7E" text-anchor="middle">거리순 정렬 후</text>
+<text x="622" y="92" font-size="9.5" fill="#566C7E" text-anchor="middle">상위 20곳만 분석</text>
+<text x="224" y="134" font-size="10.5" fill="#27374D">한 번 조회할 수 있는 범위(약 500m) 밖의 정류장까지 찾아 후보가 빠지지 않게 했습니다.</text>
+<text x="224" y="149" font-size="10" fill="#566C7E">같은 좌표를 다시 검색하면 저장해 둔 결과를 재사용합니다.</text>
+</svg>
+
+    <h3 id="ds-direction" class="sh sm" style="margin-top:9pt">02. 같은 이름의 정류장과 회차 구간 구분</h3>
+    <svg class="bus-fig" viewBox="0 0 680 208" role="img" aria-label="가는 방향과 오는 방향에 같은 이름의 정류장이 있을 때 회차점을 넘지 않는 순번 18 정류장을 선택하고 순번 41 정류장은 제외하는 그림"><defs><marker id="bf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="bf-good" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker><marker id="bf-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<path d="M62 58L540 58A40 40 0 0 1 540 138L62 138" fill="none" stroke="#D5DFE7" stroke-width="7" stroke-linecap="round"/>
+<circle cx="72" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="72" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="124" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="124" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="176" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="176" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="228" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="228" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="280" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="280" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="332" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="332" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="384" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="384" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="436" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="436" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="488" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="488" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="540" cy="58" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<circle cx="540" cy="138" r="2.4" fill="#FFFFFF" stroke="#5B6C7C" stroke-width="0.9"/>
+<text x="0" y="62" font-size="10" fill="#27374D" font-weight="700">가는 방향</text>
+<text x="0" y="142" font-size="10" fill="#27374D" font-weight="700">오는 방향</text>
+<path d="M156 58L315 58" fill="none" stroke="#1F78A8" stroke-width="3.2" marker-end="url(#bf-good)"/>
+<path d="M330 67L540 67A31 31 0 0 1 540 129L331 129" fill="none" stroke="#C8342B" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#bf-bad)"/>
+<circle cx="150" cy="58" r="6" fill="#27374D" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="150" y="45" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">출발 정류장</text>
+<circle cx="322" cy="58" r="6" fill="#1F78A8" stroke="#FFFFFF" stroke-width="1.5"/>
+<circle cx="322" cy="138" r="6" fill="#C8342B" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="322" y="32" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">질구지 · 순번 18</text>
+<circle cx="272" cy="45" r="6.5" fill="#1F78A8" stroke="none" stroke-width="0.8"/><path d="M268.8 45L271.1 47.4L275.4 42.3" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="282" y="48.5" font-size="10" fill="#27374D" font-weight="700">탑승 가능 · 신뢰도 75%</text>
+<text x="322" y="157" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">질구지 · 순번 41</text>
+<circle cx="274" cy="171" r="6.5" fill="#C8342B" stroke="none" stroke-width="0.8"/><path d="M271.2 168.2L276.8 173.8M276.8 168.2L271.2 173.8" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="284" y="174.5" font-size="10" fill="#27374D" font-weight="700">회차점을 넘어 제외</text>
+<circle cx="580" cy="98" r="6.5" fill="#27374D" stroke="#FFFFFF" stroke-width="1.5"/>
+<text x="592" y="94" font-size="11" fill="#27374D" font-weight="700">회차점</text>
+<text x="592" y="108" font-size="9.5" fill="#566C7E">순번 30</text>
+<text x="0" y="196" font-size="10.5" fill="#27374D" font-weight="700">회차점 찾는 순서</text>
+<rect x="96" y="183" width="176" height="20" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="184" y="197" font-size="10" fill="#27374D" text-anchor="middle">상행·하행 코드가 바뀌는 곳</text>
+<text x="278" y="197.5" font-size="11" fill="#5B6C7C" text-anchor="middle">›</text>
+<rect x="284" y="183" width="176" height="20" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="372" y="197" font-size="10" fill="#27374D" text-anchor="middle">이름에 종점·터미널이 있는 곳</text>
+<text x="466" y="197.5" font-size="11" fill="#5B6C7C" text-anchor="middle">›</text>
+<rect x="472" y="183" width="176" height="20" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="560" y="197" font-size="10" fill="#27374D" text-anchor="middle">순환 노선은 중간 순번으로 추정</text>
+</svg>
+
+    <h3 id="ds-score" class="sh sm" style="margin-top:9pt">03. 신뢰도로 탑승 가능 여부 판정</h3>
+    <svg class="bus-fig" viewBox="0 0 680 146" role="img" aria-label="네 가지 방향 신호의 점수 평균 75점과, 신뢰도 구간별 처리 방식 및 실행 사례의 위치를 나타낸 그래프"><defs><marker id="bf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="bf-good" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker><marker id="bf-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<text x="0" y="12" font-size="11" fill="#27374D" font-weight="700">방향 신호별 점수</text>
+<text x="96" y="12" font-size="9.5" fill="#566C7E">정상 경로 실행값</text>
+<g><title>터미널 위치: 90점</title>
+<text x="0" y="35.5" font-size="10.5" fill="#27374D">터미널 위치</text>
+<path d="M72 26H266a4 4 0 0 1 4 4V33a4 4 0 0 1 -4 4H72z" fill="#1F78A8" stroke="none" stroke-width="0"/>
+<text x="302" y="35.5" font-size="10.5" fill="#27374D" font-weight="700">90</text>
+</g>
+<g><title>정류장 순서: 80점</title>
+<text x="0" y="58.5" font-size="10.5" fill="#27374D">정류장 순서</text>
+<path d="M72 49H244a4 4 0 0 1 4 4V56a4 4 0 0 1 -4 4H72z" fill="#1F78A8" stroke="none" stroke-width="0"/>
+<text x="302" y="58.5" font-size="10.5" fill="#27374D" font-weight="700">80</text>
+</g>
+<g><title>기본 방향: 70점</title>
+<text x="0" y="81.5" font-size="10.5" fill="#27374D">기본 방향</text>
+<path d="M72 72H222a4 4 0 0 1 4 4V79a4 4 0 0 1 -4 4H72z" fill="#1F78A8" stroke="none" stroke-width="0"/>
+<text x="302" y="81.5" font-size="10.5" fill="#27374D" font-weight="700">70</text>
+</g>
+<g><title>좌표: 60점</title>
+<text x="0" y="104.5" font-size="10.5" fill="#27374D">좌표</text>
+<path d="M72 95H200a4 4 0 0 1 4 4V102a4 4 0 0 1 -4 4H72z" fill="#1F78A8" stroke="none" stroke-width="0"/>
+<text x="302" y="104.5" font-size="10.5" fill="#27374D" font-weight="700">60</text>
+</g>
+<path d="M72 22V110" fill="none" stroke="#BFCED9" stroke-width="0.8"/>
+<path d="M237 22V112" fill="none" stroke="#27374D" stroke-width="1.2" stroke-dasharray="3 2.5"/>
+<text x="237" y="125" font-size="10.5" fill="#27374D" font-weight="700" text-anchor="middle">평균 75</text>
+<text x="356" y="12" font-size="11" fill="#27374D" font-weight="700">신뢰도에 따른 처리</text>
+<rect x="357" y="66" width="160" height="13" rx="3" fill="#C8342B" stroke="none" stroke-width="0.8"/>
+<rect x="519" y="66" width="62.799999999999955" height="13" rx="3" fill="#C4820F" stroke="none" stroke-width="0.8"/>
+<rect x="583.8" y="66" width="95.20000000000005" height="13" rx="3" fill="#1F78A8" stroke="none" stroke-width="0.8"/>
+<text x="356" y="90" font-size="9" fill="#5B6C7C" text-anchor="start">0</text>
+<text x="518" y="90" font-size="9" fill="#5B6C7C" text-anchor="middle">50</text>
+<text x="582.8" y="90" font-size="9" fill="#5B6C7C" text-anchor="middle">70</text>
+<text x="680" y="90" font-size="9" fill="#5B6C7C" text-anchor="end">100</text>
+<path d="M358 55V66" fill="none" stroke="#27374D" stroke-width="0.9"/>
+<circle cx="358" cy="65" r="2.4" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="361" y="52" font-size="9.5" fill="#27374D" font-weight="700" text-anchor="start">회차 통과 0</text>
+<path d="M475.88 55V66" fill="none" stroke="#27374D" stroke-width="0.9"/>
+<circle cx="475.88" cy="65" r="2.4" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="475.88" y="52" font-size="9.5" fill="#27374D" font-weight="700" text-anchor="middle">역방향 37</text>
+<path d="M566.6 55V66" fill="none" stroke="#27374D" stroke-width="0.9"/>
+<circle cx="566.6" cy="65" r="2.4" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="563.6" y="52" font-size="9.5" fill="#27374D" font-weight="700" text-anchor="end">편도 노선 65</text>
+<path d="M573.08 39V66" fill="none" stroke="#27374D" stroke-width="0.9"/>
+<circle cx="573.08" cy="65" r="2.4" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="576.08" y="36" font-size="9.5" fill="#27374D" font-weight="700" text-anchor="start">좌표 없음 67</text>
+<path d="M599 55V66" fill="none" stroke="#27374D" stroke-width="0.9"/>
+<circle cx="599" cy="65" r="2.4" fill="#27374D" stroke="none" stroke-width="0.8"/>
+<text x="602" y="52" font-size="9.5" fill="#27374D" font-weight="700" text-anchor="start">정상 경로 75</text>
+<rect x="356" y="98" width="9" height="9" rx="2" fill="#1F78A8" stroke="none" stroke-width="0.8"/>
+<text x="371" y="106" font-size="10" fill="#27374D" font-weight="700">70 이상</text>
+<text x="418" y="106" font-size="10" fill="#566C7E">분석 결과를 그대로 채택</text>
+<rect x="356" y="112.5" width="9" height="9" rx="2" fill="#C4820F" stroke="none" stroke-width="0.8"/>
+<text x="371" y="120.5" font-size="10" fill="#27374D" font-weight="700">50~69</text>
+<text x="418" y="120.5" font-size="10" fill="#566C7E">엄격 검증과 일치할 때만 허용</text>
+<rect x="356" y="127" width="9" height="9" rx="2" fill="#C8342B" stroke="none" stroke-width="0.8"/>
+<text x="371" y="135" font-size="10" fill="#27374D" font-weight="700">50 미만</text>
+<text x="418" y="135" font-size="10" fill="#566C7E">엄격 검증과 좌표 검증을 모두 통과해야 허용</text>
+</svg>
+
+    <h3 id="ds-time" class="sh sm" style="margin-top:9pt">04. 버스 위치와 이동 시간 표현</h3>
+    <svg class="bus-fig" viewBox="0 0 680 112" role="img" aria-label="도보, 버스 대기, 버스 탑승, 도보 구간별 시간 계산 방식을 나타낸 그림"><defs><marker id="bf-line" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5B6C7C"/></marker><marker id="bf-good" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#1F78A8"/></marker><marker id="bf-bad" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#C8342B"/></marker></defs>
+<rect x="7" y="12" width="118" height="26" rx="3" fill="#E6EEF4" stroke="none" stroke-width="0.8"/>
+<text x="66" y="29.5" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">도보</text>
+<text x="66" y="53" font-size="10" fill="#27374D" text-anchor="middle">TMAP 보행 경로</text>
+<text x="66" y="67" font-size="9.5" fill="#566C7E" text-anchor="middle">실패 시 직선거리로 계산</text>
+<rect x="127" y="12" width="150" height="26" rx="3" fill="#D5E3EC" stroke="none" stroke-width="0.8"/>
+<text x="202" y="29.5" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">버스 대기</text>
+<text x="202" y="53" font-size="10" fill="#27374D" text-anchor="middle">실시간 도착 시간</text>
+<text x="202" y="67" font-size="9.5" fill="#566C7E" text-anchor="middle">남은 정류장 5개 이하만</text>
+<rect x="279" y="12" width="280" height="26" rx="3" fill="#BFD4E1" stroke="none" stroke-width="0.8"/>
+<text x="419" y="29.5" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">버스 탑승</text>
+<text x="419" y="53" font-size="10" fill="#27374D" text-anchor="middle">거리 기준 60% + 정류장 수 기준 40%</text>
+<text x="419" y="67" font-size="9.5" fill="#566C7E" text-anchor="middle">결과는 2~50분으로 제한</text>
+<rect x="561" y="12" width="118" height="26" rx="3" fill="#E6EEF4" stroke="none" stroke-width="0.8"/>
+<text x="620" y="29.5" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">도보</text>
+<text x="620" y="53" font-size="10" fill="#27374D" text-anchor="middle">TMAP 보행 경로</text>
+<text x="620" y="67" font-size="9.5" fill="#566C7E" text-anchor="middle">실패 시 직선거리로 계산</text>
+<circle cx="14" cy="96" r="6.5" fill="#C8342B" stroke="none" stroke-width="0.8"/><path d="M11.2 93.2L16.8 98.8M16.8 93.2L11.2 98.8" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="26" y="99.5" font-size="10.5" fill="#27374D">버스가 먼저 도착해 걸어가도 탈 수 없는 경로는 제외</text>
+<rect x="344" y="87" width="336" height="19" rx="3" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="512" y="100.5" font-size="10" fill="#27374D" text-anchor="middle">내 위치 5초 간격 확인 · 50m 안에 들어오면 다음 단계</text>
+</svg>
+    <p class="note" style="margin-top:5pt">실시간 버스 GPS는 경로 검색 시간이 크게 늘어 사용하지 않았으며, 도착 정보의 남은 정류장 수와 도착 시간으로 버스 위치를 판단했습니다.</p>
+
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>08 / 11</span></footer>
+</article>
+
+<!-- ═══════════════════════════ 09 / 11 · DaySync · ARCHITECTURE ═══════════════════════════ -->
+<article class="page" id="daysync-architecture" aria-label="9페이지 · DaySync 아키텍처">
     <header class="run-head" aria-hidden="true" style="--head-mr:10.8pt"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>02 / ARCHITECTURE</span></header>
 
     <p class="kicker">PERSONAL PROJECT</p>
@@ -686,7 +1292,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     </figure>
     <p class="links" style="margin-top:6.3pt"><a href="https://github.com/Sjoneon/DaySync/tree/main/docs/architecture" target="_blank" rel="noopener noreferrer">아키텍처 문서 4종</a><span class="sep" style="margin:0 8.3pt">/</span><a href="https://github.com/Sjoneon/DaySync/tree/main/docs/diagrams" target="_blank" rel="noopener noreferrer">시퀀스 다이어그램 5종</a></p>
 
-    <h3 class="sh" style="margin-top:11.9pt">장애 대응 · Retrofit으로 날씨 API 재시도 구현</h3>
+    <h3 id="ds-trouble" class="sh" style="margin-top:11.9pt">장애 대응 · Retrofit으로 날씨 API 재시도 구현</h3>
     <div class="boxed retry" style="margin-top:5.75pt">
         <p><b>문제</b> : 날씨 API 오류가 지속되면 불필요한 요청과 사용자 대기가 늘어날 수 있기에 재시도 횟수와 대기 시간을 제한</p>
         <p><b>판단 및 구현</b> : 기상청 API 호출 실패 시 2초 간격으로 최대 3회 재시도하도록 했습니다.</p>
@@ -701,7 +1307,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <div class="node"><strong>재시도·오류 안내</strong><span>2초 간격 · 최대 3회 재시도</span></div>
     </div>
 
-    <h3 class="sh" style="margin-top:8.35pt">설계와 운영에서 배운 점</h3>
+    <h3 id="ds-lessons" class="sh" style="margin-top:8.35pt">설계와 운영에서 배운 점</h3>
     <div class="duo" style="margin-top:5.45pt">
         <div style="height:79.5pt;padding-top:8.7pt">
             <h4>기능별 요청 흐름을 먼저 정리</h4>
@@ -713,7 +1319,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         </div>
     </div>
 
-    <h3 class="sh" style="margin-top:5.5pt">남은 개선 과제</h3>
+    <h3 id="ds-limits" class="sh" style="margin-top:5.5pt">남은 개선 과제</h3>
     <table class="tbl" style="margin-top:5.05pt">
         <colgroup><col style="width:141.7pt"><col></colgroup>
         <tbody>
@@ -723,11 +1329,11 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         </tbody>
     </table>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>07 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>09 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 08 / 09 · SOS Renewal ═══════════════════════════ -->
-<article class="page" id="sos-renewal" aria-label="8페이지 · SOS Renewal">
+<!-- ═══════════════════════════ 10 / 11 · SOS Renewal ═══════════════════════════ -->
+<article class="page" id="sos-renewal" aria-label="10페이지 · SOS Renewal">
     <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>03 / RENEWAL</span></header>
 
     <p class="kicker">PERSONAL PROJECT</p>
@@ -753,7 +1359,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <figure><div class="frame"><img src="image/SOSRenewal/sos_renewal_seller_dashboard.png" width="1591" height="1078" alt="SOS Renewal 판매자 대시보드 화면"></div><figcaption>판매자 상품·운영 관리</figcaption></figure>
     </div>
 
-    <h3 class="sh" style="margin-top:11pt">구조 전환</h3>
+    <h3 id="sr-migration" class="sh" style="margin-top:11pt">구조 전환</h3>
     <table class="tbl compare" style="margin-top:5.55pt">
         <colgroup><col style="width:120.2pt"><col style="width:139.6pt"><col></colgroup>
         <thead><tr><th scope="col">영역</th><th scope="col">기존 SOS 프로젝트</th><th scope="col">SOS Renewal 프로젝트</th></tr></thead>
@@ -765,7 +1371,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         </tbody>
     </table>
 
-    <h3 class="sh" style="margin-top:9.6pt">구조 전환의 문제와 선택 및 결과</h3>
+    <h3 id="sr-trouble" class="sh" style="margin-top:9.6pt">구조 전환의 문제와 선택 및 결과</h3>
     <div class="tri" style="margin-top:5.65pt">
         <div><h4>문제와 제약</h4><p>기간상 Thymeleaf로 시작했으나<br>화면과 데이터 처리가 혼재했습니다.<br>기능과 인증은 유지해야 했습니다.</p></div>
         <div><h4>선택과 구현</h4><p>화면 상태는 React 인증·검증은 서버로<br>나눴습니다. 기존 서비스와 세션은<br>재사용해 로그인 흐름을 유지했습니다.</p></div>
@@ -777,15 +1383,15 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <p>기존 기능과 인증을 유지하며 화면과 서버를 분리하고 공개 응답에서 재고 수량과 판매자 식별자를 제외했습니다.<br>EC2·RDS·S3로 서버와 저장소를 분리하고 공개 DTO의 내부 필드 제외를 검사하는 직렬화 테스트를 작성했습니다.</p>
     </div>
 
-    <h3 class="sh" style="margin-top:9.55pt">현재 한계와 개선 방향</h3>
-    <p class="limits" style="margin-top:3.35pt"><span style="letter-spacing:-.022em">주문과 배송 상태는 버튼으로 직접 변경하고 있습니다. 앞으로 택배사와 송장을 연동하고 주문 및 결제의 예외 상황을 검증할 필요가 있습니다.</span><br>이메일 인증과 비밀번호 재설정 및 로그인 보안을 보완하고 CI/CD와 모니터링도 개선할 계획입니다.</p>
+    <h3 id="sr-limits" class="sh" style="margin-top:9.55pt">현재 한계와 개선 방향</h3>
+    <p class="limits" style="margin-top:3.35pt"><span style="letter-spacing:-.027em">주문과 배송 상태는 버튼으로 직접 변경하고 있습니다. 앞으로 택배사와 송장을 연동하고 주문 및 결제의 예외 상황을 검증할 필요가 있습니다.</span><br>이메일 인증과 비밀번호 재설정 및 로그인 보안을 보완하고 CI/CD와 모니터링도 개선할 계획입니다.</p>
     <p class="links" style="margin-top:7pt"><a href="https://github.com/Sjoneon/Style-of-Simplicity-renewal" target="_blank" rel="noopener noreferrer">GitHub · Sjoneon/Style-of-Simplicity-renewal</a></p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>08 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>10 / 11</span></footer>
 </article>
 
-<!-- ═══════════════════════════ 09 / 09 · SOS ═══════════════════════════ -->
-<article class="page" id="sos" aria-label="9페이지 · SOS">
+<!-- ═══════════════════════════ 11 / 11 · SOS ═══════════════════════════ -->
+<article class="page" id="sos" aria-label="11페이지 · SOS">
     <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>04 / FOUNDATION</span></header>
 
     <p class="kicker">PERSONAL PROJECT</p>
@@ -809,7 +1415,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         <figure><div class="frame"><img src="image/SOS/sos_admin_keywords.png" width="2829" height="1690" alt="SOS 관리자 키워드 설정 화면"></div><figcaption>관리자 키워드 설정</figcaption></figure>
     </div>
 
-    <h3 class="sh" style="margin-top:11pt">계층과 데이터 관계 설계</h3>
+    <h3 id="sos-design" class="sh" style="margin-top:11pt">계층과 데이터 관계 설계</h3>
     <div class="flow3" style="margin-top:8.55pt">
         <div class="node"><strong>Controller</strong><span>요청 수신 · Model 전달</span></div>
         <div class="arr" aria-hidden="true">→</div>
@@ -827,14 +1433,14 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
         </tbody>
     </table>
 
-    <h3 class="sh" style="margin-top:9.8pt">트러블 슈팅 · DB 연결 환경과 커넥션 풀</h3>
+    <h3 id="sos-trouble" class="sh" style="margin-top:9.8pt">트러블 슈팅 · DB 연결 환경과 커넥션 풀</h3>
     <div class="boxed trouble" style="margin-top:5.65pt">
         <p><b>문제</b> : DB 연결 오류로 상품·주문 흐름을 실행하기 어려워 의존성 버전과 커넥션 풀 설정을 점검해야 했습니다.</p>
-        <p><b>판단 및 구현</b> : MySQL Connector와 pom.xml의 호환 버전 및 HikariCP 설정을 함께 점검해 DB 연결 구성을 보완했습니다.</p>
+        <p style="letter-spacing:-.016em"><b>판단 및 구현</b> : MySQL Connector와 pom.xml의 호환 버전 및 HikariCP 설정을 함께 점검해 DB 연결 구성을 보완했습니다.</p>
         <p class="hang"><b>결과</b> : 이후 DaySync에서는 API 명세와 ERD 및 시퀀스를 먼저 작성해 요청·응답과 데이터 처리 위치를 정리하고<br>화면과 서버의 책임을 나눈 뒤 구현하는 방식으로 개발 순서를 바꿨습니다.</p>
     </div>
 
-    <h3 class="sh" style="margin-top:8.9pt">프로젝트를 통해 확장한 개발 범위</h3>
+    <h3 id="sos-scope" class="sh" style="margin-top:8.9pt">프로젝트를 통해 확장한 개발 범위</h3>
     <div class="tracks" style="margin-top:5.35pt">
         <div><em>SOS</em><strong>백엔드 기본기</strong><p>계층형 구조<br>JPA 관계·트랜잭션</p></div>
         <div><em>DaySync / SOS Renewal</em><strong>서비스 연결·운영</strong><p>외부 API·장애 대응<br>SPA·REST API·AWS</p></div>
@@ -842,7 +1448,7 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
     </div>
     <p class="links" style="margin-top:13.4pt"><a href="https://github.com/Sjoneon" target="_blank" rel="noopener noreferrer">GitHub</a><span class="sep">·</span><a href="https://sjoneon.github.io/">웹 포트폴리오</a><span class="sep">·</span><a href="mailto:spdjdps1649@gmail.com">spdjdps1649@gmail.com</a></p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>09 / 09</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>11 / 11</span></footer>
 </article>
 
 </main>
@@ -851,14 +1457,149 @@ b, strong, h1, h2, h3, h4, th { font-weight: 700; }
 /* 화면 폭에 맞춰 A4 페이지를 확대·축소합니다(인쇄 시에는 항상 실제 크기). */
 (function () {
     var PAGE_WIDTH_PX = 793.7; /* 210mm */
+    var TOC_WIDTH_PX = 212;
     var root = document.documentElement;
+    var wide = window.matchMedia('(min-width: 1100px)');
     function fit() {
-        var available = root.clientWidth - 32;
+        var tocOpen = wide.matches && !root.classList.contains('toc-collapsed');
+        var available = root.clientWidth - 32 - (tocOpen ? TOC_WIDTH_PX : 0);
         var zoom = Math.min(1.2, available / PAGE_WIDTH_PX);
         root.style.setProperty('--zoom', zoom.toFixed(4));
     }
     fit();
     window.addEventListener('resize', fit);
+})();
+
+/* MCP 흐름도의 재생·멈춤 버튼과, 번호 박스에 마우스를 올렸을 때 다음 흐름의 선 색을 바꾸는 동작입니다. */
+(function () {
+    var flow = document.querySelector('.mcp-flow');
+    var toggle = document.querySelector('.mf-toggle');
+    if (!flow || !toggle) return;
+
+    function clear() {
+        flow.classList.remove('mf-focus');
+        flow.querySelectorAll('.mf-rt.mf-on').forEach(function (line) {
+            line.classList.remove('mf-on');
+        });
+    }
+    function show(step) {
+        clear();
+        flow.classList.add('mf-focus');
+        flow.querySelectorAll('.mf-rt[data-route~="' + step.getAttribute('data-step') + '"]').forEach(function (line) {
+            line.classList.add('mf-on');
+        });
+    }
+    flow.querySelectorAll('.mf-step').forEach(function (step) {
+        step.addEventListener('mouseenter', function () { show(step); });
+        step.addEventListener('focus', function () { show(step); });
+        step.addEventListener('mouseleave', clear);
+        step.addEventListener('blur', clear);
+    });
+
+    toggle.addEventListener('click', function () {
+        var paused = flow.classList.toggle('mf-paused');
+        if (paused) flow.pauseAnimations(); else flow.unpauseAnimations();
+        var label = paused ? '흐름 애니메이션 재생' : '흐름 애니메이션 멈추기';
+        toggle.classList.toggle('is-paused', paused);
+        toggle.setAttribute('aria-label', label);
+        toggle.title = label;
+    });
+})();
+
+/* 왼쪽 목차: ☰ 동작, 현재 보고 있는 페이지 표시, PDF 저장 */
+(function () {
+    var root = document.documentElement;
+    var toc = document.getElementById('toc');
+    var button = document.querySelector('.toc-toggle');
+    var bar = document.querySelector('.toc-bar');
+    var scrim = document.querySelector('.toc-scrim');
+    var wide = window.matchMedia('(min-width: 1100px)');
+
+    function isOpen() {
+        return wide.matches ? !root.classList.contains('toc-collapsed') : root.classList.contains('toc-drawer');
+    }
+    function syncButton() {
+        var open = isOpen();
+        var label = open ? '목차 접기' : '목차 열기';
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', label);
+        button.title = label;
+    }
+    function closeDrawer() {
+        root.classList.remove('toc-drawer');
+        syncButton();
+    }
+    button.addEventListener('click', function () {
+        root.classList.toggle(wide.matches ? 'toc-collapsed' : 'toc-drawer');
+        syncButton();
+        window.dispatchEvent(new Event('resize'));
+    });
+    scrim.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && root.classList.contains('toc-drawer')) { closeDrawer(); button.focus(); }
+    });
+    toc.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeDrawer);
+    });
+    wide.addEventListener('change', closeDrawer);
+    toc.querySelector('.toc-pdf').addEventListener('click', function () { window.print(); });
+    syncButton();
+
+    var links = Array.prototype.map.call(toc.querySelectorAll('a[data-page]'), function (link) {
+        return { link: link, target: document.querySelector(link.getAttribute('href')) };
+    });
+    var current = null;
+    var chosen = false; /* 목차를 눌러 이동한 뒤에는 사용자가 직접 스크롤하기 전까지 고른 항목을 유지합니다. */
+    var queued = false;
+
+    function keepInView(link) {
+        var top = link.offsetTop - 52;
+        var bottom = link.offsetTop + link.offsetHeight + 12;
+        if (top < toc.scrollTop) toc.scrollTop = top;
+        else if (bottom > toc.scrollTop + toc.clientHeight) toc.scrollTop = bottom - toc.clientHeight;
+    }
+    function mark(link) {
+        if (link === current) return;
+        if (current) { current.classList.remove('is-current'); current.removeAttribute('aria-current'); }
+        link.classList.add('is-current');
+        link.setAttribute('aria-current', 'true');
+        bar.textContent = link.getAttribute('data-label');
+        current = link;
+        keepInView(link);
+    }
+    function update() {
+        queued = false;
+        if (chosen) return;
+        var line = window.innerHeight * 0.25;
+        var active = links[0];
+        links.forEach(function (entry) {
+            if (entry.target.getBoundingClientRect().top <= line) active = entry;
+        });
+        mark(active.link);
+    }
+    function requestUpdate() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+    }
+    function release() {
+        chosen = false;
+        requestUpdate();
+    }
+    links.forEach(function (entry) {
+        entry.link.addEventListener('click', function () { chosen = true; mark(entry.link); });
+    });
+    window.addEventListener('popstate', function () {
+        /* 목차 클릭과 뒤로 가기 모두 주소의 #항목을 기준으로 현재 위치를 표시합니다. */
+        var entry = links.filter(function (item) { return item.link.getAttribute('href') === location.hash; })[0];
+        if (entry) { chosen = true; mark(entry.link); } else release();
+    });
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (name) {
+        window.addEventListener(name, release, { passive: true });
+    });
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    update();
 })();
 </script>
 </body>
