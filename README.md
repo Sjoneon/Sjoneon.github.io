@@ -1,6 +1,6 @@
 # 송재원 포트폴리오
 
-> 백엔드 · AI 서비스 개발자
+> AI 서비스 백엔드 개발자
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-sjoneon.github.io-27374D?style=flat-square)](https://sjoneon.github.io/)
 [![GitHub](https://img.shields.io/badge/GitHub-Sjoneon-181717?style=flat-square&logo=github)](https://github.com/Sjoneon)
@@ -8,15 +8,16 @@
 
 ## 소개
 
-서비스 흐름을 설계하고 신뢰성을 높이는 백엔드 · AI 서비스 개발자입니다. C언어부터 Spring Boot, FastAPI, Spring AI까지 다양한 기술을 활용하여 실제 문제를 기반으로 하는 프로젝트들을 완성했습니다.
+서비스 흐름을 설계하고 신뢰성을 높이는 AI 서비스 백엔드 개발자입니다. C언어부터 Spring Boot, FastAPI, Spring AI까지 다양한 기술을 활용하여 실제 문제를 기반으로 하는 프로젝트들을 완성했습니다.
 
 데이터베이스 설계부터 API 연동과 구현, AWS 배포까지 백엔드 개발의 전체 과정을 경험했으며, 가전 고장 상담 서비스에서는 팀장으로 서비스 설계와 AI 상담 개발을 맡아 필요한 정보를 근거에 맞게 제공하는 구조를 고민했습니다.
 
 **특징**
 - 실제 문제 해결 중심의 프로젝트 경험
 - 체계적인 사전 설계를 통한 안정적인 개발
-- Spring AI · MCP 기반 AI 상담 서비스 설계 및 개발 경험
-- 다양한 기술 스택을 활용한 풀스택 경험
+- Spring AI, MCP 기반 AI 상담 서비스 설계 및 개발 경험
+- Gemini Function Calling 요청을 FastAPI 서버에서 확인하고 실행한 경험
+- React, Android 화면부터 서버와 AWS 배포까지 이어서 구현한 경험
 - 팀장으로서 기획 총괄과 협업 경험
 
 ---
@@ -67,7 +68,7 @@
 
 **클라우드 서버 엔지니어 양성 교육**
 - 2025.10 ~ 12 이수 (충북인공지능산업협회)
-- 서버·네트워크 구축 및 백업·복구, 클라우드 인프라 구성·운영 실습
+- 서버/네트워크 구축 및 백업/복구, 클라우드 인프라 구성/운영 실습
 
 ---
 
@@ -76,7 +77,7 @@
 ### HomeCare AI - 가전 고장 증상 기반 AI 상담 웹 서비스
 **2026.10.01 ~ 10.18 | LG전자 AX School 팀 프로젝트 (5명) | 팀장**
 
-가전제품이 고장 났을 때 수리 전에 확인할 내용과 비용을 한곳에서 파악하기 어렵다는 문제에서 시작한 프로젝트입니다. 세탁기·건조기·냉장고·식기세척기의 증상과 오류코드를 입력하면 제조사 자료를 바탕으로 자가점검과 보증기간 및 참고 수리비를 안내하고, 공식 A/S 접수 경로를 제공합니다.
+가전제품이 고장 났을 때 수리 전에 확인할 내용과 비용을 한곳에서 파악하기 어렵다는 문제에서 시작한 프로젝트입니다. 세탁기, 건조기, 냉장고, 식기세척기의 증상과 오류코드를 입력하면 제조사 자료를 바탕으로 자가점검과 보증기간 및 참고 수리비를 안내하고, 공식 A/S 접수 경로를 제공합니다.
 
 **Tech Stack**
 
@@ -90,15 +91,15 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
 
 **주요 기능**
-- 팀장으로 기획을 총괄하고 기능명세·시퀀스·ERD 작성, 상담 흐름과 동작 규칙 결정
-- Spring AI로 품목·모델 적용 조건을 먼저 거른 뒤 제조사 근거를 검색 (제조사 자료 1,542건 구조화)
+- 팀장으로 기획을 총괄하고 기능명세, 시퀀스, ERD 작성, 상담 흐름과 동작 규칙 결정
+- Spring AI로 품목/모델 적용 조건을 먼저 거른 뒤 제조사 근거를 검색 (제조사 자료 1,542건 구조화)
 - Spring AI(Java MCP 클라이언트)와 Python FastMCP로 읽기 전용 조회 도구 9개 연결, 요청별 JWT 전달
-- 도구 선택은 AI가, 소유권·상태 검사와 보증·비용 판단은 Spring 도구 API가 맡도록 역할 분리
-- 제품 소유권과 단계·상태 버전을 서버에서 검증해 오래된 카드와 중복 제출을 409로 거부
+- 도구 선택은 AI가, 소유권/상태 검사와 보증/비용 판단은 Spring 도구 API가 맡도록 역할 분리
+- 제품 소유권과 단계/상태 버전을 서버에서 검증해 오래된 카드와 중복 제출을 409로 거부
 
 **개선 성과**
-- **문서 임베딩 인덱스 재사용:** 자료·모델 설정의 SHA-256 지문 비교로 재시작 시 재임베딩 요청 25회 → 0회
-- **근거 기반 답변 구성:** AI는 근거 ID만 선택하고 서버가 원문을 복원하도록 바꿔 동일 14문항 중 통과 4개 → 14개
+- **문서 임베딩 인덱스 재사용:** 자료/모델 설정의 SHA-256 지문 비교로 재시작 시 재임베딩 요청 25회 → 0회
+- **검증된 자료로 답변 작성:** AI는 근거 ID만 선택하고 서버가 원문을 복원하도록 바꿔 동일 14문항 중 통과 4개 → 14개
 - **자가점검 단계 제출:** 중간 단계를 React에서 처리해 5단계 제출 요청 5회 → 1회 (80% 감소)
 
 **링크:** [GitHub](https://github.com/Sjoneon/AX_core_project) · [서비스 바로가기](https://homecare-omega-eight.vercel.app/)
@@ -121,13 +122,14 @@
 ![AWS](https://img.shields.io/badge/EC2·RDS·S3·CloudFront·WAF-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)
 
 **주요 기능**
-- React와 Spring Boot REST API로 검색·장바구니·주문 연결
+- React와 Spring Boot REST API로 검색, 장바구니, 주문 연결
 - 키워드 선택 기반 추천을 대화형 AI 추천과 사용자/판매자 흐름으로 확장
-- EC2·RDS 분리와 local/S3 이미지 저장 전략, CloudFront·WAF 적용 및 복구 기준 정리
+- EC2/RDS 분리와 local/S3 이미지 저장 전략, CloudFront/WAF 적용 및 복구 기준 정리
 
 **트러블 슈팅**
-- **문제:** 기간상 Thymeleaf로 시작해 화면과 데이터 처리가 혼재했지만 기존 기능과 인증은 유지해야 함
-- **해결:** 화면 상태는 React, 인증·검증은 서버로 나누고 기존 서비스와 세션 인증을 재사용해 로그인 흐름 유지. 공개 응답에서 재고 수량과 판매자 식별자를 제외하고 이를 직렬화 테스트로 검사
+- **문제:** 기간상 Thymeleaf로 빠르게 구현했지만 화면과 API가 한 컨트롤러에 섞여 있었고, 분리해도 기능과 인증은 유지해야 함
+- **해결:** React가 쓸 API를 `/api/v1`로 새로 만들고 기존 서비스를 재사용. 인증은 기존 사용자/판매자 세션을 유지
+- **결과:** React는 REST API만 호출하게 분리했고 기존 서비스 메서드 32개를 유지했으며 인증과 권한을 테스트로 확인. API 응답은 개발자 도구에서 볼 수 있어 재고 수량과 판매자 식별자를 제외하고 직렬화 테스트로 검사
 - **배운 점:** 기존 구조를 유지하면서 단계적으로 분리하는 전환 방식과 공개 응답 범위 관리의 중요성 체득
 
 **링크:** [GitHub](https://github.com/Sjoneon/Style-of-Simplicity-renewal)
@@ -144,16 +146,22 @@
 ![Android](https://img.shields.io/badge/Android_(Java)-3DDC84?style=flat-square&logo=android&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Gemini_2.5_Flash-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)
 ![Naver Maps](https://img.shields.io/badge/네이버지도·공공_데이터_API-03C75A?style=flat-square&logo=naver&logoColor=white)
 
 **주요 기능**
-- **Function Calling으로 일정·알람 등록:** 제목과 시간이 빠진 요청의 저장을 막고자 Function Calling 추출값을 FastAPI로 검증해 필수값을 갖춘 요청만 저장
-- **지도·교통·날씨 API 통합:** 여러 앱을 오가던 불편을 줄이고자 지도와 교통 및 날씨 API를 Android 앱에 연동해 일정과 이동 정보를 한곳에서 확인
-- **설계:** 클라이언트·서버 구조, 시스템 아키텍처와 기능별 시퀀스 정리
+- **AI 채팅으로 일정/알람 관리:** 채팅 한 문장으로 일정과 알람을 등록하고 수정, 삭제할 수 있게 Gemini와 연결
+- **지도, 교통, 날씨 API 통합:** 여러 앱을 오가던 불편을 줄이고자 지도와 교통 및 날씨 API를 Android 앱에 연동해 일정과 이동 정보를 한곳에서 확인
+- **설계:** 클라이언트/서버 구조, 시스템 아키텍처와 기능별 시퀀스 정리
 - **서버:** FastAPI REST API 구현, 외부 서비스 연동과 에러 핸들링
-- **앱·배포:** Android(Java) 앱 구현, REST API 연동과 AWS EC2 서버 배포
+- **앱/배포:** Android(Java) 앱 구현, REST API 연동과 AWS EC2 서버 배포
+
+**서버 핵심 로직**
+- Gemini가 고른 함수 9개(쓰기 6개, 조회 1개, 앱에 넘기는 2개)를 FastAPI 서버가 실행하고 결과를 모델에 넘겨 답변 생성
+- 실행 전에 필수 값을 확인하고 요청의 `user_uuid`로 조회 범위를 제한. 값이나 대상이 없으면 `status: error`를 모델에 돌려줘 답변으로 안내
+- 대화 세션과 메시지를 MySQL에 저장하고 최근 10개만 모델에 전달. 30일 미사용 세션은 정리하고, 같은 경로 검색 결과는 24시간, 좌표 약 100m 이내면 재사용
 
 **설계 산출물**
 
@@ -170,8 +178,8 @@
 - **배운 점:** 외부 API는 정상 응답뿐 아니라 실패와 재시도도 고려해야 함을 체득
 
 **남은 개선 과제**
-- JWT 기반 인증 도입과 사용자별 데이터 관리 강화
-- 현재 40~50초가 소요되는 버스 경로 탐색 최적화
+- 앱이 보낸 `user_uuid`를 그대로 쓰는 구조를 JWT 인증으로 교체
+- 40~50초 걸리는 경로 탐색: 정류장 검색 10회 순차 호출을 서버 병렬 처리와 공유 캐시로 개선
 - 환승 경로 지원으로 대중교통 이용 흐름 개선
 
 **링크:** [GitHub](https://github.com/Sjoneon/DaySync)
@@ -191,18 +199,17 @@ Spring Boot와 Thymeleaf 및 JPA로 체형과 상황 스타일 키워드에 맞�
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?style=flat-square&logo=thymeleaf&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white)
-![HikariCP](https://img.shields.io/badge/HikariCP-4B5563?style=flat-square)
 
 **주요 기능**
-- Controller(요청 수신 · Model 전달) → Service(회원·상품·주문 처리) → Repository(JPA CRUD · 조회 쿼리) 계층형 구조 설계
-- Product-Keyword 다대다 관계로 체형·스타일·상황별 상품 매칭
+- Controller(요청 수신, Model 전달) → Service(회원, 상품, 주문 처리) → Repository(JPA CRUD, 조회 쿼리) 계층형 구조 설계
+- Product-Keyword 다대다 관계로 체형, 스타일, 상황별 상품 매칭
 - Cart와 Order로 장바구니와 주문 및 재고 차감 연결
 - 세션 기반 로그인과 회원/판매자 권한별 접근 제어
 
-**트러블 슈팅 · DB 연결 환경과 커넥션 풀**
-- **문제:** DB 연결 오류로 상품·주문 흐름을 실행하기 어려워 의존성 버전과 커넥션 풀 설정을 점검해야 함
-- **해결:** MySQL Connector와 pom.xml의 호환 버전 및 HikariCP 설정을 함께 점검해 DB 연결 구성을 보완
-- **배운 점:** 이후 DaySync에서는 API 명세와 ERD 및 시퀀스를 먼저 작성해 요청·응답과 데이터 처리 위치를 정리하고, 화면과 서버의 책임을 나눈 뒤 구현하는 방식으로 개발 순서를 바꿈
+**트러블 슈팅 · DB 연결 환경**
+- **문제:** DB 연결 오류로 상품/주문 흐름을 실행하기 어려웠음
+- **해결:** 의존성 호환 문제로 보고 pom.xml의 MySQL Connector 버전을 점검해 DB 연결 구성을 보완
+- **결과:** 연결을 복구해 상품/주문 흐름을 실행. 이후 DaySync에서는 API 명세, ERD, 시퀀스를 먼저 작성해 요청/응답과 데이터 처리 위치를 정리하고, 화면과 서버의 책임을 나눈 뒤 구현하도록 개발 순서를 바꿈
 
 ---
 
@@ -284,7 +291,9 @@ Java GUI 프로그래밍과 데이터베이스 연동 기술을 학습하기 위
 
 이 저장소에는 다음 파일들이 포함되어 있습니다:
 
-- `index.html` - A4 9페이지 분량의 인쇄용 포트폴리오 (HTML, 인쇄·PDF 저장 시 페이지 단위로 분리)
+- `index.html` - A4 11페이지 포트폴리오의 페이지 목록 (GitHub Pages가 `_includes/`의 파일을 합쳐 한 페이지로 만들고, 인쇄나 PDF 저장 시 페이지 단위로 나뉨)
+- `_includes/` - 페이지별 HTML, 목차, SVG 그림
+- `css/`, `js/` - 화면 스타일과 인쇄 설정, 화면 배율과 MCP 흐름도, 목차 동작
 - `image/` - 프로젝트 화면 및 아키텍처 다이어그램
 - `README.md` - 본 파일 (GitHub용 포트폴리오)
 
@@ -296,14 +305,15 @@ Java GUI 프로그래밍과 데이터베이스 연동 기술을 학습하기 위
 ## 핵심 강점
 
 ### 체계적인 사전 설계
-- API 명세와 ERD 및 시퀀스를 먼저 작성해 요청·응답과 데이터 처리 위치를 정리한 뒤 구현
+- API 명세와 ERD 및 시퀀스를 먼저 작성해 요청/응답과 데이터 처리 위치를 정리한 뒤 구현
 - DaySync에서 아키텍처 문서 4종과 시퀀스 다이어그램 5종 작성
-- HomeCare AI에서 팀장으로 기능명세·시퀀스·ERD 작성
+- HomeCare AI에서 팀장으로 기능명세, 시퀀스, ERD 작성
 
 ### AI 서비스 개발 경험
 - Spring AI와 FastMCP로 AI 상담 도구 9개를 연결하고 서버 검증과 역할을 분리
 - 제조사 자료 기반 근거 검색과 근거 ID 검증으로 답변의 원문 보존
-- 평가 기준을 세우고 수치로 개선 결과 검증 (답변 구성 평가 4 → 14개 통과)
+- 평가 기준을 세우고 수치로 개선 결과 검증 (답변 구성 평가 4/14 → 14/14개 통과)
+- DaySync에서 Gemini Function Calling 요청을 FastAPI 서버가 확인하고 실행하도록 구성 (함수 9개)
 
 ### 실제 문제 해결 경험
 - 모든 프로젝트가 실생활 문제 해결에서 시작
@@ -313,12 +323,12 @@ Java GUI 프로그래밍과 데이터베이스 연동 기술을 학습하기 위
 ### 다양한 기술 스택 경험
 - C언어부터 Spring Boot, FastAPI, Spring AI까지 폭넓은 경험
 - 데스크톱(Java Swing), 웹(Spring Boot, React), 모바일(Android) 개발 경험
-- MySQL, Oracle 등 다양한 데이터베이스와 AWS(EC2·RDS·S3·CloudFront) 운영 경험
+- MySQL, Oracle 등 다양한 데이터베이스와 AWS(EC2, RDS, S3, CloudFront) 운영 경험
 
 ### 트러블 슈팅 능력
-- 외부 날씨 API 오류 지속 → 재시도 횟수·간격 제한과 화면 종료 시 재시도 취소로 해결
+- 외부 날씨 API 오류 지속 → 재시도 횟수와 간격 제한, 화면 종료 시 재시도 취소로 해결
 - 반복 제출로 인한 요청 증가 → 화면 처리와 서버 검증 분리로 제출 5회 → 1회
-- DB 연결 오류 → MySQL Connector·pom.xml 호환 버전과 HikariCP 설정 점검으로 해결
+- DB 연결 오류 → pom.xml의 MySQL Connector 버전 점검으로 해결
 - DAO 코드 중복 → AbstractBaseDAO 상속 구조로 해결
 
 ### 협업 및 커뮤니케이션

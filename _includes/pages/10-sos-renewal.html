@@ -1,0 +1,59 @@
+<!-- ═══════════════════════════ 10 / 11 · SOS Renewal ═══════════════════════════ -->
+<article class="page" id="sos-renewal" aria-label="10페이지 · SOS Renewal">
+    <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>03 / RENEWAL</span></header>
+
+    <p class="kicker">PERSONAL PROJECT</p>
+    <h2 class="ptitle">SOS Renewal</h2>
+    <p class="psub" style="letter-spacing:.018em">SSR 쇼핑몰을 React SPA + REST API로 전환</p>
+    <p class="pmeta">2026.05 1차 마감 · 1인 개발 · 설계 / 구현 / 배포 / 운영 점검</p>
+    <p class="lead s9" style="margin-top:12.55pt">React와 Spring Boot REST API로 검색, 장바구니, 주문을 연결하고 Thymeleaf 쇼핑몰의 화면과 서버를 분리했습니다.<br>기존 서비스와 세션 인증을 재사용해 로그인 흐름을 유지하고 공개 응답에서 재고 수량과 판매자 식별자를 제외했습니다.</p>
+
+    <ul class="badges" style="margin-top:10.25pt">
+        <li><img src="image/badges/react-19.svg" width="77" height="20" alt="React 19"></li>
+        <li><img src="image/badges/vite-7.svg" width="61" height="20" alt="Vite 7"></li>
+        <li><img src="image/badges/mui-7.svg" width="61" height="20" alt="MUI 7"></li>
+        <li><img src="image/badges/java-21.svg" width="71" height="20" alt="Java 21"></li>
+        <li><img src="image/badges/spring-boot-3.3.5.svg" width="125" height="20" alt="Spring Boot 3.3.5"></li>
+        <li><img src="image/badges/jpa.svg" width="47" height="20" alt="JPA"></li>
+        <li><img src="image/badges/mysql-8.svg" width="77" height="20" alt="MySQL 8"></li>
+        <li><img src="image/badges/ec2-rds-s3.svg" width="79" height="20" alt="EC2/RDS/S3"></li>
+        <li><img src="image/badges/cloudfront-waf.svg" width="99" height="20" alt="CloudFront/WAF"></li>
+    </ul>
+
+    <div class="shots sm" style="margin-top:8.25pt">
+        <figure><div class="frame"><img src="image/SOSRenewal/sos_renewal_main.png" width="1919" height="1079" alt="SOS Renewal 상품 목록·검색·정렬 화면"></div><figcaption>상품 목록, 검색, 정렬</figcaption></figure>
+        <figure><div class="frame"><img src="image/SOSRenewal/sos_renewal_seller_dashboard.png" width="1591" height="1078" alt="SOS Renewal 판매자 대시보드 화면"></div><figcaption>판매자 상품/운영 관리</figcaption></figure>
+    </div>
+
+    <h3 id="sr-migration" class="sh" style="margin-top:11pt">구조 전환</h3>
+    <table class="tbl compare" style="margin-top:5.55pt">
+        <colgroup><col style="width:120.2pt"><col style="width:139.6pt"><col></colgroup>
+        <thead><tr><th scope="col">영역</th><th scope="col">기존 SOS 프로젝트</th><th scope="col">SOS Renewal 프로젝트</th></tr></thead>
+        <tbody>
+            <tr><th scope="row">화면 / 서버</th><td>Thymeleaf SSR</td><td>React SPA + Spring Boot REST API</td></tr>
+            <tr><th scope="row">추천 / 사용 흐름</th><td>키워드 선택 기반 추천</td><td>대화형 AI 추천, 사용자/판매자 흐름 확장</td></tr>
+            <tr><th scope="row">배포 / 저장소</th><td>운영 경험 부족</td><td>EC2/RDS 분리 local/S3 저장 전략</td></tr>
+            <tr><th scope="row">정적 리소스 / 보안</th><td>운영 구조 설명 중심</td><td>CloudFront/WAF 적용 및 복구 기준 정리</td></tr>
+        </tbody>
+    </table>
+
+    <h3 id="sr-trouble" class="sh" style="margin-top:9.6pt">구조 전환의 문제와 선택 및 결과</h3>
+    <div class="tri" style="margin-top:5.65pt">
+        <div><h4>문제와 제약</h4><p>기간상 Thymeleaf로 빠르게 구현했지만<br>화면과 API가 한 컨트롤러에 섞여 있었고<br>분리해도 기능과 인증은 유지해야 했습니다.</p></div>
+        <div><h4>선택과 구현</h4><p>React가 쓸 API를 /api/v1로 새로 만들고<br>기존 서비스를 재사용했습니다. 인증은<br>기존 사용자/판매자 세션을 유지했습니다.</p></div>
+        <div><h4>구현 결과</h4><p>React는 REST API만 호출하게 분리했고<br>기존 서비스 메서드 32개를 유지했으며<br>인증과 권한을 테스트로 확인했습니다.</p></div>
+    </div>
+
+    <div class="callout" style="margin-top:15.15pt">
+        <h4>구조 전환과 배포 결과</h4>
+        <p>기존 기능과 인증을 유지하며 화면과 서버를 분리했고 EC2, RDS, S3로 서버와 저장소를 나눠 배포했습니다.
+            <br>API 응답은 개발자 도구에서 볼 수 있어 재고 수량과 판매자 식별자를 제외하고 직렬화 테스트로 검사했습니다.</p>
+    </div>
+
+    <h3 id="sr-limits" class="sh" style="margin-top:9.55pt">현재 한계와 개선 방향</h3>
+    <p class="limits" style="margin-top:3.35pt"><span style="letter-spacing:-.027em">주문과 배송 상태는 버튼으로 직접 변경하고 있습니다. 앞으로 택배사와 송장을 연동하고 주문 및 결제의 예외 상황을 검증할 필요가 있습니다.</span>
+        <br>추후 이메일 인증과 비밀번호 재설정 및 로그인 보안을 보완하고 CI/CD와 모니터링도 개선할 계획입니다.</p>
+    <p class="links" style="margin-top:7pt"><a href="https://github.com/Sjoneon/Style-of-Simplicity-renewal" target="_blank" rel="noopener noreferrer">GitHub · Sjoneon/Style-of-Simplicity-renewal</a></p>
+
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · AI Service Backend</span><span>10 / 11</span></footer>
+</article>

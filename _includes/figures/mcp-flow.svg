@@ -1,0 +1,240 @@
+<svg class="mcp-flow" viewBox="0 0 680 442" role="group" aria-label="HomeCare AI의 MCP 도구 호출 흐름. 채팅 질문이 상담 Agent와 도구 선택, Java MCP 클라이언트, Python FastMCP를 거쳐 Spring 도구 API에서 인증과 소유권, 상태 버전, 입력을 검증한 뒤 도구 9개를 실행하고, 결과를 확인해 답변을 작성합니다. 등록 제품 증상 상담과 위험 안내는 FastMCP 없이 서버 내부에서 같은 도구 API를 호출합니다.">
+<defs><marker id="mf-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0.6L7.4 4L0 7.4z" fill="#5F8296"/></marker><marker id="mf-b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0.6L7.4 4L0 7.4z" fill="#9AAEBC"/></marker><marker id="mf-c" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#0FB2EA"/></marker><marker id="mf-d" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6L7.4 4L0 7.4z" fill="#E39A2D"/></marker></defs>
+<rect x="110" y="10" width="384" height="190" rx="6" fill="none" stroke="#C4D2DC" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="118" y="22" font-size="9" fill="#5B6C7C" font-weight="700">Spring Boot · 상담 처리</text>
+<rect x="562" y="110" width="118" height="90" rx="6" fill="none" stroke="#C4D2DC" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="122" font-size="9" fill="#5B6C7C" font-weight="700">FastMCP · 내부 전용</text>
+<rect x="110" y="226" width="570" height="212" rx="6" fill="none" stroke="#C4D2DC" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="186" y="238" font-size="9" fill="#5B6C7C" font-weight="700">Spring Boot · 도구 실행</text>
+<path d="M92 159L118 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M226 159L250 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M358 159L382 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M490 159L566 159" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M620 190L620 244" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M206 296L206 318" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M396 296L396 318" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M586 296L586 318" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)" marker-start="url(#mf-a)"/>
+<path d="M436 128L436 84" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M382 56L358 56" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M118 56L92 56" fill="none" stroke="#5F8296" stroke-width="1.15" marker-end="url(#mf-a)"/>
+<path d="M172 190L172 244" fill="none" stroke="#9AAEBC" stroke-width="1.15" stroke-dasharray="4 3" marker-end="url(#mf-b)" marker-start="url(#mf-b)"/>
+<path class="mf-p" d="M92 159L118 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="0.00s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M92 159L118 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="0.00s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M226 159L250 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.43s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M226 159L250 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.43s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M358 159L382 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.86s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M358 159L382 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="0.86s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M490 159L566 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="1.29s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M490 159L566 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="1.29s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M620 190L620 244" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="1.72s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M620 190L620 244" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="1.72s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M206 296L206 318" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M206 296L206 318" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M396 296L396 318" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M396 296L396 318" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M586 296L586 318" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M586 296L586 318" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.15s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M206 318L206 296" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M206 318L206 296" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M396 318L396 296" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M396 318L396 296" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M586 318L586 296" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M586 318L586 296" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-28;-28" keyTimes="0;0.0472;1" dur="7.63s" begin="2.58s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M620 244L620 190" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="3.01s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M620 244L620 190" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="3.01s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M566 159L490 159" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="3.44s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M566 159L490 159" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-82;-82" keyTimes="0;0.0472;1" dur="7.63s" begin="3.44s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M436 128L436 84" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-50;-50" keyTimes="0;0.0472;1" dur="7.63s" begin="3.87s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M436 128L436 84" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-50;-50" keyTimes="0;0.0472;1" dur="7.63s" begin="3.87s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M382 56L358 56" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="4.30s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M382 56L358 56" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-30;-30" keyTimes="0;0.0472;1" dur="7.63s" begin="4.30s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M118 56L92 56" fill="none" stroke="#0FB2EA" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="4.73s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M118 56L92 56" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="4.73s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M92 159L118 159" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="5.46s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M92 159L118 159" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="5.46s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M172 190L172 244" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="5.89s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M172 190L172 244" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="5.89s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M172 244L172 190" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="6.32s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M172 244L172 190" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-60;-60" keyTimes="0;0.0472;1" dur="7.63s" begin="6.32s" repeatCount="indefinite"/></path>
+<path class="mf-p" d="M118 159L92 159" fill="none" stroke="#E39A2D" stroke-width="4" stroke-opacity=".32" stroke-linecap="round" stroke-dasharray="34 4000" stroke-dashoffset="40"><animate attributeName="stroke-dashoffset" values="40;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="6.75s" repeatCount="indefinite"/></path>
+<path class="mf-p mf-head" d="M118 159L92 159" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="12 4000" stroke-dashoffset="18"><animate attributeName="stroke-dashoffset" values="18;-32;-32" keyTimes="0;0.0472;1" dur="7.63s" begin="6.75s" repeatCount="indefinite"/></path>
+<path class="mf-rt" data-route="1" d="M92 159L118 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="2" d="M226 159L250 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="3" d="M358 159L382 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="4" d="M490 159L566 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="5" d="M620 190L620 244" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="6" d="M206 296L206 318" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="6" d="M396 296L396 318" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="6" d="M586 296L586 318" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M206 318L206 296" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M396 318L396 296" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M586 318L586 296" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M620 244L620 190" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M566 159L490 159" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="7" d="M436 128L436 84" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="8" d="M382 56L358 56" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="9" d="M118 56L92 56" fill="none" stroke="#0FB2EA" stroke-width="2" marker-end="url(#mf-c)"/>
+<path class="mf-rt" data-route="2" d="M172 190L172 244" fill="none" stroke="#E39A2D" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#mf-d)"/>
+<g class="mf-step" data-step="1" tabindex="0" aria-label="1단계: React 채팅 화면에서 상담 Agent로 질문 전송">
+<rect x="6" y="28" width="86" height="162" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="17" cy="39" r="6.5" fill="#27374D"/><text x="17" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+<text x="49" y="60" font-size="9.5" fill="#566C7E" text-anchor="middle">답변/카드 표시</text>
+<text x="49" y="104" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">React</text>
+<text x="49" y="119" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">채팅 화면</text>
+<text x="49" y="163" font-size="9.5" fill="#566C7E" text-anchor="middle">질문 전송</text>
+</g>
+<g class="mf-step" data-step="2" tabindex="0" aria-label="2단계: 상담 Agent에서 도구 선택 또는 서버 내부 호출로 이동">
+<rect x="118" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="139" r="6.5" fill="#27374D"/><text x="129" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+<rect x="201" y="133" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="211" y="142" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="172" y="157" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">상담 Agent</text>
+<text x="172" y="171" font-size="10" fill="#566C7E" text-anchor="middle">상태/위험 확인</text>
+<text x="172" y="183" font-size="10" fill="#566C7E" text-anchor="middle">증상 해석</text>
+</g>
+<g class="mf-step" data-step="3" tabindex="0" aria-label="3단계: 도구 선택에서 Java MCP Client로 이동">
+<rect x="250" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="261" cy="139" r="6.5" fill="#27374D"/><text x="261" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+<rect x="333" y="133" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="343" y="142" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="304" y="157" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">도구 선택</text>
+<text x="304" y="171" font-size="10" fill="#566C7E" text-anchor="middle">AI 선택 또는</text>
+<text x="304" y="183" font-size="10" fill="#566C7E" text-anchor="middle">서버 정책 보완</text>
+</g>
+<g class="mf-step" data-step="4" tabindex="0" aria-label="4단계: Java MCP Client에서 Python FastMCP로 호출">
+<rect x="382" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="393" cy="139" r="6.5" fill="#27374D"/><text x="393" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
+<text x="436" y="157" font-size="11.5" fill="#27374D" font-weight="700" text-anchor="middle">Java MCP Client</text>
+<text x="436" y="171" font-size="10" fill="#566C7E" text-anchor="middle">호출 5회, 세션 20초</text>
+<text x="436" y="183" font-size="10" fill="#566C7E" text-anchor="middle">JWT/상태 버전 첨부</text>
+</g>
+<g class="mf-step" data-step="5" tabindex="0" aria-label="5단계: Python FastMCP에서 Spring 도구 API로 전달">
+<rect x="566" y="128" width="108" height="62" rx="3.5" fill="#27374D" stroke="#27374D" stroke-width="0.8"/>
+<circle cx="577" cy="139" r="6.5" fill="#FFFFFF"/><text x="577" y="142.2" font-size="9" fill="#27374D" font-weight="700" text-anchor="middle">5</text>
+<text x="620" y="157" font-size="11.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">Python FastMCP</text>
+<text x="620" y="171" font-size="10" fill="#DBE7EF" text-anchor="middle">도구 9개 노출</text>
+<text x="620" y="183" font-size="10" fill="#DBE7EF" text-anchor="middle">데이터/LLM 없음</text>
+</g>
+<g class="mf-step" data-step="8" tabindex="0" aria-label="8단계: 결과 확인에서 답변 작성으로 이동">
+<rect x="382" y="28" width="108" height="56" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="393" cy="39" r="6.5" fill="#27374D"/><text x="393" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">8</text>
+<text x="436" y="52" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">결과 확인</text>
+<text x="436" y="68" font-size="10" fill="#566C7E" text-anchor="middle">상담 버전 재확인</text>
+</g>
+<g class="mf-step" data-step="9" tabindex="0" aria-label="9단계: 답변 작성에서 채팅 화면으로 표시">
+<rect x="118" y="28" width="240" height="56" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="39" r="6.5" fill="#27374D"/><text x="129" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">9</text>
+<rect x="333" y="33" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="343" y="42" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="238" y="52" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">답변 작성</text>
+<text x="238" y="68" font-size="10" fill="#566C7E" text-anchor="middle">AI는 근거 ID 선택 · 서버가 검증 후 본문 복원</text>
+</g>
+<g class="mf-step" data-step="6" tabindex="0" aria-label="6단계: Spring 도구 API에서 검증 후 도구 실행">
+<rect x="118" y="244" width="556" height="52" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="255" r="6.5" fill="#27374D"/><text x="129" y="258.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">6</text>
+<text x="142" y="266" font-size="12" fill="#27374D" font-weight="700">Spring 도구 API</text>
+<text x="142" y="282" font-size="10" fill="#566C7E">POST /api/tools/{도구} · ToolBackend</text>
+<rect x="381" y="260" width="62" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="412" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">JWT 인증</text>
+<text x="450.5" y="274" font-size="11" fill="#5F8296" text-anchor="middle">›</text>
+<rect x="458" y="260" width="50" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="483" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">소유권</text>
+<text x="515.5" y="274" font-size="11" fill="#5F8296" text-anchor="middle">›</text>
+<rect x="523" y="260" width="62" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="554" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">상태 버전</text>
+<text x="592.5" y="274" font-size="11" fill="#5F8296" text-anchor="middle">›</text>
+<rect x="600" y="260" width="62" height="20" rx="3" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<text x="631" y="274" font-size="10" fill="#27374D" font-weight="700" text-anchor="middle">허용 입력</text>
+</g>
+<g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 제품·근거 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
+<rect x="118" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="129" cy="329" r="6.5" fill="#27374D"/><text x="129" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
+<text x="142" y="333" font-size="11.5" fill="#27374D" font-weight="700">제품/근거</text>
+<text x="285" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 3개</text>
+<text x="127" y="350" font-size="9" fill="#27374D" class="mono">lookup_model</text>
+<text x="285" y="350" font-size="9" fill="#566C7E" text-anchor="end">모델 조회</text>
+<text x="127" y="362.5" font-size="9" fill="#27374D" class="mono">search_knowledge</text>
+<text x="285" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">제조사 자료</text>
+<text x="127" y="375" font-size="9" fill="#27374D" class="mono">get_product_context</text>
+<text x="285" y="375" font-size="9" fill="#566C7E" text-anchor="end">등록 제품</text>
+<line x1="127" y1="397" x2="285" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
+<text x="127" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
+<text x="150" y="410" font-size="9" fill="#566C7E">모델, 제조사 문서, 등록 제품</text>
+<text x="127" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
+<text x="150" y="423" font-size="9" fill="#566C7E">제품 소유권, 모델 적용 조건</text>
+</g>
+<g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 진단·비용 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
+<rect x="308" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="319" cy="329" r="6.5" fill="#27374D"/><text x="319" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
+<text x="332" y="333" font-size="11.5" fill="#27374D" font-weight="700">진단/비용</text>
+<text x="475" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 4개</text>
+<text x="317" y="350" font-size="9" fill="#27374D" class="mono">get_diagnostic_plan</text>
+<text x="475" y="350" font-size="9" fill="#566C7E" text-anchor="end">자가점검</text>
+<text x="317" y="362.5" font-size="9" fill="#27374D" class="mono">check_warranty</text>
+<text x="475" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">보증</text>
+<text x="317" y="375" font-size="9" fill="#27374D" class="mono">get_repair_candidates</text>
+<text x="475" y="375" font-size="9" fill="#566C7E" text-anchor="end">수리 후보</text>
+<text x="317" y="387.5" font-size="9" fill="#27374D" class="mono">estimate_repair_cost</text>
+<text x="475" y="387.5" font-size="9" fill="#566C7E" text-anchor="end">참고 비용</text>
+<line x1="317" y1="397" x2="475" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
+<text x="317" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
+<text x="340" y="410" font-size="9" fill="#566C7E">승인 계획, 보증 정책, 부품 비용</text>
+<text x="317" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
+<text x="340" y="423" font-size="9" fill="#566C7E">현재 질문, 단계, 허용 코드</text>
+</g>
+<g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 후속 행동 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
+<rect x="498" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
+<circle cx="509" cy="329" r="6.5" fill="#27374D"/><text x="509" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
+<text x="522" y="333" font-size="11.5" fill="#27374D" font-weight="700">후속 행동</text>
+<text x="665" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 2개</text>
+<text x="507" y="350" font-size="9" fill="#27374D" class="mono">find_service_centers</text>
+<text x="665" y="350" font-size="9" fill="#566C7E" text-anchor="end">서비스 경로</text>
+<text x="507" y="362.5" font-size="9" fill="#27374D" class="mono">prepare_service_handoff</text>
+<text x="665" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">상담 요약</text>
+<line x1="507" y1="397" x2="665" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
+<text x="507" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
+<text x="530" y="410" font-size="9" fill="#566C7E">공식 접수 경로, 보증 정책</text>
+<text x="507" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
+<text x="530" y="423" font-size="9" fill="#566C7E">상담 상태와 연결된 결과</text>
+</g>
+<rect class="mf-p mf-glow" x="6" y="28" width="86" height="162" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="0.00s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="0.26s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="250" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="0.69s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="382" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="1.12s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="566" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="1.55s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="244" width="556" height="52" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="1.98s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="318" width="176" height="112" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.41s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="308" y="318" width="176" height="112" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.41s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="498" y="318" width="176" height="112" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.41s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="244" width="556" height="52" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="2.84s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="566" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="3.27s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="382" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="3.70s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="382" y="28" width="108" height="56" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="4.13s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="28" width="240" height="56" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="4.56s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="6" y="28" width="86" height="162" rx="3.5" fill="none" stroke="#0FB2EA" color="#0FB2EA" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="4.99s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="5.72s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="244" width="556" height="52" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="6.15s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="118" y="128" width="108" height="62" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="6.58s" repeatCount="indefinite"/></rect>
+<rect class="mf-p mf-glow" x="6" y="28" width="86" height="162" rx="3.5" fill="none" stroke="#E39A2D" color="#E39A2D" stroke-width="1.8" stroke-opacity="0"><animate attributeName="stroke-opacity" values="0;1;0;0" keyTimes="0;0.0131;0.0655;1" dur="7.63s" begin="7.01s" repeatCount="indefinite"/></rect>
+<text x="528" y="140" font-size="9" fill="#5B6C7C" font-weight="700" text-anchor="middle">Streamable</text>
+<text x="528" y="151" font-size="9" fill="#5B6C7C" text-anchor="middle">HTTP · /mcp</text>
+<text x="444" y="110" font-size="9" fill="#5B6C7C">도구 결과</text>
+<text x="180" y="215" font-size="9" fill="#5B6C7C">서버 내부 호출 · 등록 제품 증상 상담, 위험 안내</text>
+<text x="612" y="215" font-size="9" fill="#5B6C7C" text-anchor="end">요청별 JWT + 상태 버전</text>
+<text x="6" y="238" font-size="9.5" fill="#27374D" font-weight="700">표시</text>
+<line x1="6" y1="252" x2="30" y2="252" stroke="#5F8296" stroke-width="1.15"/>
+<text x="36" y="255" font-size="9" fill="#566C7E">MCP 경로</text>
+<line x1="6" y1="268" x2="30" y2="268" stroke="#9AAEBC" stroke-width="1.15" stroke-dasharray="4 3"/>
+<text x="36" y="271" font-size="9" fill="#566C7E">서버 내부 호출</text>
+<rect x="8" y="278" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="18" y="287" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
+<text x="36" y="287" font-size="9" fill="#566C7E">OpenAI 호출</text>
+<text x="6" y="314" font-size="9.5" fill="#27374D" font-weight="700">거부 응답</text>
+<text x="6" y="329" font-size="9" fill="#27374D" font-weight="700">401</text>
+<text x="28" y="329" font-size="9" fill="#566C7E">인증 실패</text>
+<text x="6" y="343" font-size="9" fill="#27374D" font-weight="700">404</text>
+<text x="28" y="343" font-size="9" fill="#566C7E">소유권/외부 접근</text>
+<text x="6" y="357" font-size="9" fill="#27374D" font-weight="700">409</text>
+<text x="28" y="357" font-size="9" fill="#566C7E">상태 변경</text>
+<text x="6" y="371" font-size="9" fill="#27374D" font-weight="700">400</text>
+<text x="28" y="371" font-size="9" fill="#566C7E">허용 외 입력</text>
+<text x="6" y="397" font-size="9.5" fill="#27374D" font-weight="700">FastMCP 장애</text>
+<text x="6" y="411" font-size="9" fill="#566C7E">MCP 경로는 일반</text>
+<text x="6" y="424" font-size="9" fill="#566C7E">안내로 전환</text>
+</svg>

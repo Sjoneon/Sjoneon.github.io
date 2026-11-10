@@ -1,0 +1,59 @@
+<!-- ═══════════════════════════ 11 / 11 · SOS ═══════════════════════════ -->
+<article class="page" id="sos" aria-label="11페이지 · SOS">
+    <header class="run-head" aria-hidden="true"><span>SONG JAEWON / DEVELOPER PORTFOLIO</span><span>04 / FOUNDATION</span></header>
+
+    <p class="kicker">PERSONAL PROJECT</p>
+    <h2 class="ptitle">SOS</h2>
+    <p class="psub" style="letter-spacing:.013em">키워드로 옷을 찾는 Spring Boot 쇼핑몰</p>
+    <p class="pmeta">2024.03 - 06 / 09 - 11 · 개인 프로젝트 · Style of Simplicity</p>
+    <p class="lead s9" style="margin-top:12.55pt">Spring Boot와 Thymeleaf 및 JPA로 체형과 상황 스타일 키워드에 맞는 상품 탐색과 주문 흐름을 구현했습니다.<br>패션에 익숙하지 않은 사용자가 상품을 고르고 장바구니와 주문 내역 조회까지 이어가도록 구성했습니다.</p>
+
+    <ul class="badges" style="margin-top:10.25pt">
+        <li><img src="image/badges/java.svg" width="53" height="20" alt="Java"></li>
+        <li><img src="image/badges/spring-boot.svg" width="93" height="20" alt="Spring Boot"></li>
+        <li><img src="image/badges/spring-data-jpa.svg" width="117" height="20" alt="Spring Data JPA"></li>
+        <li><img src="image/badges/mysql.svg" width="67" height="20" alt="MySQL"></li>
+        <li><img src="image/badges/thymeleaf.svg" width="85" height="20" alt="Thymeleaf"></li>
+        <li><img src="image/badges/maven.svg" width="63" height="20" alt="Maven"></li>
+    </ul>
+
+    <div class="shots sm" style="margin-top:8.25pt">
+        <figure><div class="frame"><img src="image/SOS/sos_main.png" width="2879" height="1712" alt="SOS 상품 목록과 키워드 선택 화면"></div><figcaption>상품 목록/키워드 선택</figcaption></figure>
+        <figure><div class="frame"><img src="image/SOS/sos_admin_keywords.png" width="2829" height="1690" alt="SOS 관리자 키워드 설정 화면"></div><figcaption>관리자 키워드 설정</figcaption></figure>
+    </div>
+
+    <h3 id="sos-design" class="sh" style="margin-top:11pt">계층과 데이터 관계 설계</h3>
+    <div class="flow3" style="margin-top:8.55pt">
+        <div class="node"><strong>Controller</strong><span>요청 수신, Model 전달</span></div>
+        <div class="arr" aria-hidden="true">→</div>
+        <div class="node dark"><strong>Service</strong><span>회원, 상품, 주문 처리</span></div>
+        <div class="arr" aria-hidden="true">→</div>
+        <div class="node"><strong>Repository</strong><span>JPA CRUD, 조회 쿼리</span></div>
+    </div>
+
+    <table class="tbl" style="margin-top:7.85pt">
+        <colgroup><col style="width:100.9pt"><col></colgroup>
+        <tbody>
+            <tr><th scope="row">상품 / 키워드</th><td>Product-Keyword 다대다 관계로 체형, 스타일, 상황별 상품 매칭</td></tr>
+            <tr><th scope="row">장바구니 / 주문</th><td>Cart와 Order로 장바구니와 주문 및 재고 차감 연결</td></tr>
+            <tr><th scope="row">회원 / 판매자</th><td>세션 기반 로그인과 권한별 접근 제어</td></tr>
+        </tbody>
+    </table>
+
+    <h3 id="sos-trouble" class="sh" style="margin-top:9.8pt">트러블 슈팅 · DB 연결 환경</h3>
+    <div class="boxed trouble" style="margin-top:5.65pt">
+        <p><b>문제</b> : DB 연결 오류로 상품/주문 흐름을 실행하기 어려웠습니다.</p>
+        <p><b>판단/구현</b> : 의존성 호환 문제로 보고 pom.xml의 MySQL Connector 버전을 점검해 DB 연결 구성을 보완했습니다.</p>
+        <p class="hang"><b>결과</b> : 연결을 복구해 상품/주문 흐름을 실행했습니다. 이후 DaySync에서는 API 명세, ERD, 시퀀스를 먼저 작성해<br>요청/응답과 데이터 처리 위치를 정리하고 화면과 서버의 책임을 나눈 뒤 구현하도록 개발 순서를 바꿨습니다.</p>
+    </div>
+
+    <h3 id="sos-scope" class="sh" style="margin-top:8.9pt">프로젝트를 통해 확장한 개발 범위</h3>
+    <div class="tracks" style="margin-top:5.35pt">
+        <div><em>SOS</em><strong>백엔드 기본기</strong><p>계층형 구조<br>JPA 관계/트랜잭션</p></div>
+        <div><em>DaySync / SOS Renewal</em><strong>서비스 연결/운영</strong><p>외부 API/장애 대응<br>SPA, REST API, AWS</p></div>
+        <div><em>HomeCare AI</em><strong>팀 설계/AI 검증</strong><p>서비스, DB, Agent 설계<br>MCP 연동/근거 검증</p></div>
+    </div>
+    <p class="links" style="margin-top:13.4pt"><a href="https://github.com/Sjoneon" target="_blank" rel="noopener noreferrer">GitHub</a><span class="sep">·</span><a href="https://sjoneon.github.io/">웹 포트폴리오</a><span class="sep">·</span><a href="mailto:spdjdps1649@gmail.com">spdjdps1649@gmail.com</a></p>
+
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · AI Service Backend</span><span>11 / 11</span></footer>
+</article>

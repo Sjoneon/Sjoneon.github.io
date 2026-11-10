@@ -1,0 +1,19 @@
+/*
+  인쇄, PDF 저장 설정. .page 하나가 종이 한 장
+  다른 CSS를 덮어써야 해서 제일 마지막에 불러옴
+*/
+
+@page { size: A4; margin: 0; }
+
+@media print {
+    html, body { background: #FFFFFF; }
+    .doc { padding: 0; }
+    /* 화면에서 쓰던 배율은 여기서 초기화 */
+    .page { zoom: 1; margin: 0; box-shadow: none; break-after: page; }
+    .page:last-child { break-after: auto; }
+    html { scroll-behavior: auto; }
+
+    /* 화면에서만 필요한 것들 */
+    .toc, .toc-toggle, .toc-bar, .toc-scrim { display: none !important; }
+    .mcp-flow .mf-p, .mcp-flow .mf-rt, .mf-toggle { display: none !important; }
+}
