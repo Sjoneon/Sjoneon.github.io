@@ -1,0 +1,14 @@
+# 작업용 백업, 테스트 페이지
+index_backup*.html
+index_test_*.html
+
+# 개인 메모
+notes/
+
+# Jekyll 빌드 결과
+_site/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
