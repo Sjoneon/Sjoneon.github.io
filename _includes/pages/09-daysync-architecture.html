@@ -16,16 +16,16 @@
     <h3 id="ds-trouble" class="sh" style="margin-top:11.9pt">장애 대응 · Retrofit으로 날씨 API 재시도 구현</h3>
     <div class="boxed retry" style="margin-top:5.75pt">
         <p><b>문제</b> : 날씨 API 오류가 지속되면 불필요한 요청과 사용자 대기가 늘어날 수 있기에 재시도 횟수와 대기 시간을 제한</p>
-        <p><b>판단 및 구현</b> : 기상청 API 호출 실패 시 2초 간격으로 최대 3회 재시도하도록 했습니다.</p>
+        <p><b>판단/구현</b> : 기상청 API 호출 실패 시 2초 간격으로 최대 3회 재시도하도록 했습니다.</p>
         <p><b>구현 결과</b> : 반복 실패는 오류로 안내하고 화면 종료 시 예약된 재시도를 취소하도록 구성했습니다.</p>
     </div>
 
     <div class="flow3" style="margin-top:9.4pt;--node-pt:9.1pt">
-        <div class="node"><strong>날씨 조회 요청</strong><span>Android · Retrofit</span></div>
+        <div class="node"><strong>날씨 조회 요청</strong><span>Android, Retrofit</span></div>
         <div class="arr" aria-hidden="true">→</div>
         <div class="node dark"><strong>기상청 API</strong><span>날씨 데이터 직접 조회</span></div>
         <div class="arr" aria-hidden="true">→</div>
-        <div class="node"><strong>재시도·오류 안내</strong><span>2초 간격 · 최대 3회 재시도</span></div>
+        <div class="node"><strong>재시도/오류 안내</strong><span>2초 간격, 최대 3회 재시도</span></div>
     </div>
 
     <h3 id="ds-lessons" class="sh" style="margin-top:8.35pt">설계와 운영에서 배운 점</h3>
@@ -44,11 +44,11 @@
     <table class="tbl" style="margin-top:5.05pt">
         <colgroup><col style="width:141.7pt"><col></colgroup>
         <tbody>
-            <tr><th scope="row">인증·데이터 분리</th><td>JWT 기반 인증 도입과 사용자별 데이터 관리 강화</td></tr>
+            <tr><th scope="row">인증/데이터 분리</th><td>JWT 기반 인증 도입과 사용자별 데이터 관리 강화</td></tr>
             <tr><th scope="row">경로 응답 속도</th><td>현재 40~50초가 소요되는 버스 경로 탐색 최적화</td></tr>
             <tr><th scope="row">교통 기능 확장</th><td>환승 경로 지원으로 대중교통 이용 흐름 개선</td></tr>
         </tbody>
     </table>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>09 / 11</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · AI Service Backend</span><span>09 / 11</span></footer>
 </article>

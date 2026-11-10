@@ -78,7 +78,7 @@
 <g class="mf-step" data-step="1" tabindex="0" aria-label="1단계: React 채팅 화면에서 상담 Agent로 질문 전송">
 <rect x="6" y="28" width="86" height="162" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
 <circle cx="17" cy="39" r="6.5" fill="#27374D"/><text x="17" y="42.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
-<text x="49" y="60" font-size="9.5" fill="#566C7E" text-anchor="middle">답변·카드 표시</text>
+<text x="49" y="60" font-size="9.5" fill="#566C7E" text-anchor="middle">답변/카드 표시</text>
 <text x="49" y="104" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">React</text>
 <text x="49" y="119" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">채팅 화면</text>
 <text x="49" y="163" font-size="9.5" fill="#566C7E" text-anchor="middle">질문 전송</text>
@@ -88,7 +88,7 @@
 <circle cx="129" cy="139" r="6.5" fill="#27374D"/><text x="129" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
 <rect x="201" y="133" width="20" height="12" rx="6" fill="#FFF1E5" stroke="#EFC7A6" stroke-width="0.8"/><text x="211" y="142" font-size="8" fill="#B85F22" font-weight="700" text-anchor="middle">AI</text>
 <text x="172" y="157" font-size="12" fill="#27374D" font-weight="700" text-anchor="middle">상담 Agent</text>
-<text x="172" y="171" font-size="10" fill="#566C7E" text-anchor="middle">상태·위험 확인</text>
+<text x="172" y="171" font-size="10" fill="#566C7E" text-anchor="middle">상태/위험 확인</text>
 <text x="172" y="183" font-size="10" fill="#566C7E" text-anchor="middle">증상 해석</text>
 </g>
 <g class="mf-step" data-step="3" tabindex="0" aria-label="3단계: 도구 선택에서 Java MCP Client로 이동">
@@ -103,15 +103,15 @@
 <rect x="382" y="128" width="108" height="62" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
 <circle cx="393" cy="139" r="6.5" fill="#27374D"/><text x="393" y="142.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
 <text x="436" y="157" font-size="11.5" fill="#27374D" font-weight="700" text-anchor="middle">Java MCP Client</text>
-<text x="436" y="171" font-size="10" fill="#566C7E" text-anchor="middle">호출 5회·세션 20초</text>
-<text x="436" y="183" font-size="10" fill="#566C7E" text-anchor="middle">JWT·상태 버전 첨부</text>
+<text x="436" y="171" font-size="10" fill="#566C7E" text-anchor="middle">호출 5회, 세션 20초</text>
+<text x="436" y="183" font-size="10" fill="#566C7E" text-anchor="middle">JWT/상태 버전 첨부</text>
 </g>
 <g class="mf-step" data-step="5" tabindex="0" aria-label="5단계: Python FastMCP에서 Spring 도구 API로 전달">
 <rect x="566" y="128" width="108" height="62" rx="3.5" fill="#27374D" stroke="#27374D" stroke-width="0.8"/>
 <circle cx="577" cy="139" r="6.5" fill="#FFFFFF"/><text x="577" y="142.2" font-size="9" fill="#27374D" font-weight="700" text-anchor="middle">5</text>
 <text x="620" y="157" font-size="11.5" fill="#FFFFFF" font-weight="700" text-anchor="middle">Python FastMCP</text>
 <text x="620" y="171" font-size="10" fill="#DBE7EF" text-anchor="middle">도구 9개 노출</text>
-<text x="620" y="183" font-size="10" fill="#DBE7EF" text-anchor="middle">데이터·LLM 없음</text>
+<text x="620" y="183" font-size="10" fill="#DBE7EF" text-anchor="middle">데이터/LLM 없음</text>
 </g>
 <g class="mf-step" data-step="8" tabindex="0" aria-label="8단계: 결과 확인에서 답변 작성으로 이동">
 <rect x="382" y="28" width="108" height="56" rx="3.5" fill="#F4F7F9" stroke="#BFCED9" stroke-width="0.8"/>
@@ -146,7 +146,7 @@
 <g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 제품·근거 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
 <rect x="118" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
 <circle cx="129" cy="329" r="6.5" fill="#27374D"/><text x="129" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
-<text x="142" y="333" font-size="11.5" fill="#27374D" font-weight="700">제품·근거</text>
+<text x="142" y="333" font-size="11.5" fill="#27374D" font-weight="700">제품/근거</text>
 <text x="285" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 3개</text>
 <text x="127" y="350" font-size="9" fill="#27374D" class="mono">lookup_model</text>
 <text x="285" y="350" font-size="9" fill="#566C7E" text-anchor="end">모델 조회</text>
@@ -156,14 +156,14 @@
 <text x="285" y="375" font-size="9" fill="#566C7E" text-anchor="end">등록 제품</text>
 <line x1="127" y1="397" x2="285" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
 <text x="127" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
-<text x="150" y="410" font-size="9" fill="#566C7E">모델 · 제조사 문서 · 등록 제품</text>
+<text x="150" y="410" font-size="9" fill="#566C7E">모델, 제조사 문서, 등록 제품</text>
 <text x="127" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
-<text x="150" y="423" font-size="9" fill="#566C7E">제품 소유권 · 모델 적용 조건</text>
+<text x="150" y="423" font-size="9" fill="#566C7E">제품 소유권, 모델 적용 조건</text>
 </g>
 <g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 진단·비용 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
 <rect x="308" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
 <circle cx="319" cy="329" r="6.5" fill="#27374D"/><text x="319" y="332.2" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">7</text>
-<text x="332" y="333" font-size="11.5" fill="#27374D" font-weight="700">진단·비용</text>
+<text x="332" y="333" font-size="11.5" fill="#27374D" font-weight="700">진단/비용</text>
 <text x="475" y="333" font-size="9" fill="#5B6C7C" text-anchor="end">도구 4개</text>
 <text x="317" y="350" font-size="9" fill="#27374D" class="mono">get_diagnostic_plan</text>
 <text x="475" y="350" font-size="9" fill="#566C7E" text-anchor="end">자가점검</text>
@@ -175,9 +175,9 @@
 <text x="475" y="387.5" font-size="9" fill="#566C7E" text-anchor="end">참고 비용</text>
 <line x1="317" y1="397" x2="475" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
 <text x="317" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
-<text x="340" y="410" font-size="9" fill="#566C7E">승인 계획 · 보증 정책 · 부품 비용</text>
+<text x="340" y="410" font-size="9" fill="#566C7E">승인 계획, 보증 정책, 부품 비용</text>
 <text x="317" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
-<text x="340" y="423" font-size="9" fill="#566C7E">현재 질문 · 단계 · 허용 코드</text>
+<text x="340" y="423" font-size="9" fill="#566C7E">현재 질문, 단계, 허용 코드</text>
 </g>
 <g class="mf-step" data-step="7" tabindex="0" aria-label="7단계: 후속 행동 도구 결과가 Spring 도구 API와 FastMCP, Java MCP Client를 거쳐 결과 확인으로 이동">
 <rect x="498" y="318" width="176" height="112" rx="3.5" fill="#FFFFFF" stroke="#BFCED9" stroke-width="0.8"/>
@@ -190,7 +190,7 @@
 <text x="665" y="362.5" font-size="9" fill="#566C7E" text-anchor="end">상담 요약</text>
 <line x1="507" y1="397" x2="665" y2="397" stroke="#E3EAF0" stroke-width=".8"/>
 <text x="507" y="410" font-size="9" fill="#5B6C7C" font-weight="700">자료</text>
-<text x="530" y="410" font-size="9" fill="#566C7E">공식 접수 경로 · 보증 정책</text>
+<text x="530" y="410" font-size="9" fill="#566C7E">공식 접수 경로, 보증 정책</text>
 <text x="507" y="423" font-size="9" fill="#5B6C7C" font-weight="700">검증</text>
 <text x="530" y="423" font-size="9" fill="#566C7E">상담 상태와 연결된 결과</text>
 </g>
@@ -229,7 +229,7 @@
 <text x="6" y="329" font-size="9" fill="#27374D" font-weight="700">401</text>
 <text x="28" y="329" font-size="9" fill="#566C7E">인증 실패</text>
 <text x="6" y="343" font-size="9" fill="#27374D" font-weight="700">404</text>
-<text x="28" y="343" font-size="9" fill="#566C7E">소유권·외부 접근</text>
+<text x="28" y="343" font-size="9" fill="#566C7E">소유권/외부 접근</text>
 <text x="6" y="357" font-size="9" fill="#27374D" font-weight="700">409</text>
 <text x="28" y="357" font-size="9" fill="#566C7E">상태 변경</text>
 <text x="6" y="371" font-size="9" fill="#27374D" font-weight="700">400</text>

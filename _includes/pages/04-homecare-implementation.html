@@ -8,11 +8,11 @@
     <p class="pmeta">핵심 구현 · 제조사 자료 검색 / MCP 연결 / 상담 상태 관리</p>
 
     <h3 class="sh" style="margin-top:24pt">01. Spring AI로 제품별 제조사 근거 검색</h3>
-    <p class="lead" style="margin-top:8pt;line-height:17pt">다른 모델의 조치를 안내하면 잘못된 점검으로 이어질 수 있어 검색 전 제품의 적용 조건을 확인해야 했습니다.<br>Spring AI 검색에 품목·모델 조건을 적용하고 검색용 텍스트와 표시 원문을 분리해 제품별 근거를 반환하여<br>사용자에게 보다 정확한 정보를 제공했습니다.</p>
+    <p class="lead" style="margin-top:8pt;line-height:17pt">다른 모델의 조치를 안내하면 잘못된 점검으로 이어질 수 있어 검색 전 제품의 적용 조건을 확인해야 했습니다.<br>Spring AI 검색에 품목/모델 조건을 적용하고 검색용 텍스트와 표시 원문을 분리해 제품별 근거를 반환하여<br>사용자에게 보다 정확한 정보를 제공했습니다.</p>
 
     <ol class="steps lg" style="margin-top:20pt">
-        <li><span class="n">FILTER</span><strong>적용 조건 확인</strong><p>품목·모델<br>제외 조건 검증</p></li>
-        <li><span class="n">RETRIEVE</span><strong>후보 검색</strong><p>오류코드·증상 어휘<br>임베딩 유사도 결합</p></li>
+        <li><span class="n">FILTER</span><strong>적용 조건 확인</strong><p>품목/모델<br>제외 조건 검증</p></li>
+        <li><span class="n">RETRIEVE</span><strong>후보 검색</strong><p>오류코드/증상 어휘<br>임베딩 유사도 결합</p></li>
         <li><span class="n">FALLBACK</span><strong>장애 대응</strong><p>의미 검색 장애 시<br>어휘 검색으로 전환</p></li>
         <li><span class="n">RESPOND</span><strong>근거 부족 처리</strong><p>추가 확인 또는<br>자료 부족 안내</p></li>
     </ol>
@@ -22,7 +22,7 @@
 {% include figures/mcp-flow.svg %}
     <!-- MCP-FLOW:END -->
 </br>
-    <p class="note" style="margin-top:9pt">일반 문의는 AI가 도구를 고르고 비용·접수 문의와 등록 제품 증상 상담은 서버 정책이 호출합니다.<br>소유권·상태 검사와 보증 및 비용 판단은 Spring 도구 API가 맡도록 역할을 나눴습니다.</p>
+    <p class="note" style="margin-top:9pt">일반 문의는 AI가 도구를 고르고 비용/접수 문의와 등록 제품 증상 상담은 서버 정책이 호출합니다.<br>소유권/상태 검사와 보증 및 비용 판단은 Spring 도구 API가 맡도록 역할을 나눴습니다.</p>
 
-    <footer class="run-foot" aria-hidden="true"><span>송재원 · Backend &amp; Full-stack</span><span>04 / 11</span></footer>
+    <footer class="run-foot" aria-hidden="true"><span>송재원 · AI Service Backend</span><span>04 / 11</span></footer>
 </article>
